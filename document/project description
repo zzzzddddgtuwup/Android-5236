@@ -14,3 +14,6 @@ Category III Map:
 	User case 1: Choose the location from a map to enter the specific Q&A district. 
 	User case 2: Search district or building to enter the Q&A district. 
 	User case 3: Specify user's default location. 
+
+Category IV Notification: 
+	User case 1: Choose the frequency of notification: 1 hour/ 1 day/ random...
