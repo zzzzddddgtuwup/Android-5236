@@ -1,7 +1,7 @@
 Category I Question and Answers:
 	User case 1: post a question for specific location and receive notification if question being answered and send feedback. 
 	User case 2: Answer a question for specific location and send notification to people in the location to answer. 
-	User case 3: Search for the questions being posted in the location and recommand questions to answer. 
+	User case 3: Search for the questions being posted in the location and recomand questions to answer. 
 	User case 4: Check the content of a question. If being answered, rate the answer; If not, answer the question or rate the question. 
 
 Category II Profile: 
@@ -13,7 +13,7 @@ Category II Profile:
 Category III Map:
 	User case 1: Choose the location from a map to enter the specific Q&A district. 
 	User case 2: Search district or building to enter the Q&A district. 
-	User case 3: Specify user's default location. 
+	User case 3: Specify user's default location to enter the Q&A district.
 
 Category IV Notification: 
 	User case 1: Choose the frequency of notification: 1 hour/ 1 day/ random...
