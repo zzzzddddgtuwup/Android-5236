@@ -10,5 +10,6 @@
     <string name="title_activity_qa">QAActivity</string>
     <string name="title_activity_setting">SettingActivity</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_noti_freq">NotiFreqActivity</string>
 
 </resources>

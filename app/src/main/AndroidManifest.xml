@@ -54,15 +54,20 @@
         </activity>
         <activity
             android:name=".MapActivity"
-            android:label="@string/title_activity_map" >
-        </activity>
-        <activity android:name="com.android.mobileapp.MapActivity"
             android:label="@string/title_activity_map"
-            android:parentActivityName="com.android.mobileapp.SettingActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:parentActivityName=".SettingActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.mobileapp.SettingActivity" />
+        </activity>
+        <activity
+            android:name=".NotiFreqActivity"
+            android:label="@string/title_activity_noti_freq"
+            android:parentActivityName=".SettingActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.mobileapp.SettingActivity" />
         </activity>
     </application>
 
 </manifest>
-
