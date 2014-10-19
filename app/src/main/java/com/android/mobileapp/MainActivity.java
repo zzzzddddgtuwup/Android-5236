@@ -24,9 +24,6 @@ public class MainActivity extends ActionBarActivity {
         Log.e(TAG, "+++ In onCreate() +++");
         setContentView(R.layout.activity_main);
 
-
-
-
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
@@ -54,8 +51,6 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -77,12 +72,10 @@ public class MainActivity extends ActionBarActivity {
             final OnClickListener Click = new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.e("zdg","I ma here");
                     switch (view.getId()) {
                         case R.id.main_button_profile:
                             Intent profile_intent = new Intent(getActivity(), SettingActivity.class);
                             startActivity(profile_intent);
-                            Log.e("zdg","button is pressed");
                             break;
                         case R.id.main_button_myQuestion:
                             Intent myQuestion_intent = new Intent(getActivity(), MyQuestionActivity.class);
@@ -106,6 +99,4 @@ public class MainActivity extends ActionBarActivity {
             return rootView;
         }
     }
-
-
 }
