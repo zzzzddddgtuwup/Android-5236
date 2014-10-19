@@ -14,7 +14,7 @@ import android.content.Intent;
 
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
     private final String TAG = ((Object) this).getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,28 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.main_button_profile:
+                Intent profile_intent = new Intent(this, SettingActivity.class);
+                startActivity(profile_intent);
+                break;
+            case R.id.main_button_myQuestion:
+                Intent myQuestion_intent = new Intent(this, MyQuestionActivity.class);
+                startActivity(myQuestion_intent);
+                break;
+            case R.id.main_button_myAnswer:
+                Intent myAnswer_intent = new Intent(this, MyAnswerActivity.class);
+                startActivity(myAnswer_intent);
+                break;
+            case R.id.main_button_forum:
+                Intent forum_intent = new Intent(this, ForumActivity.class);
+                startActivity(forum_intent);
+                break;
+        }
     }
 
     /**
