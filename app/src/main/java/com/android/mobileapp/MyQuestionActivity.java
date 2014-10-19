@@ -14,7 +14,7 @@ import android.os.Build;
 
 
 public class MyQuestionActivity extends ActionBarActivity {
-
+    private final String TAG = ((Object) this).getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

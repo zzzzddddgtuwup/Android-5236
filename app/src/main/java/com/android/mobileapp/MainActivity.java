@@ -15,7 +15,7 @@ import android.content.Intent;
 
 
 public class MainActivity extends ActionBarActivity {
-
+    private final String TAG = ((Object) this).getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

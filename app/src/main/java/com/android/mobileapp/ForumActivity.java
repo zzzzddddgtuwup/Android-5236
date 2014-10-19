@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,10 +15,11 @@ import android.os.Build;
 
 
 public class ForumActivity extends ActionBarActivity {
-
+    private final String TAG = ((Object) this).getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG, "+++ In onCreate() +++");
         setContentView(R.layout.activity_forum);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()

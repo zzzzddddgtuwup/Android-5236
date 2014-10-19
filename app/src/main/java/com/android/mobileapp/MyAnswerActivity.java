@@ -14,7 +14,7 @@ import android.os.Build;
 
 
 public class MyAnswerActivity extends ActionBarActivity {
-
+    private final String TAG = ((Object) this).getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

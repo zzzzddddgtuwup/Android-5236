@@ -11,5 +11,9 @@
     <string name="title_activity_setting">SettingActivity</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_noti_freq">NotiFreqActivity</string>
+    <string name="main_button_profile">Profile</string>
+    <string name="main_button_myquestion">My Questions</string>
+    <string name="main_button_myanswer">My Answers</string>
+    <string name="forum">Forum</string>
 
 </resources>
