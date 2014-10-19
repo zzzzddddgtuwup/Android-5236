@@ -9,5 +9,6 @@
     <string name="title_activity_my_answer">MyAnswerActivity</string>
     <string name="title_activity_qa">QAActivity</string>
     <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_map">MapActivity</string>
 
 </resources>

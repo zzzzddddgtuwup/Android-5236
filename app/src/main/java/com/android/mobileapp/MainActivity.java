@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.content.Intent;
 
 
 
@@ -60,5 +61,10 @@ public class MainActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
+    }
+
+    public void selectLocation(View view) {
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
     }
 }

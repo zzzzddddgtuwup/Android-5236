@@ -38,8 +38,9 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Choose Location"
-            android:id="@+id/chooseLocationbutton" />
+            android:text="Select Location"
+            android:id="@+id/chooseLocationbutton"
+            android:onClick="selectLocation"/>
 
     </LinearLayout>
 </RelativeLayout>
