@@ -21,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:text="Notification Frequency"
-            android:id="@+id/buttonNotification" />
+            android:id="@+id/buttonNotification"
+            android:onClick="selectNotiFreq"/>
 
         <EditText
             android:layout_width="match_parent"

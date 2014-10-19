@@ -63,8 +63,5 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    public void selectLocation(View view) {
-        Intent intent = new Intent(this, MapActivity.class);
-        startActivity(intent);
-    }
+
 }

@@ -4,20 +4,24 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.content.Intent;
 
+import java.util.Objects;
 
 
 public class SettingActivity extends ActionBarActivity {
-
+    private final String TAG = ((Object)this).getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG, "+++ In onCreate() +++");
         setContentView(R.layout.activity_setting);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -60,5 +64,15 @@ public class SettingActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_setting, container, false);
             return rootView;
         }
+    }
+
+    public void selectNotiFreq(View view) {
+        Intent intent = new Intent(this, NotiFreqActivity.class);
+        startActivity(intent);
+    }
+
+    public void selectLocation(View view) {
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
     }
 }
