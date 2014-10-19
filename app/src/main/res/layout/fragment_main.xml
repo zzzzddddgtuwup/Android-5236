@@ -21,7 +21,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="@string/main_button_myquestion"
         android:id="@+id/button2"
         android:layout_marginTop="40dp"
         android:layout_below="@+id/button"
@@ -31,7 +31,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="@string/main_button_myanswer"
         android:id="@+id/button3"
         android:layout_below="@+id/button2"
         android:layout_alignParentLeft="true"
@@ -41,7 +41,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="@string/main_button_forum"
         android:id="@+id/button4"
         android:layout_marginTop="42dp"
         android:layout_below="@+id/button3"
