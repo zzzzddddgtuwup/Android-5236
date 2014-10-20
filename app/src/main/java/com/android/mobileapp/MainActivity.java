@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new mainFragment())
                     .commit();
         }
 
@@ -89,54 +89,5 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment{
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
-            View btnProfile = (Button) rootView.findViewById(R.id.main_button_profile);
-            View btnMyQuestion = (Button) rootView.findViewById(R.id.main_button_myQuestion);
-            View btnMyAnswer = (Button) rootView.findViewById(R.id.main_button_myAnswer);
-            View btnForum = (Button) rootView.findViewById(R.id.main_button_forum);
-
-            final OnClickListener Click = new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    switch (view.getId()) {
-                        case R.id.main_button_profile:
-                            Intent profile_intent = new Intent(getActivity(), SettingActivity.class);
-                            startActivity(profile_intent);
-                            break;
-                        case R.id.main_button_myQuestion:
-                            Intent myQuestion_intent = new Intent(getActivity(), MyQuestionActivity.class);
-                            startActivity(myQuestion_intent);
-                            break;
-                        case R.id.main_button_myAnswer:
-                            Intent myAnswer_intent = new Intent(getActivity(), MyAnswerActivity.class);
-                            startActivity(myAnswer_intent);
-                            break;
-                        case R.id.main_button_forum:
-                            Intent forum_intent = new Intent(getActivity(), ForumActivity.class);
-                            startActivity(forum_intent);
-                            break;
-                    }
-                }
-            };
-            btnProfile.setOnClickListener(Click);
-            btnMyQuestion.setOnClickListener(Click);
-            btnMyAnswer.setOnClickListener(Click);
-            btnForum.setOnClickListener(Click);
-            return rootView;
-        }
     }
 }
