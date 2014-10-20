@@ -35,6 +35,9 @@
         <activity
             android:name=".MyAnswerActivity"
             android:label="@string/title_activity_my_answer" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.mobileapp.MainActivity" />
         </activity>
         <activity
             android:name=".QAActivity"
