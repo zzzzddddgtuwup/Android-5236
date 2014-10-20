@@ -1,5 +1,6 @@
 package com.android.mobileapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MyQuestionActivity extends ActionBarActivity {
     private final String TAG = ((Object) this).getClass().getSimpleName();
@@ -49,6 +57,9 @@ public class MyQuestionActivity extends ActionBarActivity {
      */
     public static class PlaceholderFragment extends Fragment {
 
+        private ArrayAdapter<String> mQuestionAdapter;
+
+
         public PlaceholderFragment() {
         }
 
@@ -56,6 +67,30 @@ public class MyQuestionActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_my_question, container, false);
+            String[] data = {
+                    "How to get to main hall ?",
+                    "Is it free ?",
+                    "Help needed!!",
+                    "Tickets for sale!!",
+                    "The sunset view is awesome on the roof top"
+            };
+            List<String> questions = new ArrayList<String>(Arrays.asList(data));
+            mQuestionAdapter = new ArrayAdapter<String>(
+                    getActivity(),
+                    R.layout.list_item_question,
+                    R.id.list_item_question_textview,
+                    questions);
+            ListView listView = (ListView) rootView.findViewById(R.id.listview_question);
+            listView.setAdapter(mQuestionAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    String question = mQuestionAdapter.getItem(position);
+                    Intent intent = new Intent()
+                            .putExtra(Intent.EXTRA_TEXT,question);
+                    startActivity(intent);
+                }
+            });
             return rootView;
         }
     }
