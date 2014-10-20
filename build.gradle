@@ -26,3 +26,12 @@ dependencies {
     compile 'com.google.android.gms:play-services:6.1.+'
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 }
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.12.+'
+    }
+}
