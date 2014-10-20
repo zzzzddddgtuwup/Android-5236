@@ -68,6 +68,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.mobileapp.SettingActivity" />
         </activity>
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyC3_WA_NkGSIZ6jNRi-4pnhzuJ_dcI9zVw"/>
     </application>
 
 </manifest>

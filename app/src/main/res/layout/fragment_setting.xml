@@ -24,18 +24,20 @@
             android:id="@+id/buttonNotification"
             android:onClick="selectNotiFreq"/>
 
-        <EditText
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editTextLocation"
-            android:layout_gravity="center_horizontal"
-            android:text="Location" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Location"
+            android:id="@+id/textViewLocation"
+            android:editable="true" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Use Current Location"
-            android:id="@+id/currLocationbutton" />
+            android:id="@+id/currLocationbutton"
+            android:onClick="useCurrLoc"/>
 
         <Button
             android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.android.mobileapp;
 
+import android.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,8 @@ import android.widget.Button;
 
 public class MainActivity extends ActionBarActivity {
     private final String TAG = ((Object) this).getClass().getSimpleName();
+    public static FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,8 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        fragmentManager = getFragmentManager();
     }
 
 

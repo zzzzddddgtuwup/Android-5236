@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 import android.content.Intent;
+import android.widget.TextView;
 
 import java.util.Objects;
 
@@ -74,5 +75,10 @@ public class SettingActivity extends ActionBarActivity {
     public void selectLocation(View view) {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
+    }
+
+    public void useCurrLoc(View view) {
+        TextView currLoc = (TextView)findViewById(R.id.textViewLocation);
+        currLoc.setText("Dreese Lab");
     }
 }
