@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MobileApp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_forum">ForumActivity</string>
+    <string name="title_activity_my_question">MyQuestionActivity</string>
+    <string name="title_activity_my_answer">MyAnswerActivity</string>
+    <string name="title_activity_qa">QAActivity</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_noti_freq">NotiFreqActivity</string>
+    <string name="main_button_profile">Profile</string>
+    <string name="main_button_myQuestion">My Questions</string>
+    <string name="main_button_myAnswer">My Answers</string>
+    <string name="main_button_forum">Forum</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
