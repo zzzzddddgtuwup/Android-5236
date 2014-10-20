@@ -37,4 +37,8 @@ public class User {
     public List<Answer> getMyAnswers() {
         return myAnswers;
     }
+
+    public int getScore() {
+        return score;
+    }
 }
