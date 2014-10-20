@@ -18,11 +18,11 @@ import java.util.Objects;
 
 
 public class SettingActivity extends ActionBarActivity {
-    private final String TAG = ((Object)this).getClass().getSimpleName();
+    //private final String TAG = ((Object)this).getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e(TAG, "+++ In onCreate() +++");
+        //Log.e(TAG, "+++ In onCreate() +++");
         setContentView(R.layout.activity_setting);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()

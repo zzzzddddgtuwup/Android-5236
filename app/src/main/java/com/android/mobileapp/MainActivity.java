@@ -36,6 +36,41 @@ public class MainActivity extends ActionBarActivity {
         fragmentManager = getFragmentManager();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG,"+++ In onStart() +++");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(TAG,"+++ In onRestart() +++");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG,"+++ In onResume() +++");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG,"+++ In onPause() +++");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG,"+++ In onStop() +++");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG,"+++ In onDestroy() +++");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
