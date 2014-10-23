@@ -1,1 +1,6 @@
 /build
+/.idea
+/.gradle
+Android-5236.iml
+app/app.iml
+CSE5236.iml
