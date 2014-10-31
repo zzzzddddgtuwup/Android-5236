@@ -11,8 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 
 
 public class MapActivity extends ActionBarActivity {
@@ -34,6 +39,18 @@ public class MapActivity extends ActionBarActivity {
     protected  void onStart(){
         super.onStart();
         mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+        mMap.setMyLocationEnabled(true);
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(40, -83.02), 15.0f) );
+        mMap.addMarker(new MarkerOptions().position(new LatLng(40, -83.02))
+                .title("Dreese Lab").draggable(true));
+        PolygonOptions rectOptions = new PolygonOptions().add(
+                new LatLng(39.99, -83.01),
+                new LatLng(40.01, -83.01),
+                new LatLng(40.01, -83.03),
+                new LatLng(39.99, -83.03)
+        );
+        Polygon polygon = mMap.addPolygon(rectOptions);
     }
 
 
