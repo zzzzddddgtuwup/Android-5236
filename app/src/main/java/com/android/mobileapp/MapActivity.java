@@ -78,8 +78,7 @@ public class MapActivity extends ActionBarActivity {
         double currLat = currLocation.getLatitude();
         double currLng = currLocation.getLongitude();
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(currLat, currLng), 15.0f) );
-        Marker mForum = mMap.addMarker(new MarkerOptions().position(new LatLng(currLat, currLng))
-                .title("Dreese Lab").draggable(true));
+
 
         /*
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(40, -83.02), 15.0f) );
@@ -93,6 +92,8 @@ public class MapActivity extends ActionBarActivity {
                 new LatLng(39.996835, -83.009481)
         );
         Polygon ohioUnionPolygon = mMap.addPolygon(ohioUnion);
+        Marker mOhioUnion = mMap.addMarker(new MarkerOptions().position(new LatLng(39.998717, -83.009481))
+                .title("Ohio Union").draggable(false));
 
 
 
@@ -103,6 +104,8 @@ public class MapActivity extends ActionBarActivity {
                 new LatLng(39.995553, -83.014681)
         );
         Polygon oiaPolygon = mMap.addPolygon(officeOfInternational);
+        Marker mOIA = mMap.addMarker(new MarkerOptions().position(new LatLng(39.996703, -83.014681))
+                .title("Office of International Affair").draggable(false));
 
         PolygonOptions thompsonLibrary = new PolygonOptions().add(
                 new LatLng(39.999728, -83.015389),
@@ -111,6 +114,8 @@ public class MapActivity extends ActionBarActivity {
                 new LatLng(39.998890, -83.015389)
         );
         Polygon thompsonLibPolygon = mMap.addPolygon(thompsonLibrary);
+        Marker mThompsonLib = mMap.addMarker(new MarkerOptions().position(new LatLng(39.999728, -83.015389))
+                .title("Thompson Library").draggable(false));
 
         PolygonOptions wilceCenter = new PolygonOptions().add(
                 new LatLng(39.999934, -83.016912),
@@ -119,6 +124,8 @@ public class MapActivity extends ActionBarActivity {
                 new LatLng(39.999034, -83.016912)
         );
         Polygon wilceCenterPolygon = mMap.addPolygon(wilceCenter);
+        Marker mWilceCenter = mMap.addMarker(new MarkerOptions().position(new LatLng(39.999934, -83.016912))
+                .title("Wilce Health Center").draggable(false));
 
         PolygonOptions rpec = new PolygonOptions().add(
                 new LatLng(40.000110, -83.019313),
@@ -127,6 +134,8 @@ public class MapActivity extends ActionBarActivity {
                 new LatLng(39.999001, -83.019313)
         );
         Polygon rpecPolygon = mMap.addPolygon(rpec);
+        Marker mRpec = mMap.addMarker(new MarkerOptions().position(new LatLng(40.000110, -83.019313))
+                .title("RPEC").draggable(false));
 
         PolygonOptions library18 = new PolygonOptions().add(
                 new LatLng(40.001918, -83.013723),
@@ -135,6 +144,8 @@ public class MapActivity extends ActionBarActivity {
                 new LatLng(40.001368, -83.013723)
         );
         Polygon lib18Polygon = mMap.addPolygon(library18);
+        Marker mLibrary18 = mMap.addMarker(new MarkerOptions().position(new LatLng(40.001918, -83.013723))
+                .title("18th Library").draggable(false));
 
         PolygonOptions dreeseLab = new PolygonOptions().add(
                 new LatLng(40.002058, -83.016459),
@@ -143,6 +154,8 @@ public class MapActivity extends ActionBarActivity {
                 new LatLng(40.001203, -83.016459)
         );
         Polygon dreeseLabPolygon = mMap.addPolygon(dreeseLab);
+        Marker mDreeseLab = mMap.addMarker(new MarkerOptions().position(new LatLng(40.002058, -83.016459))
+                .title("Dreese Laboratory").draggable(false));
 
         PolygonOptions hitchcockAndBolz = new PolygonOptions().add(
                 new LatLng(40.003883, -83.015700),
@@ -151,6 +164,8 @@ public class MapActivity extends ActionBarActivity {
                 new LatLng(40.002814, -83.015700)
         );
         Polygon hitchcockAndBolzPolygon = mMap.addPolygon(hitchcockAndBolz);
+        Marker mHitchcockBolz = mMap.addMarker(new MarkerOptions().position(new LatLng(40.003883, -83.015700))
+                .title("Hitchcock & Bolz Hall").draggable(false));
 
         PolygonOptions ohioStadium = new PolygonOptions().add(
                 new LatLng(40.003381, -83.021311),
@@ -159,6 +174,8 @@ public class MapActivity extends ActionBarActivity {
                 new LatLng(40.000340, -83.021311)
         );
         Polygon ohioStadiumPolygon = mMap.addPolygon(ohioStadium);
+        Marker mOhioStadium = mMap.addMarker(new MarkerOptions().position(new LatLng(40.003381, -83.021311))
+                .title("Ohio Stadium").draggable(false));
     }
 
 
