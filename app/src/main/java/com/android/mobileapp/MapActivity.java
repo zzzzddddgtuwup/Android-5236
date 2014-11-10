@@ -72,7 +72,7 @@ public class MapActivity extends ActionBarActivity {
 
         mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         mMap.setMyLocationEnabled(true);
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         Location currLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);;
 
         double currLat = currLocation.getLatitude();
@@ -86,13 +86,79 @@ public class MapActivity extends ActionBarActivity {
         Marker mForum = mMap.addMarker(new MarkerOptions().position(new LatLng(40, -83.02))
                 .title("Dreese Lab").draggable(true));
         */
-        PolygonOptions rectOptions = new PolygonOptions().add(
-                new LatLng(39.99, -83.01),
-                new LatLng(40.01, -83.01),
-                new LatLng(40.01, -83.03),
-                new LatLng(39.99, -83.03)
+        PolygonOptions ohioUnion = new PolygonOptions().add(
+                new LatLng(39.998717, -83.009481),
+                new LatLng(39.998717, -83.008108),
+                new LatLng(39.996835, -83.008108),
+                new LatLng(39.996835, -83.009481)
         );
-        Polygon polygon = mMap.addPolygon(rectOptions);
+        Polygon ohioUnionPolygon = mMap.addPolygon(ohioUnion);
+
+
+
+        PolygonOptions officeOfInternational = new PolygonOptions().add(
+                new LatLng(39.996703, -83.014681),
+                new LatLng(39.996703, -83.012191),
+                new LatLng(39.995553, -83.012191),
+                new LatLng(39.995553, -83.014681)
+        );
+        Polygon oiaPolygon = mMap.addPolygon(officeOfInternational);
+
+        PolygonOptions thompsonLibrary = new PolygonOptions().add(
+                new LatLng(39.999728, -83.015389),
+                new LatLng(39.999728, -83.014123),
+                new LatLng(39.998890, -83.014123),
+                new LatLng(39.998890, -83.015389)
+        );
+        Polygon thompsonLibPolygon = mMap.addPolygon(thompsonLibrary);
+
+        PolygonOptions wilceCenter = new PolygonOptions().add(
+                new LatLng(39.999934, -83.016912),
+                new LatLng(39.999934, -83.016006),
+                new LatLng(39.999034, -83.016006),
+                new LatLng(39.999034, -83.016912)
+        );
+        Polygon wilceCenterPolygon = mMap.addPolygon(wilceCenter);
+
+        PolygonOptions rpec = new PolygonOptions().add(
+                new LatLng(40.000110, -83.019313),
+                new LatLng(40.000110, -83.017610),
+                new LatLng(39.999001, -83.017610),
+                new LatLng(39.999001, -83.019313)
+        );
+        Polygon rpecPolygon = mMap.addPolygon(rpec);
+
+        PolygonOptions library18 = new PolygonOptions().add(
+                new LatLng(40.001918, -83.013723),
+                new LatLng(40.001918, -83.012940),
+                new LatLng(40.001368, -83.012940),
+                new LatLng(40.001368, -83.013723)
+        );
+        Polygon lib18Polygon = mMap.addPolygon(library18);
+
+        PolygonOptions dreeseLab = new PolygonOptions().add(
+                new LatLng(40.002058, -83.016459),
+                new LatLng(40.002058, -83.015483),
+                new LatLng(40.001203, -83.015483),
+                new LatLng(40.001203, -83.016459)
+        );
+        Polygon dreeseLabPolygon = mMap.addPolygon(dreeseLab);
+
+        PolygonOptions hitchcockAndBolz = new PolygonOptions().add(
+                new LatLng(40.003883, -83.015700),
+                new LatLng(40.003883, -83.014563),
+                new LatLng(40.002814, -83.014563),
+                new LatLng(40.002814, -83.015700)
+        );
+        Polygon hitchcockAndBolzPolygon = mMap.addPolygon(hitchcockAndBolz);
+
+        PolygonOptions ohioStadium = new PolygonOptions().add(
+                new LatLng(40.003381, -83.021311),
+                new LatLng(40.003381, -83.018071),
+                new LatLng(40.000340, -83.018071),
+                new LatLng(40.000340, -83.021311)
+        );
+        Polygon ohioStadiumPolygon = mMap.addPolygon(ohioStadium);
     }
 
 
