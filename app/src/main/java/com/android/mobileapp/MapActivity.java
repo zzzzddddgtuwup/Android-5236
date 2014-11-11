@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -176,6 +177,15 @@ public class MapActivity extends ActionBarActivity {
         Polygon ohioStadiumPolygon = mMap.addPolygon(ohioStadium);
         Marker mOhioStadium = mMap.addMarker(new MarkerOptions().position(new LatLng(40.003381, -83.021311))
                 .title("Ohio Stadium").draggable(false));
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                int forumNumber = getForumNumber(latLng);
+                Log.d("Map", "Map clicked on " + forumNumber);
+            }
+        });
+
     }
 
 
@@ -185,6 +195,60 @@ public class MapActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.map, menu);
         return true;
     }
+
+
+    public static int getForumNumber(LatLng point) {
+        double lat = point.latitude;
+        double lng = point.longitude;
+
+        if (isInArea(lat, lng, 39.996835, 39.998717, -83.009481, -83.008108)) {
+            return 1;
+        }//ohio union
+
+        if (isInArea(lat, lng, 39.995553, 39.996703, -83.014681, -83.012191)) {
+            return 2;
+        }//oia
+
+        if (isInArea(lat, lng, 39.998890, 39.999728, -83.015389, -83.014123)) {
+            return 3;
+        }//Thompson lib
+
+        if (isInArea(lat, lng, 39.999034, 39.999934, -83.016912, -83.016006)) {
+            return 4;
+        }//wilce center
+
+        if (isInArea(lat, lng, 39.999001, 40.000110, -83.019313, -83.017610)) {
+            return 5;
+        }//rpec
+
+        if (isInArea(lat, lng, 40.001368, 40.001918, -83.013723, -83.012940)) {
+            return 6;
+        }//18th lib
+
+        if (isInArea(lat, lng, 40.001203, 40.002058, -83.016459, -83.015483)) {
+            return 7;
+        }//Dreese lab
+
+        if (isInArea(lat, lng, 40.002814, 40.003883, -83.015700, -83.014563)) {
+            return 8;
+        }//Hitchcock & Bolz
+
+        if (isInArea(lat, lng, 40.000340, 40.003381, -83.021311, -83.018071)) {
+            return 9;
+        }//Ohio stadium
+
+        return 0;
+    }
+
+    public static boolean isInArea(double lat, double lng, double latMin, double latMax, double lngMin, double lngMax) {
+        if (lat < latMax && lat > latMin) {
+            if (lng < lngMax && lng > lngMin) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
