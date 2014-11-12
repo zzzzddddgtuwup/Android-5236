@@ -35,13 +35,6 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Use Current Location"
-            android:id="@+id/currLocationbutton"
-            android:onClick="useCurrLoc"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="Select Location"
             android:id="@+id/chooseLocationbutton"
             android:onClick="selectLocation"/>

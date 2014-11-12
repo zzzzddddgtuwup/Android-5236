@@ -76,9 +76,4 @@ public class SettingActivity extends ActionBarActivity {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
     }
-
-    public void useCurrLoc(View view) {
-        TextView currLoc = (TextView)findViewById(R.id.textViewLocation);
-        currLoc.setText("Dreese Lab");
-    }
 }
