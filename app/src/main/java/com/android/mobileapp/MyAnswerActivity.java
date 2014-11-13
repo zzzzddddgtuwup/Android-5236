@@ -1,5 +1,6 @@
 package com.android.mobileapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -114,28 +116,42 @@ public class MyAnswerActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Collection<Answer> result){
-            final ArrayAdapter<String> mAnswerAdapter;
+            final answerAdapter mAnswerAdapter;
             ListView listView = (ListView)findViewById(R.id.listview_answer);
-            List<String> ansList = new ArrayList<String>();
-            for(Answer answer:result){
-                ansList.add(answer.getContent());
-            }
-            mAnswerAdapter = new ArrayAdapter<String>(
+            mAnswerAdapter = new answerAdapter(
                     MyAnswerActivity.this,
                     R.layout.list_item_answer,
                     R.id.list_item_answer_textview,
-                    ansList);
+                    new ArrayList<Answer>(result));
             listView.setAdapter(mAnswerAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    String s_answer = mAnswerAdapter.getItem(position);
+                    Answer s_answer = mAnswerAdapter.getItem(position);
                     Intent intent = new Intent()
-                            .putExtra(Intent.EXTRA_TEXT,s_answer);
+                            .putExtra(Intent.EXTRA_TEXT,s_answer.getAid());
                     startActivity(intent);
                 }
             });
         }
     }
 
+    public class answerAdapter extends ArrayAdapter<Answer>{
+
+        public answerAdapter(Context context, int resource, int textViewResourceId, List<Answer> objects) {
+            super(context, resource, textViewResourceId, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent){
+            Answer ans = getItem(position);
+            if(convertView==null){
+                convertView = LayoutInflater.from(this.getContext())
+                        .inflate(R.layout.list_item_answer, parent, false);
+            }
+            TextView tvContent = (TextView)convertView.findViewById(R.id.list_item_answer_textview);
+            tvContent.setText(ans.getContent());
+            return convertView;
+        }
+    }
 }
