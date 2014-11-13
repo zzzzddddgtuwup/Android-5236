@@ -8,10 +8,16 @@ import retrofit.http.POST;
 
 public interface UserSvcApi {
 	public static final String USER_SVC_PATH = "/user";
+
+    public static final String USER_VALIDATE_PATH =
+            USER_SVC_PATH + "/validate";
 	
 	@GET(USER_SVC_PATH)
 	public Collection<User> getUserList();
 	
 	@POST(USER_SVC_PATH)
 	public boolean addUser(@Body User user);
+
+    @POST(USER_VALIDATE_PATH)
+    public boolean validate(@Body User user);
 }
