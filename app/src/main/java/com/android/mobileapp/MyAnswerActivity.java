@@ -1,6 +1,7 @@
 package com.android.mobileapp;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -31,6 +33,11 @@ public class MyAnswerActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        new getAnswerTask().execute("zdg");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,33 +72,70 @@ public class MyAnswerActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_my_answer, container, false);
+//
+//            String[] data = {
+//                    "Turn left and go right",
+//                    "Nope,it's not free",
+//                    "What kind of help?",
+//                    "How much ?",
+//                    "Nice"
+//            };
+//
+//            List<String> answer = new ArrayList<String>(Arrays.asList(data));
+//            mAnswerAdapter = new ArrayAdapter<String>(
+//                    getActivity(),
+//                    R.layout.list_item_answer,
+//                    R.id.list_item_answer_textview,
+//                    answer);
+//            ListView listView = (ListView) rootView.findViewById(R.id.listview_answer);
+//            listView.setAdapter(mAnswerAdapter);
+//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                    String question = mAnswerAdapter.getItem(position);
+//                    Intent intent = new Intent()
+//                            .putExtra(Intent.EXTRA_TEXT,question);
+//                    startActivity(intent);
+//                }
+//            });
+            return rootView;
+        }
+    }
 
-            String[] data = {
-                    "Turn left and go right",
-                    "Nope,it's not free",
-                    "What kind of help?",
-                    "How much ?",
-                    "Nice"
-            };
+    private class getAnswerTask extends AsyncTask<String, Void, Collection<Answer>>{
 
-            List<String> answer = new ArrayList<String>(Arrays.asList(data));
+        @Override
+        protected Collection<Answer> doInBackground(String... name) {
+            //may throw exception here
+            Collection<Answer> answers= answerSvc.getOrInit(getString(R.string.serverUrl))
+                    .findByUserName(name[0]);
+            return answers;
+        }
+
+        @Override
+        protected void onPostExecute(Collection<Answer> result){
+            final ArrayAdapter<String> mAnswerAdapter;
+            ListView listView = (ListView)findViewById(R.id.listview_answer);
+            List<String> ansList = new ArrayList<String>();
+            for(Answer answer:result){
+                ansList.add(answer.getContent());
+            }
             mAnswerAdapter = new ArrayAdapter<String>(
-                    getActivity(),
+                    MyAnswerActivity.this,
                     R.layout.list_item_answer,
                     R.id.list_item_answer_textview,
-                    answer);
-            ListView listView = (ListView) rootView.findViewById(R.id.listview_answer);
+                    ansList);
             listView.setAdapter(mAnswerAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    String question = mAnswerAdapter.getItem(position);
+                    String s_answer = mAnswerAdapter.getItem(position);
                     Intent intent = new Intent()
-                            .putExtra(Intent.EXTRA_TEXT,question);
+                            .putExtra(Intent.EXTRA_TEXT,s_answer);
                     startActivity(intent);
                 }
             });
-            return rootView;
         }
     }
+
 }
