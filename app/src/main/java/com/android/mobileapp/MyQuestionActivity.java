@@ -1,6 +1,8 @@
 package com.android.mobileapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -14,9 +16,13 @@ import android.os.Build;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class MyQuestionActivity extends ActionBarActivity {
@@ -32,6 +38,11 @@ public class MyQuestionActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        new getQuestionTask().execute("zdg");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -67,31 +78,59 @@ public class MyQuestionActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_my_question, container, false);
-            String[] data = {
-                    "How to get to main hall ?",
-                    "Is it free ?",
-                    "Help needed!!",
-                    "Tickets for sale!!",
-                    "The sunset view is awesome on the roof top"
-            };
-            List<String> questions = new ArrayList<String>(Arrays.asList(data));
-            mQuestionAdapter = new ArrayAdapter<String>(
-                    getActivity(),
+            return rootView;
+        }
+    }
+
+    private class getQuestionTask extends AsyncTask<String, Void,Collection<Question>>
+    {
+
+        @Override
+        protected Collection<Question> doInBackground(String... username) {
+            Collection<Question> questions = questionSvc.getOrInit(getString(R.string.serverUrl))
+                    .findByUserName(username[0]);
+            return questions;
+        }
+
+        @Override
+        protected void onPostExecute(Collection<Question> result){
+            final questionAdapter mQuestionAdapter;
+            ListView listView = (ListView)findViewById(R.id.listview_question);
+            mQuestionAdapter = new questionAdapter(
+                    MyQuestionActivity.this,
                     R.layout.list_item_question,
                     R.id.list_item_question_textview,
-                    questions);
-            ListView listView = (ListView) rootView.findViewById(R.id.listview_question);
+                    new ArrayList<Question>(result)
+            );
             listView.setAdapter(mQuestionAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    String question = mQuestionAdapter.getItem(position);
+                    Question question = mQuestionAdapter.getItem(position);
                     Intent intent = new Intent()
-                            .putExtra(Intent.EXTRA_TEXT,question);
+                            .putExtra(Intent.EXTRA_TEXT,question.getQid());
                     startActivity(intent);
                 }
             });
-            return rootView;
+        }
+    }
+
+    public class questionAdapter extends ArrayAdapter<Question>{
+
+        public questionAdapter(Context context, int resource, int textViewResourceId, List<Question> objects) {
+            super(context, resource, textViewResourceId, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent){
+            Question ques = getItem(position);
+            if(convertView == null){
+                convertView =  LayoutInflater.from(this.getContext())
+                        .inflate(R.layout.list_item_question, parent, false);
+            }
+            TextView tvContent = (TextView)convertView.findViewById(R.id.list_item_question_textview);
+            tvContent.setText(ques.getContent());
+            return convertView;
         }
     }
 }
