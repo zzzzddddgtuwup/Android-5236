@@ -17,7 +17,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -109,7 +108,7 @@ public class MyAnswerActivity extends ActionBarActivity {
         @Override
         protected Collection<Answer> doInBackground(String... name) {
             //may throw exception here
-            Collection<Answer> answers= answerSvc.getOrInit(getString(R.string.serverUrl))
+            Collection<Answer> answers= AnswerSvc.getOrInit(getString(R.string.serverUrl))
                     .findByUserName(name[0]);
             return answers;
         }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,16 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -87,7 +82,7 @@ public class MyQuestionActivity extends ActionBarActivity {
 
         @Override
         protected Collection<Question> doInBackground(String... username) {
-            Collection<Question> questions = questionSvc.getOrInit(getString(R.string.serverUrl))
+            Collection<Question> questions = QuestionSvc.getOrInit(getString(R.string.serverUrl))
                     .findByUserName(username[0]);
             return questions;
         }
