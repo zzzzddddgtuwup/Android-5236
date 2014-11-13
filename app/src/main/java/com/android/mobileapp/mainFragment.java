@@ -4,6 +4,7 @@ package com.android.mobileapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,8 @@ public class mainFragment extends Fragment {
                         startActivity(myAnswer_intent);
                         break;
                     case R.id.main_button_profile:
-                        Intent forum_intent = new Intent(getActivity(), ForumActivity.class);
+                        Log.d("Main fragment"," Profile button clicked");
+                        Intent forum_intent = new Intent(getActivity(), SettingActivity.class);
                         startActivity(forum_intent);
                         break;
                 }
