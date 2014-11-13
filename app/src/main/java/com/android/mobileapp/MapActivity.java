@@ -78,7 +78,7 @@ public class MapActivity extends ActionBarActivity {
 
         double currLat = currLocation.getLatitude();
         double currLng = currLocation.getLongitude();
-        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(currLat, currLng), 15.0f) );
+        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(39.998890, -83.015000), 15.0f) );
 
 
         /*
