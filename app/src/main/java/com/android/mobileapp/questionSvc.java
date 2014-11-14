@@ -12,7 +12,7 @@ public class QuestionSvc {
         if(questionSvc_ == null){
             questionSvc_ = new RestAdapter.Builder()
                     .setEndpoint(serverUrl).setLogLevel(RestAdapter.LogLevel.FULL).build()
-                    .create(QuestionSxvcApi.class);
+                    .create(QuestionSvcApi.class);
         }
         return questionSvc_;
     }
