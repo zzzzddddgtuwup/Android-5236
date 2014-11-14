@@ -43,5 +43,9 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
+    <string name="action_logout">Logout</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="title_activity_tab_host">TabHostActivity</string>
 
 </resources>

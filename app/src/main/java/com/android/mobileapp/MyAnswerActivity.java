@@ -53,7 +53,7 @@ public class MyAnswerActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_login) {
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -108,7 +108,7 @@ public class MyAnswerActivity extends ActionBarActivity {
         @Override
         protected Collection<Answer> doInBackground(String... name) {
             //may throw exception here
-            Collection<Answer> answers= AnswerSvc.getOrInit(getString(R.string.serverUrl))
+            Collection<Answer> answers= answerSvc.getOrInit(getString(R.string.serverUrl))
                     .findByUserName(name[0]);
             return answers;
         }

@@ -4,20 +4,12 @@ import android.app.FragmentManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.os.Build;
-import android.content.Intent;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 
@@ -25,11 +17,12 @@ public class MainActivity extends FragmentActivity {
     private final String TAG = ((Object) this).getClass().getSimpleName();
     public static FragmentManager fragmentManager;
 
-    //Variables for the Navigation Drawer
+    //Variables for the Navigation Drawer //non-functional requirement
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
+    //private ActionBarDrawerToggle mDrawerToggle;
 
+    private LinearLayout mUserItem;
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mOptionsArray;
@@ -45,7 +38,6 @@ public class MainActivity extends FragmentActivity {
                     .add(R.id.container, new mainFragment())
                     .commit();
         }
-
         fragmentManager = getFragmentManager();
     }
 
@@ -92,16 +84,10 @@ public class MainActivity extends FragmentActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            //Intent intent = new Intent(this, LoginActivity.class);
-            //startActivity(intent);
+        if (id == R.id.action_login) {
             new LoginFragment().show(getSupportFragmentManager(),"login");
             return true;
         }
