@@ -14,7 +14,7 @@
     <string name="main_button_profile">Profile</string>
     <string name="main_button_myQuestion">My Questions</string>
     <string name="main_button_myAnswer">My Answers</string>
-    <string name="main_button_forum">Forum</string>
+    <string name="main_button_select_forum">Select Forum</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_account">AccountActivity</string>
     <string name="serverUrl">http://nearby.elasticbeanstalk.com</string>
