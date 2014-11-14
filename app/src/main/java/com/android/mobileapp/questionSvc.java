@@ -9,11 +9,12 @@ class QuestionSvc {
     private static QuestionSvcApi questionSvc_;
 
     public static synchronized QuestionSvcApi getOrInit(String serverUrl){
-       // if(questionSvc_ == null){
-       //     questionSvc_ = new RestAdapter.Builder()
-       //             .setEndpoint(serverUrl).setLogLevel(RestAdapter.LogLevel.FULL).build()
-       //             .create(QuestionSxvcApi.class);
-       // }
+
+        if(questionSvc_ == null){
+            questionSvc_ = new RestAdapter.Builder()
+                    .setEndpoint(serverUrl).setLogLevel(RestAdapter.LogLevel.FULL).build()
+                    .create(QuestionSvcApi.class);
+        }
         return questionSvc_;
     }
 
