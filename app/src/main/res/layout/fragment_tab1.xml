@@ -5,9 +5,9 @@
     tools:context="com.android.mobileapp.Tab1Fragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="tab1" />
+        android:id="@+id/listview_AllQuestions_Forum" />
 
 </FrameLayout>
