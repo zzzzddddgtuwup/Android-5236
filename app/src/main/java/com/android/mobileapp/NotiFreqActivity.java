@@ -1,5 +1,6 @@
 package com.android.mobileapp;
 
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -23,6 +24,11 @@ public class NotiFreqActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.arrow)
+                        .setContentTitle("My notification")
+                        .setContentText("Hello World!");
     }
 
 
