@@ -99,16 +99,7 @@
             android:value="AIzaSyC3_WA_NkGSIZ6jNRi-4pnhzuJ_dcI9zVw" />
 
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
-            android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.mobileapp.MainActivity" />
-        </activity>
-        <activity
-            android:name=".AccountActivity"
+            android:name="com.android.mobileapp.AccountActivity"
             android:label="@string/title_activity_account"
             android:parentActivityName=".MainActivity" >
             <meta-data

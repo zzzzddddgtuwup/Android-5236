@@ -16,9 +16,21 @@
     <string name="main_button_myAnswer">My Answers</string>
     <string name="main_button_forum">Forum</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="login">Login</string>
     <string name="title_activity_account">AccountActivity</string>
     <string name="serverUrl">http://nearby.elasticbeanstalk.com</string>
     <string name="title_activity_qadetails">QAdetails</string>
-
+    <string name="HNT_PASSWORD">Password</string>
+    <string name="login_title">Log in to access your account!</string>
+    <string name="emailaddress">Email Address</string>
+    <string name="login">Log In</string>
+    <string name="notnow">Not Now</string>
+    <string name="signup_title">Create an account in seconds.</string>
+    <string name="signup">Sign Up</string>
+    <string name="title_activity_signup">Signup</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="allowemail">I do not want to receive email about movie information</string>
+    <string name="HNT_EMAIL_ADDRESS">Please enter your email</string>
+    <string name="reset_password">Forget Password</string>
+    <string name="BTN_EMAIL">Reset Password</string>
 </resources>
