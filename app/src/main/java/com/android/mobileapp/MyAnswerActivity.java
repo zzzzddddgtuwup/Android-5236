@@ -37,7 +37,7 @@ public class MyAnswerActivity extends ActionBarActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        //new getAnswerTask().execute("zdg");
+        new getAnswerTask().execute("zdg");
     }
 
     @Override
