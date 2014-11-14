@@ -45,9 +45,11 @@ public class mainFragment extends Fragment  {
                         startActivity(myAnswer_intent);
                         break;
                     case R.id.main_button_myProfile:
-                        Log.d("Main fragment"," Profile button clicked");
                         Intent profile_intent = new Intent(getActivity(), AccountActivity.class);
                         startActivity(profile_intent);
+                        break;
+                    case R.id.main_button_tab_activity:
+                        new ForumDetailFragment();
                         break;
                 }
             }

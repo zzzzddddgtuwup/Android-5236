@@ -84,7 +84,7 @@ public class MyQuestionActivity extends ActionBarActivity {
 
         @Override
         protected Collection<Question> doInBackground(String... username) {
-            Collection<Question> questions = questionSvc.getOrInit(getString(R.string.serverUrl))
+            Collection<Question> questions = QuestionSvc.getOrInit(getString(R.string.serverUrl))
                     .findByUserName(username[0]);
             return questions;
         }
