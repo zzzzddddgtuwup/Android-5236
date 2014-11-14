@@ -25,7 +25,8 @@ public class mainFragment extends Fragment  {
         View btnProfile = (Button) rootView.findViewById(R.id.main_button_myProfile);
         View btnMyQuestion = (Button) rootView.findViewById(R.id.main_button_myQuestion);
         View btnMyAnswer = (Button) rootView.findViewById(R.id.main_button_myAnswer);
-        View btnForum = (Button) rootView.findViewById(R.id.main_button_select_forum);
+        View btnMap = (Button) rootView.findViewById(R.id.main_button_select_forum);
+        View btnForum = (Button) rootView.findViewById(R.id.main_button_enter_forum);
 
         final View.OnClickListener Click = new View.OnClickListener() {
             @Override
@@ -49,7 +50,9 @@ public class mainFragment extends Fragment  {
                         startActivity(profile_intent);
                         break;
                     case R.id.main_button_enter_forum:
-                        new ForumDetailFragment();
+                        //new ForumDetailFragment();
+                        Intent forum_intent = new Intent(getActivity(),ForumActivity.class);
+                        startActivity(forum_intent);
                         break;
                 }
             }
@@ -58,6 +61,7 @@ public class mainFragment extends Fragment  {
         btnMyQuestion.setOnClickListener(Click);
         btnMyAnswer.setOnClickListener(Click);
         btnForum.setOnClickListener(Click);
+        btnMap.setOnClickListener(Click);
         return rootView;
     }
 

@@ -1,5 +1,6 @@
 package com.android.mobileapp;
 
+import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -20,11 +21,10 @@ public class ForumActivity extends ActionBarActivity {
         setContentView(R.layout.activity_forum);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new FragmentTabsFragmentSupport())
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,6 +58,36 @@ public class ForumActivity extends ActionBarActivity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_forum, container, false);
             return rootView;
+        }
+    }
+
+    public class FragmentTabsFragmentSupport extends Fragment {
+        private FragmentTabHost mTabHost;
+
+        public FragmentTabsFragmentSupport() {
+
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            mTabHost = new FragmentTabHost(getActivity());
+            mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.fragmentTabHost);
+
+            mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("tab1"),
+                    Tab1Fragment.class, null);
+            mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("tab2"),
+                    Tab2Fragment.class, null);
+            mTabHost.addTab(mTabHost.newTabSpec("tab3").setIndicator("tab3"),
+                    Tab3Fragment.class, null);
+
+            return mTabHost;
+        }
+
+        @Override
+        public void onDestroyView() {
+            super.onDestroyView();
+            mTabHost = null;
         }
     }
 }
