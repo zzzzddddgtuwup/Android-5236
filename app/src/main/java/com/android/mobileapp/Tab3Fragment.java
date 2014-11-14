@@ -1,13 +1,19 @@
 package com.android.mobileapp;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +41,7 @@ public class Tab3Fragment extends Fragment {
                 switch(view.getId()){
                     case R.id.add_question:
                         Intent askQuestion = new Intent(getActivity(), ForumActivity.class);
+                        new addQuestionTask().execute(getQuestion());
                         startActivity(askQuestion);
                         break;
                 }
@@ -46,8 +53,19 @@ public class Tab3Fragment extends Fragment {
         return rootView;
     }
 
-    private void getQuestion(){
+    private String getQuestion(){
         String question = this.questionEditableField.getText().toString();
+        return question;
     }
 
+    private class addQuestionTask extends AsyncTask<String, Void,Void>
+    {
+
+        @Override
+        protected Void doInBackground(String... q_content) {
+            QuestionSvc.getOrInit(getString(R.string.serverUrl))
+                    .addQuestion(new Question(q_content[0]));
+            return null;
+        }
+    }
 }
