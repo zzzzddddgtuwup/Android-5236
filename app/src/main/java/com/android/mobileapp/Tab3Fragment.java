@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,7 +17,7 @@ import android.widget.EditText;
 public class Tab3Fragment extends Fragment {
 
     private EditText questionEditableField;
-
+    private SearchView searchEditableField;
     public Tab3Fragment() {
         // Required empty public constructor
     }
@@ -28,7 +29,10 @@ public class Tab3Fragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView=  inflater.inflate(R.layout.fragment_tab3, container, false);
         View askQuestion =(Button) rootView.findViewById(R.id.add_question);
+
         questionEditableField =(EditText) rootView.findViewById(R.id.question_text);
+        searchEditableField =(SearchView) rootView.findViewById(R.id.searchView);
+
         final View.OnClickListener Click = new View.OnClickListener(){
             @Override
             public void onClick (View view){
@@ -48,6 +52,10 @@ public class Tab3Fragment extends Fragment {
 
     private void getQuestion(){
         String question = this.questionEditableField.getText().toString();
+    }
+
+    private void searchQuestion(){
+        String result= this.searchEditableField.getQuery().toString();
     }
 
 }
