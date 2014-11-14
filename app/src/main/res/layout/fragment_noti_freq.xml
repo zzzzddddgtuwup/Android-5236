@@ -31,28 +31,40 @@
             android:layout_height="wrap_content"
             android:text="15 minutes"
             android:id="@+id/radioButton_15_min"
-            android:checked="true" />
+            android:checked="true"
+            android:onClick="onRadioButtonClicked"/>
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="One hour"
             android:id="@+id/radioButton_one_hour"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="onRadioButtonClicked"/>
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Three hours"
             android:id="@+id/radioButton_three_hour"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="onRadioButtonClicked"/>
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Never"
             android:id="@+id/radioButton_never"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10 seconds(ONLY FOR TESTING!)"
+            android:id="@+id/radioButton_testing"
+            android:checked="false"
+            android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
 
 </RelativeLayout>

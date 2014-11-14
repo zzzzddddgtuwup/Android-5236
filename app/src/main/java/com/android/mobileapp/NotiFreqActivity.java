@@ -22,7 +22,7 @@ import java.util.List;
 public class NotiFreqActivity extends ActionBarActivity {
     private final String TAG = ((Object)this).getClass().getSimpleName();
     private NotificationManager mNotificationManager;
-    private int interval = 20000;
+    private int interval = 10000;
     private Handler handler;
     private NotificationCompat.Builder mBuilder;
     private int mID = 0;
@@ -54,8 +54,7 @@ public class NotiFreqActivity extends ActionBarActivity {
     public  void onStart() {
         super.onStart();
         handler = new Handler();
-        //if (interval != 0) handler.postDelayed(runnable, interval);
-        handler.postDelayed(runnable, interval);
+        if (interval != 0) handler.postDelayed(runnable, interval);
 
     }
 
@@ -66,8 +65,8 @@ public class NotiFreqActivity extends ActionBarActivity {
             //List<Integer> notificationNumber = getNotificationNumber();
             List<Integer> notificationNumber = new ArrayList<Integer>();
             notificationNumber.add(1);
-            notificationNumber.add(2);
-            notificationNumber.add(3);
+            //notificationNumber.add(2);
+            //notificationNumber.add(3);
             if (notificationNumber.contains(1)) {
                 mBuilder
                         .setContentTitle("Question")
@@ -89,32 +88,36 @@ public class NotiFreqActivity extends ActionBarActivity {
                 mNotificationManager.notify(mID, mBuilder.build());
                 mID++;
             }
+            if (interval != 0) handler.postDelayed(runnable, interval);
       /* and here comes the "trick" */
-            handler.postDelayed(this, interval);
         }
     };
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
+        Log.e("tag", "OnRadioButtonClicked");
         boolean checked = ((RadioButton) view).isChecked();
 
         // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radioButton_15_min:
                 if (checked){
+                    Log.e("tag", "15 min");
                     interval = 900000;
-                    //interval = 20000;
+                    //interval = 1000;
                 }
                     break;
             case R.id.radioButton_one_hour:
                 if (checked){
-                    //interval = 3600000;
-                    interval = 3000;
+                    Log.e("tag", "one hour");
+                    interval = 3600000;
+                    //interval = 3000;
                 }
                     break;
 
             case R.id.radioButton_three_hour:
                 if (checked) {
+                    Log.e("tag", "three hour");
                     interval = 10800000;
                 }
                     break;
@@ -124,6 +127,12 @@ public class NotiFreqActivity extends ActionBarActivity {
                     interval = 0;
                 }
                     break;
+
+            case R.id.radioButton_testing:
+                if (checked) {
+                    interval = 10000;
+                }
+                break;
         }
     }
 
