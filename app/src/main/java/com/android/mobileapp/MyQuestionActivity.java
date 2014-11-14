@@ -22,6 +22,8 @@ import java.util.List;
 
 public class MyQuestionActivity extends ActionBarActivity {
     private final String TAG = ((Object) this).getClass().getSimpleName();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,7 @@ public class MyQuestionActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_login) {
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -82,7 +84,7 @@ public class MyQuestionActivity extends ActionBarActivity {
 
         @Override
         protected Collection<Question> doInBackground(String... username) {
-            Collection<Question> questions = QuestionSvc.getOrInit(getString(R.string.serverUrl))
+            Collection<Question> questions = questionSvc.getOrInit(getString(R.string.serverUrl))
                     .findByUserName(username[0]);
             return questions;
         }
@@ -102,8 +104,9 @@ public class MyQuestionActivity extends ActionBarActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     Question question = mQuestionAdapter.getItem(position);
-                    Intent intent = new Intent()
-                            .putExtra(Intent.EXTRA_TEXT,question.getQid());
+                    Intent intent = new Intent(MyQuestionActivity.this,QAActivity.class);
+                    intent.putExtra(QAActivity.Q_CONTENT,question.getContent());
+                    intent.putExtra(QAActivity.Q_ID,question.getQid());
                     startActivity(intent);
                 }
             });

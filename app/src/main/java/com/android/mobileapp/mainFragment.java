@@ -32,8 +32,8 @@ public class mainFragment extends Fragment  {
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.main_button_select_forum:
-                        Intent profile_intent = new Intent(getActivity(), SettingActivity.class);
-                        startActivity(profile_intent);
+                        Intent select_forum_intent = new Intent(getActivity(), SettingActivity.class);
+                        startActivity(select_forum_intent);
                        // new ForumDetailFragment();//u cann.show(getChildFragmentManager(), "Forum");
                         break;
                     case R.id.main_button_myQuestion:
@@ -46,8 +46,8 @@ public class mainFragment extends Fragment  {
                         break;
                     case R.id.main_button_myProfile:
                         Log.d("Main fragment"," Profile button clicked");
-                        Intent forum_intent = new Intent(getActivity(), AccountActivity.class);
-                        startActivity(forum_intent);
+                        Intent profile_intent = new Intent(getActivity(), AccountActivity.class);
+                        startActivity(profile_intent);
                         break;
                 }
             }

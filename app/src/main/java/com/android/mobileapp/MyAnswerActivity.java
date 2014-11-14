@@ -53,7 +53,7 @@ public class MyAnswerActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_login) {
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -108,7 +108,7 @@ public class MyAnswerActivity extends ActionBarActivity {
         @Override
         protected Collection<Answer> doInBackground(String... name) {
             //may throw exception here
-            Collection<Answer> answers= AnswerSvc.getOrInit(getString(R.string.serverUrl))
+            Collection<Answer> answers= answerSvc.getOrInit(getString(R.string.serverUrl))
                     .findByUserName(name[0]);
             return answers;
         }
@@ -127,30 +127,12 @@ public class MyAnswerActivity extends ActionBarActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     Answer s_answer = mAnswerAdapter.getItem(position);
-                    Intent intent = new Intent()
-                            .putExtra(Intent.EXTRA_TEXT,s_answer.getAid());
+                    Intent intent = new Intent(MyAnswerActivity.this, QAActivity.class);
+                    intent.putExtra(QAActivity.Q_CONTENT,s_answer.getQuestion().getContent());
+                    intent.putExtra(QAActivity.Q_ID,s_answer.getQuestion().getQid());
                     startActivity(intent);
                 }
             });
-        }
-    }
-
-    public class answerAdapter extends ArrayAdapter<Answer>{
-
-        public answerAdapter(Context context, int resource, int textViewResourceId, List<Answer> objects) {
-            super(context, resource, textViewResourceId, objects);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent){
-            Answer ans = getItem(position);
-            if(convertView==null){
-                convertView = LayoutInflater.from(this.getContext())
-                        .inflate(R.layout.list_item_answer, parent, false);
-            }
-            TextView tvContent = (TextView)convertView.findViewById(R.id.list_item_answer_textview);
-            tvContent.setText(ans.getContent());
-            return convertView;
         }
     }
 }

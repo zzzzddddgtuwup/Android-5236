@@ -12,23 +12,18 @@
         android:glEsVersion="0x00020000"
         android:required="true" />
 
-    <!--
-     To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
-     option is required to comply with the Google+ Sign-In developer policies
-    -->
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- To retrieve the account name (email) as part of sign-in: -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.android.mobileapp.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".login"
+            android:label="@string/title_activity_login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,56 +31,56 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.android.mobileapp.ForumActivity"
+            android:name=".ForumActivity"
             android:label="@string/title_activity_forum"
-            android:parentActivityName="com.android.mobileapp.MainActivity" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.mobileapp.MainActivity" />
         </activity>
         <activity
-            android:name="com.android.mobileapp.MyQuestionActivity"
+            android:name=".MyQuestionActivity"
             android:label="@string/title_activity_my_question"
-            android:parentActivityName="com.android.mobileapp.MainActivity" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.mobileapp.MainActivity" />
         </activity>
         <activity
-            android:name="com.android.mobileapp.MyAnswerActivity"
+            android:name=".MyAnswerActivity"
             android:label="@string/title_activity_my_answer" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.mobileapp.MainActivity" />
         </activity>
         <activity
-            android:name="com.android.mobileapp.QAActivity"
+            android:name=".QAActivity"
             android:label="@string/title_activity_qa"
-            android:parentActivityName="com.android.mobileapp.MainActivity" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.mobileapp.MainActivity" />
         </activity>
         <activity
-            android:name="com.android.mobileapp.SettingActivity"
+            android:name=".SettingActivity"
             android:label="@string/title_activity_setting"
-            android:parentActivityName="com.android.mobileapp.MainActivity" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.mobileapp.MainActivity" />
         </activity>
         <activity
-            android:name="com.android.mobileapp.MapActivity"
+            android:name=".MapActivity"
             android:label="@string/title_activity_map"
-            android:parentActivityName="com.android.mobileapp.SettingActivity" >
+            android:parentActivityName=".SettingActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.mobileapp.SettingActivity" />
         </activity>
         <activity
-            android:name="com.android.mobileapp.NotiFreqActivity"
+            android:name=".NotiFreqActivity"
             android:label="@string/title_activity_noti_freq"
-            android:parentActivityName="com.android.mobileapp.SettingActivity" >
+            android:parentActivityName=".SettingActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.mobileapp.SettingActivity" />
@@ -99,12 +94,16 @@
             android:value="AIzaSyC3_WA_NkGSIZ6jNRi-4pnhzuJ_dcI9zVw" />
 
         <activity
-            android:name="com.android.mobileapp.AccountActivity"
+            android:name=".AccountActivity"
             android:label="@string/title_activity_account"
-            android:parentActivityName="com.android.mobileapp.MainActivity" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.mobileapp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".registerActivity"
+            android:label="@string/title_activity_register" >
         </activity>
     </application>
 
