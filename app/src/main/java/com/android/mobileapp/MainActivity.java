@@ -92,6 +92,7 @@ public class MainActivity extends FragmentActivity {
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -99,8 +100,9 @@ public class MainActivity extends FragmentActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent(this, LoginActivity.class);
+            //startActivity(intent);
+            new LoginFragment().show(getSupportFragmentManager(),"login");
             return true;
         }
         return super.onOptionsItemSelected(item);

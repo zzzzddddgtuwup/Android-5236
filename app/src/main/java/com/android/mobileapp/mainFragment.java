@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-public class mainFragment extends Fragment {
+public class mainFragment extends Fragment  {
 
     public mainFragment() {
         // Required empty public constructor
@@ -32,8 +32,9 @@ public class mainFragment extends Fragment {
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.main_button_forum:
-                        Intent profile_intent = new Intent(getActivity(), SettingActivity.class);
+                        Intent profile_intent = new Intent(getActivity(), AccountActivity.class);
                         startActivity(profile_intent);
+                       // new ForumDetailFragment();//u cann.show(getChildFragmentManager(), "Forum");
                         break;
                     case R.id.main_button_myQuestion:
                         Intent myQuestion_intent = new Intent(getActivity(), MyQuestionActivity.class);
