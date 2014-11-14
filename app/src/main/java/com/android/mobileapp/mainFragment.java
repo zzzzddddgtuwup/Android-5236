@@ -35,7 +35,6 @@ public class mainFragment extends Fragment  {
                     case R.id.main_button_select_forum:
                         Intent select_forum_intent = new Intent(getActivity(), SettingActivity.class);
                         startActivity(select_forum_intent);
-                       // new ForumDetailFragment();//u cann.show(getChildFragmentManager(), "Forum");
                         break;
                     case R.id.main_button_myQuestion:
                         Intent myQuestion_intent = new Intent(getActivity(), MyQuestionActivity.class);
@@ -50,7 +49,6 @@ public class mainFragment extends Fragment  {
                         startActivity(profile_intent);
                         break;
                     case R.id.main_button_enter_forum:
-                        //new ForumDetailFragment();
                         Intent forum_intent = new Intent(getActivity(),ForumActivity.class);
                         startActivity(forum_intent);
                         break;
