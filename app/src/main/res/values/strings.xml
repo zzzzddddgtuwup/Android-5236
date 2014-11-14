@@ -43,5 +43,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
+    <string name="title_activity_new_forum">newForumActivity</string>
+    <string name="preference_file_key">com.android.mobileapp.PREFERENCE_FILE_KEY</string>
+
 
 </resources>

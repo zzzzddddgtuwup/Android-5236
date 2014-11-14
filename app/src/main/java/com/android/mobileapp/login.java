@@ -1,6 +1,7 @@
 package com.android.mobileapp;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +20,7 @@ import java.util.List;
 
 
 public class login extends ActionBarActivity implements View.OnClickListener{
+    private final String TAG = ((Object) this).getClass().getSimpleName();
     private EditText userNameEditableField;
     private EditText passwordEditableField;
     private final static String OPT_NAME = "name";
@@ -89,11 +92,13 @@ public class login extends ActionBarActivity implements View.OnClickListener{
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) { // Login successful
-                SharedPreferences settings = PreferenceManager
-                        .getDefaultSharedPreferences(login.this);
-                SharedPreferences.Editor editor = settings.edit();
-                editor.putString(OPT_NAME, username);
+                Context context = login.this;
+                SharedPreferences sharedPref = context.getSharedPreferences(
+                        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString(getString(R.string.username), username);
                 editor.commit();
+                Log.d(TAG, "username entered is " + username);
 
                 startActivity(new Intent(login.this, MainActivity.class));
                 finish();
