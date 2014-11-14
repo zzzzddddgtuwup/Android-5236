@@ -26,7 +26,7 @@ public class answerAdapter extends ArrayAdapter<Answer> {
                     .inflate(R.layout.list_item_answer, parent, false);
         }
         TextView tvContent = (TextView)convertView.findViewById(R.id.list_item_answer_textview);
-        tvContent.setText(ans.getContent());
+        tvContent.setText("rate: "+ans.getRate() + " " + ans.getContent());
         return convertView;
     }
 }

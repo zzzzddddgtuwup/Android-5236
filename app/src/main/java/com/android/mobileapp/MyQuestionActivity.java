@@ -41,7 +41,7 @@ public class MyQuestionActivity extends ActionBarActivity {
     protected void onResume(){
         super.onResume();
         SharedPreferences sharedPref = this.getSharedPreferences(
-                getString(R.string.preference_file_key),Context.MODE_PRIVATE);
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String username = sharedPref.getString(getString(R.string.username),"zdg");
         new getQuestionTask().execute(username);
     }
@@ -112,6 +112,7 @@ public class MyQuestionActivity extends ActionBarActivity {
                     Intent intent = new Intent(MyQuestionActivity.this,QAActivity.class);
                     intent.putExtra(QAActivity.Q_CONTENT,question.getContent());
                     intent.putExtra(QAActivity.Q_ID,question.getQid());
+                    intent.putExtra(QAActivity.Q_RATE,question.getRate());
                     startActivity(intent);
                 }
             });
@@ -132,7 +133,7 @@ public class MyQuestionActivity extends ActionBarActivity {
                         .inflate(R.layout.list_item_question, parent, false);
             }
             TextView tvContent = (TextView)convertView.findViewById(R.id.list_item_question_textview);
-            tvContent.setText(ques.getContent());
+            tvContent.setText("rate: "+ ques.getRate() + " " +ques.getContent());
             return convertView;
         }
     }

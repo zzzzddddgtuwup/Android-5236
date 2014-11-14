@@ -1,6 +1,8 @@
 package com.android.mobileapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -34,7 +36,10 @@ public class MyAnswerActivity extends ActionBarActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        new getAnswerTask().execute("zdg");
+        SharedPreferences sharedPref = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        String username = sharedPref.getString(getString(R.string.username),"zdg");
+        new getAnswerTask().execute(username);
     }
 
     @Override
@@ -70,32 +75,6 @@ public class MyAnswerActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_my_answer, container, false);
-//
-//            String[] data = {
-//                    "Turn left and go right",
-//                    "Nope,it's not free",
-//                    "What kind of help?",
-//                    "How much ?",
-//                    "Nice"
-//            };
-//
-//            List<String> answer = new ArrayList<String>(Arrays.asList(data));
-//            mAnswerAdapter = new ArrayAdapter<String>(
-//                    getActivity(),
-//                    R.layout.list_item_answer,
-//                    R.id.list_item_answer_textview,
-//                    answer);
-//            ListView listView = (ListView) rootView.findViewById(R.id.listview_answer);
-//            listView.setAdapter(mAnswerAdapter);
-//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                    String question = mAnswerAdapter.getItem(position);
-//                    Intent intent = new Intent()
-//                            .putExtra(Intent.EXTRA_TEXT,question);
-//                    startActivity(intent);
-//                }
-//            });
             return rootView;
         }
     }
@@ -127,6 +106,7 @@ public class MyAnswerActivity extends ActionBarActivity {
                     Intent intent = new Intent(MyAnswerActivity.this, QAActivity.class);
                     intent.putExtra(QAActivity.Q_CONTENT,s_answer.getQuestion().getContent());
                     intent.putExtra(QAActivity.Q_ID,s_answer.getQuestion().getQid());
+                    intent.putExtra(QAActivity.Q_RATE,s_answer.getQuestion().getRate());
                     startActivity(intent);
                 }
             });

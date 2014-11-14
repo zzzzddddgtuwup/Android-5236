@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ public class QAActivity extends ActionBarActivity {
     private final String TAG = ((Object) this).getClass().getSimpleName();
     public final static String Q_ID = "com.android.mobileapp.q_id";
     public final static String Q_CONTENT = "com.android.mobileapp.q_content";
+    public final static String Q_RATE = "com.android.mobile.q_rate";
 
     private long question_id;
 
@@ -36,11 +38,14 @@ public class QAActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         String question_content = intent.getStringExtra(Q_CONTENT);
-        question_id = intent.getLongExtra(Q_ID,0);
+        question_id = intent.getLongExtra(Q_ID,-1);
+        Log.d(TAG, "question id is  " + question_id);
+        Log.d(TAG,"intent has Q_RATE? " + intent.hasExtra(Q_RATE));
+        int question_rate = intent.getIntExtra(Q_RATE,-1);
         setContentView(R.layout.activity_qa);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment(question_content))
+                    .add(R.id.container, new PlaceholderFragment(question_content,question_rate))
                     .commit();
         }
     }
@@ -75,12 +80,14 @@ public class QAActivity extends ActionBarActivity {
      */
     public static class PlaceholderFragment extends Fragment {
         private String question_content;
+        private int question_rate;
 
         public PlaceholderFragment() {
         }
 
-        public PlaceholderFragment(String question_content){
+        public PlaceholderFragment(String question_content, int question_rate){
             this.question_content = question_content;
+            this.question_rate = question_rate;
         }
 
         @Override
@@ -88,7 +95,7 @@ public class QAActivity extends ActionBarActivity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_qa, container, false);
             TextView tvQuestion = (TextView)rootView.findViewById(R.id.qa_question);
-            tvQuestion.setText(question_content);
+            tvQuestion.setText("rate: "+question_rate + " " + question_content);
             return rootView;
         }
     }
