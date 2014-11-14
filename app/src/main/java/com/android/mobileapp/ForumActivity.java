@@ -1,5 +1,7 @@
 package com.android.mobileapp;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 
 public class ForumActivity extends ActionBarActivity {
@@ -24,6 +31,11 @@ public class ForumActivity extends ActionBarActivity {
                     .add(R.id.container, new FragmentTabsFragmentSupport())
                     .commit();
         }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
     }
 
     @Override
@@ -48,18 +60,18 @@ public class ForumActivity extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_forum, container, false);
-            return rootView;
-        }
-    }
+//    public static class PlaceholderFragment extends Fragment {
+//
+//        public PlaceholderFragment() {
+//        }
+//
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                Bundle savedInstanceState) {
+//            View rootView = inflater.inflate(R.layout.fragment_forum, container, false);
+//            return rootView;
+//        }
+//    }
 
     public class FragmentTabsFragmentSupport extends Fragment {
         private FragmentTabHost mTabHost;
@@ -74,11 +86,11 @@ public class ForumActivity extends ActionBarActivity {
             mTabHost = new FragmentTabHost(getActivity());
             mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.fragmentTabHost);
 
-            mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("tab1"),
+            mTabHost.addTab(mTabHost.newTabSpec("allQuestions").setIndicator("all"),
                     Tab1Fragment.class, null);
-            mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("tab2"),
+            mTabHost.addTab(mTabHost.newTabSpec("topFive").setIndicator("popular"),
                     Tab2Fragment.class, null);
-            mTabHost.addTab(mTabHost.newTabSpec("tab3").setIndicator("tab3"),
+            mTabHost.addTab(mTabHost.newTabSpec("askAndSearch").setIndicator("askAndSearch"),
                     Tab3Fragment.class, null);
 
             return mTabHost;
@@ -90,4 +102,6 @@ public class ForumActivity extends ActionBarActivity {
             mTabHost = null;
         }
     }
+
+
 }
