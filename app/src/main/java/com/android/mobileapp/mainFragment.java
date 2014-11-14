@@ -25,14 +25,14 @@ public class mainFragment extends Fragment  {
         View btnProfile = (Button) rootView.findViewById(R.id.main_button_myProfile);
         View btnMyQuestion = (Button) rootView.findViewById(R.id.main_button_myQuestion);
         View btnMyAnswer = (Button) rootView.findViewById(R.id.main_button_myAnswer);
-        View btnForum = (Button) rootView.findViewById(R.id.main_button_forum);
+        View btnForum = (Button) rootView.findViewById(R.id.main_button_select_forum);
 
         final View.OnClickListener Click = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
-                    case R.id.main_button_forum:
-                        Intent profile_intent = new Intent(getActivity(), AccountActivity.class);
+                    case R.id.main_button_select_forum:
+                        Intent profile_intent = new Intent(getActivity(), SettingActivity.class);
                         startActivity(profile_intent);
                        // new ForumDetailFragment();//u cann.show(getChildFragmentManager(), "Forum");
                         break;
