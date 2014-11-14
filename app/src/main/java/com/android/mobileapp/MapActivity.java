@@ -183,6 +183,7 @@ public class MapActivity extends ActionBarActivity {
             public void onMapClick(LatLng latLng) {
                 int forumNumber = getForumNumber(latLng);
                 Log.d("Map", "Map clicked on " + forumNumber);
+                //jump to forum
             }
         });
 

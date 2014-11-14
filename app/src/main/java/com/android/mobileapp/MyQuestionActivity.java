@@ -22,6 +22,8 @@ import java.util.List;
 
 public class MyQuestionActivity extends ActionBarActivity {
     private final String TAG = ((Object) this).getClass().getSimpleName();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,8 +104,9 @@ public class MyQuestionActivity extends ActionBarActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     Question question = mQuestionAdapter.getItem(position);
-                    Intent intent = new Intent()
-                            .putExtra(Intent.EXTRA_TEXT,question.getQid());
+                    Intent intent = new Intent(MyQuestionActivity.this,QAActivity.class);
+                    intent.putExtra(QAActivity.Q_CONTENT,question.getContent());
+                    intent.putExtra(QAActivity.Q_ID,question.getQid());
                     startActivity(intent);
                 }
             });

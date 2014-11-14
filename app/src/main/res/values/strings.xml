@@ -19,5 +19,6 @@
     <string name="login">Login</string>
     <string name="title_activity_account">AccountActivity</string>
     <string name="serverUrl">http://nearby.elasticbeanstalk.com</string>
+    <string name="title_activity_qadetails">QAdetails</string>
 
 </resources>
