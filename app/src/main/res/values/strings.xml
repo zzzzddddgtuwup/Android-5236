@@ -50,5 +50,6 @@
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
     <string name="title_activity_tab_host">TabHostActivity</string>
+    <string name="user_score">com.android.mobileapp.user_score</string>
 
 </resources>

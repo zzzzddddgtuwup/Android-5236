@@ -80,22 +80,23 @@ public class login extends ActionBarActivity implements View.OnClickListener{
         }
     }
 
-    private class getUserTask extends AsyncTask<String, Void, Boolean> {
+    private class getUserTask extends AsyncTask<String, Void, User> {
         private String username;
 
         @Override
-        protected Boolean doInBackground(String... params) {
+        protected User doInBackground(String... params) {
             username = params[0];
             return UserSvc.getOrInit(getString(R.string.serverUrl)).validate(new User(params[0],params[1]));
         }
 
         @Override
-        protected void onPostExecute(Boolean result) {
-            if (result) { // Login successful
+        protected void onPostExecute(User result) {
+            if (result!=null) { // Login successful
                 SharedPreferences sharedPref = getSharedPreferences(
                         getString(R.string.preference_file_key), Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString(getString(R.string.username), username);
+                //editor.putInt(getString(R.string.user_score));
                 editor.commit();
 
                 startActivity(new Intent(login.this, MainActivity.class));
