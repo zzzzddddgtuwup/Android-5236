@@ -92,13 +92,11 @@ public class login extends ActionBarActivity implements View.OnClickListener{
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) { // Login successful
-                Context context = login.this;
-                SharedPreferences sharedPref = context.getSharedPreferences(
+                SharedPreferences sharedPref = getSharedPreferences(
                         getString(R.string.preference_file_key), Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString(getString(R.string.username), username);
                 editor.commit();
-                Log.d(TAG, "username entered is " + username);
 
                 startActivity(new Intent(login.this, MainActivity.class));
                 finish();

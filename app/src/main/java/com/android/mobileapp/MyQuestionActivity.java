@@ -40,9 +40,9 @@ public class MyQuestionActivity extends ActionBarActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = this.getSharedPreferences(
+                getString(R.string.preference_file_key),Context.MODE_PRIVATE);
         String username = sharedPref.getString(getString(R.string.username),"zdg");
-        Log.d(TAG,"username: "+ username);
         new getQuestionTask().execute(username);
     }
 
