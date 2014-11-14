@@ -52,8 +52,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
+        android:text="@string/main_button_enter_forum"
+        android:id="@+id/main_button_enter_forum"
         android:layout_marginTop="40dp"
         android:layout_below="@+id/main_button_myProfile"
         android:layout_alignParentLeft="true"
