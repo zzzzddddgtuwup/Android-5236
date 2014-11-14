@@ -1,5 +1,7 @@
 package com.android.mobileapp;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 
 public class NotiFreqActivity extends ActionBarActivity {
     private final String TAG = ((Object)this).getClass().getSimpleName();
+    private NotificationManager mNotificationManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,11 +27,37 @@ public class NotiFreqActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
-        NotificationCompat.Builder mBuilder =
+        NotificationCompat.Builder mBuilderLikedQ =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.arrow)
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!");
+                        .setContentTitle("Question")
+                        .setContentText("Your question is Liked!");
+
+        NotificationCompat.Builder mBuilderAnsweredQ =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.arrow)
+                        .setContentTitle("Question")
+                        .setContentText("Your question is Answered!");
+
+        NotificationCompat.Builder mBuilderLikedA =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.arrow)
+                        .setContentTitle("Answer")
+                        .setContentText("Your answer is Liked!");
+
+        mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+// mId allows you to update the notification later on.
+
+        //mNotificationManager.notify(0, mBuilder.build());
+    }
+
+    @Override
+
+    public  void onStart() {
+        super.onStart();
+
+        
     }
 
 
