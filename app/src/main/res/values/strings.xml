@@ -51,5 +51,6 @@
     <string name="drawer_close">close</string>
     <string name="title_activity_tab_host">TabHostActivity</string>
     <string name="user_score">com.android.mobileapp.user_score</string>
+    <string name="add_new_question">Ask new question</string>
 
 </resources>
