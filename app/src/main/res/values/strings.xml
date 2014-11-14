@@ -32,4 +32,16 @@
     <string name="HNT_EMAIL_ADDRESS">Please enter your email</string>
     <string name="reset_password">Forget Password</string>
     <string name="BTN_EMAIL">Reset Password</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="exit">Exit</string>
+    <string name="new_user">New User</string>
+    <string name="title_activity_register">registerActivity</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
+
 </resources>
