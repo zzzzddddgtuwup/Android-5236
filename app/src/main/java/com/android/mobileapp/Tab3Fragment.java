@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import android.widget.SearchView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +23,7 @@ import java.util.Collection;
 public class Tab3Fragment extends Fragment {
 
     private EditText questionEditableField;
-
+    private SearchView searchEditableField;
     public Tab3Fragment() {
         // Required empty public constructor
     }
@@ -34,7 +35,10 @@ public class Tab3Fragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView=  inflater.inflate(R.layout.fragment_tab3, container, false);
         View askQuestion =(Button) rootView.findViewById(R.id.add_question);
+
         questionEditableField =(EditText) rootView.findViewById(R.id.question_text);
+        searchEditableField =(SearchView) rootView.findViewById(R.id.searchView);
+
         final View.OnClickListener Click = new View.OnClickListener(){
             @Override
             public void onClick (View view){
@@ -68,4 +72,8 @@ public class Tab3Fragment extends Fragment {
             return null;
         }
     }
+    private void searchQuestion(){
+        String result= this.searchEditableField.getQuery().toString();
+    }
+
 }
