@@ -22,7 +22,7 @@ import java.util.List;
 public class NotiFreqActivity extends ActionBarActivity {
     private final String TAG = ((Object)this).getClass().getSimpleName();
     private NotificationManager mNotificationManager;
-    private int interval;
+    private int interval = 20000;
     private Handler handler;
     private NotificationCompat.Builder mBuilder;
     private int mID = 0;
@@ -42,24 +42,6 @@ public class NotiFreqActivity extends ActionBarActivity {
                         .setContentTitle("")
                         .setContentText("");
 
-/*        NotificationCompat.Builder mBuilderLikedQ =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.arrow)
-                        .setContentTitle("Question")
-                        .setContentText("Your question is Liked!");
-
-        NotificationCompat.Builder mBuilderAnsweredQ =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.arrow)
-                        .setContentTitle("Question")
-                        .setContentText("Your question is Answered!");
-
-        NotificationCompat.Builder mBuilderLikedA =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.arrow)
-                        .setContentTitle("Answer")
-                        .setContentText("Your answer is Liked!");*/
-
         mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         // mId allows you to update the notification later on.
@@ -73,7 +55,7 @@ public class NotiFreqActivity extends ActionBarActivity {
         super.onStart();
         handler = new Handler();
         //if (interval != 0) handler.postDelayed(runnable, interval);
-        handler.postDelayed(runnable, 20000);
+        handler.postDelayed(runnable, interval);
 
     }
 
@@ -108,7 +90,7 @@ public class NotiFreqActivity extends ActionBarActivity {
                 mID++;
             }
       /* and here comes the "trick" */
-            handler.postDelayed(this, 20000);
+            handler.postDelayed(this, interval);
         }
     };
 
@@ -121,11 +103,13 @@ public class NotiFreqActivity extends ActionBarActivity {
             case R.id.radioButton_15_min:
                 if (checked){
                     interval = 900000;
+                    //interval = 20000;
                 }
                     break;
             case R.id.radioButton_one_hour:
                 if (checked){
-                    interval = 3600000;
+                    //interval = 3600000;
+                    interval = 3000;
                 }
                     break;
 
