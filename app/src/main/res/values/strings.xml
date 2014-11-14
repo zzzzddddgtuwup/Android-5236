@@ -14,7 +14,7 @@
     <string name="main_button_profile">Profile</string>
     <string name="main_button_myQuestion">My Questions</string>
     <string name="main_button_myAnswer">My Answers</string>
-    <string name="main_button_forum">Forum</string>
+    <string name="main_button_select_forum">Select Forum</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_account">AccountActivity</string>
     <string name="serverUrl">http://nearby.elasticbeanstalk.com</string>
@@ -43,6 +43,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
+    <string name="title_activity_new_forum">newForumActivity</string>
+    <string name="preference_file_key">com.android.mobileapp.PREFERENCE_FILE_KEY</string>
     <string name="action_logout">Logout</string>
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>

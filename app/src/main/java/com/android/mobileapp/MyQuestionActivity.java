@@ -2,10 +2,12 @@ package com.android.mobileapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,7 +40,10 @@ public class MyQuestionActivity extends ActionBarActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        new getQuestionTask().execute("zdg");
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        String username = sharedPref.getString(getString(R.string.username),"zdg");
+        Log.d(TAG,"username: "+ username);
+        new getQuestionTask().execute(username);
     }
 
     @Override
