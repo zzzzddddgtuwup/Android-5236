@@ -48,7 +48,7 @@ public class mainFragment extends Fragment  {
                         Intent profile_intent = new Intent(getActivity(), AccountActivity.class);
                         startActivity(profile_intent);
                         break;
-                    case R.id.main_button_tab_activity:
+                    case R.id.main_button_enter_forum:
                         new ForumDetailFragment();
                         break;
                 }
