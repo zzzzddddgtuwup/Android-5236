@@ -108,7 +108,7 @@
     </RelativeLayout>
 
     <TextView
-        android:text="Game History"
+        android:text="History"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -169,7 +169,7 @@
             android:id="@+id/history_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View all game records"
+            android:text="View all questions"
             android:textColor="@color/accountform_title"
             android:typeface="sans"
             android:textSize="15dip"
@@ -183,93 +183,5 @@
             android:layout_centerVertical="true"
             />
     </RelativeLayout>
-
-    <TextView
-        android:text="Reward History"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="#040404"
-        android:typeface="sans"
-        android:textSize="15dip"
-        android:textStyle="bold"/>
-
-    <View
-        android:id="@+id/view4"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/main_color_cyan" />
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/list_selector"
-        android:orientation="horizontal"
-        android:padding="5dip"
-        android:clickable="true">
-
-        <TextView
-            android:id="@+id/reward_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1/2/2014"
-            android:textColor="@color/accountform_title"
-            android:typeface="sans"
-            android:textSize="15dip"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
-
-        <TextView
-            android:id="@+id/reward_point"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-
-            android:gravity="right"
-            android:text="50"
-            android:layout_marginRight="5dip"
-            android:textSize="15dip"
-            android:textColor="@color/accountform_field"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp" />
-
-        <TextView
-            android:id="@+id/reward_item"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/reward_date"
-            android:textColor="#343434"
-            android:textSize="10dip"
-            android:layout_marginTop="1dip"
-            android:text="$5 Gateway Gift Card" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/list_selector"
-        android:orientation="horizontal"
-        android:padding="5dip"
-        android:clickable="true">
-
-        <TextView
-            android:id="@+id/rewardhistory_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View all reward records"
-            android:textColor="@color/accountform_title"
-            android:typeface="sans"
-            android:textSize="15dip"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
-
-        <ImageView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/arrow"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            />
-    </RelativeLayout>
-
 
 </LinearLayout>

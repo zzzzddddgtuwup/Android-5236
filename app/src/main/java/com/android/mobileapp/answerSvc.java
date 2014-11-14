@@ -6,7 +6,7 @@ import retrofit.RestAdapter.LogLevel;
 /**
  * Created by zzzzddddgtuwup on 11/13/14.
  */
-public class AnswerSvc {
+class AnswerSvc {
     private static AnswerSvcApi answerSvc_;
 
     public static synchronized AnswerSvcApi getOrInit(String serverUrl){

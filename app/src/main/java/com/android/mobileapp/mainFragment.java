@@ -22,7 +22,7 @@ public class mainFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        View btnProfile = (Button) rootView.findViewById(R.id.main_button_forum);
+        View btnProfile = (Button) rootView.findViewById(R.id.main_button_myProfile);
         View btnMyQuestion = (Button) rootView.findViewById(R.id.main_button_myQuestion);
         View btnMyAnswer = (Button) rootView.findViewById(R.id.main_button_myAnswer);
         View btnForum = (Button) rootView.findViewById(R.id.main_button_forum);
@@ -43,9 +43,9 @@ public class mainFragment extends Fragment {
                         Intent myAnswer_intent = new Intent(getActivity(), MyAnswerActivity.class);
                         startActivity(myAnswer_intent);
                         break;
-                    case R.id.main_button_profile:
+                    case R.id.main_button_myProfile:
                         Log.d("Main fragment"," Profile button clicked");
-                        Intent forum_intent = new Intent(getActivity(), SettingActivity.class);
+                        Intent forum_intent = new Intent(getActivity(), AccountActivity.class);
                         startActivity(forum_intent);
                         break;
                 }
