@@ -15,6 +15,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Collection;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +24,7 @@ import android.widget.SearchView;
 public class Tab3Fragment extends Fragment {
 
     private EditText questionEditableField;
+    private EditText answerEditableField;
     private SearchView searchEditableField;
     public Tab3Fragment() {
         // Required empty public constructor
@@ -38,7 +40,7 @@ public class Tab3Fragment extends Fragment {
 
         questionEditableField =(EditText) rootView.findViewById(R.id.question_text);
         searchEditableField =(SearchView) rootView.findViewById(R.id.searchView);
-
+        answerEditableField = (EditText) rootView.findViewById(R.id.answer_text);
         final View.OnClickListener Click = new View.OnClickListener(){
             @Override
             public void onClick (View view){
@@ -47,6 +49,9 @@ public class Tab3Fragment extends Fragment {
                         Intent askQuestion = new Intent(getActivity(), ForumActivity.class);
                         new addQuestionTask().execute(getQuestion());
                         startActivity(askQuestion);
+                        break;
+                    case R.id.add_answer:
+                        Toast.makeText(getActivity(), "You upvote the question", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

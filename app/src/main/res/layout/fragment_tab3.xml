@@ -23,10 +23,23 @@
             android:id="@+id/question_text"
             android:inputType="text"
             android:singleLine="true"/>
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/add_new_answer"
+            android:layout_marginTop="10dp"
+            android:id="@+id/add_answer"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/answer_text"
+            android:inputType="text"
+            android:singleLine="true"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
             android:text="Search Question" />
 
         <SearchView
