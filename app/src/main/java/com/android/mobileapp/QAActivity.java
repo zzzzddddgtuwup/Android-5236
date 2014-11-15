@@ -35,6 +35,7 @@ public class QAActivity extends ActionBarActivity {
     private final String TAG = ((Object) this).getClass().getSimpleName();
 
     private long question_id;
+    private int forum_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class QAActivity extends ActionBarActivity {
         Intent intent = getIntent();
         String question_content = intent.getStringExtra(getString(R.string.Q_CONTENT));
         question_id = intent.getLongExtra(getString(R.string.Q_ID),-1);
-        int forum_id = intent.getIntExtra(getString(R.string.F_ID),-1);
+        forum_id = intent.getIntExtra(getString(R.string.F_ID),-1);
         Log.d(TAG, "question id is  " + question_id);
         Log.d(TAG, "intent has Q_RATE? " + intent.hasExtra(getString(R.string.Q_RATE)));
         int question_rate = intent.getIntExtra(getString(R.string.Q_RATE),-1);
@@ -149,12 +150,12 @@ public class QAActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Collection<Answer> result){
-            final answerAdapter mAnswerAdapter;
+            final answerRateAdapter mAnswerAdapter;
             ListView listView = (ListView)findViewById(R.id.listview_qa_answers);
-            mAnswerAdapter = new answerAdapter(
+            mAnswerAdapter = new answerRateAdapter(
                     QAActivity.this,
-                    R.layout.list_item_answer,
-                    R.id.list_item_answer_textview,
+                    R.layout.list_item_answer_rate,
+                    R.id.list_item_answer_textview_rate,
                     new ArrayList<Answer>(result));
             listView.setAdapter(mAnswerAdapter);
         }
@@ -166,6 +167,47 @@ public class QAActivity extends ActionBarActivity {
         protected Void doInBackground(String... params) {
             AnswerSvc.getOrInit(getString(R.string.serverUrl))
                     .addAnswer(params[0], params[1], Long.parseLong(params[2]));
+            return null;
+        }
+    }
+
+    private class answerRateAdapter extends ArrayAdapter<Answer> {
+
+        public answerRateAdapter(Context context, int resource, int textViewResourceId, List<Answer> objects) {
+            super(context, resource, textViewResourceId, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent){
+            final Answer ans = getItem(position);
+            if(convertView==null){
+                convertView = LayoutInflater.from(this.getContext())
+                        .inflate(R.layout.list_item_answer_rate, parent, false);
+            }
+            TextView tvContent = (TextView)convertView.findViewById(R.id.list_item_answer_textview_rate);
+            ImageButton imageBt = (ImageButton)convertView.findViewById(R.id.rateButton);
+            //add rate for answer
+            imageBt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(view.getId() == R.id.rateButton){
+                        new answerRateTask().execute(ans.getAid());
+                        Intent intent = new Intent(QAActivity.this,ForumActivity.class);
+                        intent.putExtra(getString(R.string.map_to_forum_intent_extra),forum_id);
+                        startActivity(intent);
+                    }
+                }
+            });
+            tvContent.setText("rate: " + ans.getRate() + " " + ans.getContent());
+            return convertView;
+        }
+    }
+
+    private class answerRateTask extends AsyncTask<Long,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Long... answer_id) {
+            AnswerSvc.getOrInit(getString(R.string.serverUrl)).rateAnswerById(answer_id[0]);
             return null;
         }
     }

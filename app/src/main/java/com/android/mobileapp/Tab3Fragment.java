@@ -80,6 +80,7 @@ public class Tab3Fragment extends Fragment {
             return null;
         }
     }
+
     private void searchQuestion(){
         String result= this.searchEditableField.getQuery().toString();
     }
