@@ -27,7 +27,6 @@ import android.widget.Toast;
 public class Tab3Fragment extends Fragment {
 
     private EditText questionEditableField;
-    private EditText answerEditableField;
     private SearchView searchEditableField;
     public Tab3Fragment() {
         // Required empty public constructor
@@ -39,13 +38,12 @@ public class Tab3Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView=  inflater.inflate(R.layout.fragment_tab3, container, false);
-        View askQuestion =(Button) rootView.findViewById(R.id.add_question);
+
         final int forumId = getArguments().getInt(getString(R.string.map_to_forum_intent_extra));
         Log.e("tab3", "this is forum " + forumId);
         questionEditableField =(EditText) rootView.findViewById(R.id.question_text);
         searchEditableField =(SearchView) rootView.findViewById(R.id.searchView);
-        answerEditableField = (EditText) rootView.findViewById(R.id.answer_text);
-
+        View askQuestion =(Button) rootView.findViewById(R.id.add_question);
         SharedPreferences sharedPref = getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         final String username = sharedPref.getString(getString(R.string.username),"zdg");
@@ -68,9 +66,7 @@ public class Tab3Fragment extends Fragment {
                 }
             }
         };
-
         askQuestion.setOnClickListener(Click);
-
         return rootView;
     }
 

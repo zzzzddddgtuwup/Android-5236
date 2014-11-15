@@ -54,5 +54,11 @@
     <string name="add_new_question">Ask new question</string>
     <string name="add_new_answer">Answer question</string>
     <string name="map_to_forum_intent_extra">com.android.mobileapp.forumId</string>
+    <string name="title_activity_myqa">MyqaActivity</string>
+
+    <string name="Q_ID">"com.android.mobileapp.q_id"</string>
+    <string name="Q_CONTENT">com.android.mobileapp.q_content</string>
+    <string name="Q_RATE">com.android.mobileapp.q_rate</string>
+    <string name="F_ID">com.android.mobileapp.f_id</string>
 
 </resources>

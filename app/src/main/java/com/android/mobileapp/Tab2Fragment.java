@@ -67,9 +67,9 @@ public class Tab2Fragment extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     Question question = mQuestionAdapter.getItem(position);
                     Intent intent = new Intent(getActivity(), QAActivity.class);
-                    intent.putExtra(QAActivity.Q_CONTENT, question.getContent());
-                    intent.putExtra(QAActivity.Q_ID, question.getQid());
-                    intent.putExtra(QAActivity.Q_RATE, question.getRate());
+                    intent.putExtra(getString(R.string.Q_CONTENT), question.getContent());
+                    intent.putExtra(getString(R.string.Q_ID), question.getQid());
+                    intent.putExtra(getString(R.string.Q_RATE), question.getRate());
                     startActivity(intent);
                 }
             });

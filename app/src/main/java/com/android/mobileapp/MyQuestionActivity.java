@@ -109,10 +109,10 @@ public class MyQuestionActivity extends ActionBarActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     Question question = mQuestionAdapter.getItem(position);
-                    Intent intent = new Intent(MyQuestionActivity.this,QAActivity.class);
-                    intent.putExtra(QAActivity.Q_CONTENT,question.getContent());
-                    intent.putExtra(QAActivity.Q_ID,question.getQid());
-                    intent.putExtra(QAActivity.Q_RATE,question.getRate());
+                    Intent intent = new Intent(MyQuestionActivity.this,MyqaActivity.class);
+                    intent.putExtra(getString(R.string.Q_CONTENT),question.getContent());
+                    intent.putExtra(getString(R.string.Q_ID),question.getQid());
+                    intent.putExtra(getString(R.string.Q_RATE),question.getRate());
                     startActivity(intent);
                 }
             });
