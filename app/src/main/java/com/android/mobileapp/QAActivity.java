@@ -2,6 +2,7 @@ package com.android.mobileapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -16,8 +17,10 @@ import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -82,6 +85,7 @@ public class QAActivity extends ActionBarActivity {
         private String question_content;
         private int question_rate;
 
+
         public PlaceholderFragment() {
         }
 
@@ -93,11 +97,26 @@ public class QAActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.fragment_qa, container, false);
+            ImageButton upVote = (ImageButton) rootView.findViewById(R.id.upvote_button);
+            final View.OnClickListener Click = new View.OnClickListener(){
+                @Override
+                public void onClick (View view){
+                    switch(view.getId()){
+                        case R.id.upvote_button:
+                            //add the rate + 1 here
+                            Toast.makeText(getActivity(),"You upvote the question",Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
+            };
+            upVote.setOnClickListener(Click);
             TextView tvQuestion = (TextView)rootView.findViewById(R.id.qa_question);
             tvQuestion.setText("rate: "+question_rate + " " + question_content);
             return rootView;
         }
+
     }
 
     private class getAnswersTask extends AsyncTask<Long, Void, Collection<Answer>>{
@@ -120,5 +139,6 @@ public class QAActivity extends ActionBarActivity {
                     new ArrayList<Answer>(result));
             listView.setAdapter(mAnswerAdapter);
         }
+
     }
 }

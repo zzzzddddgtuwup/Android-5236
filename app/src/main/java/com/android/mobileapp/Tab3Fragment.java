@@ -17,6 +17,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Collection;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +26,7 @@ import android.widget.SearchView;
 public class Tab3Fragment extends Fragment {
 
     private EditText questionEditableField;
+    private EditText answerEditableField;
     private SearchView searchEditableField;
     public Tab3Fragment() {
         // Required empty public constructor
@@ -40,10 +42,12 @@ public class Tab3Fragment extends Fragment {
 
         questionEditableField =(EditText) rootView.findViewById(R.id.question_text);
         searchEditableField =(SearchView) rootView.findViewById(R.id.searchView);
+        answerEditableField = (EditText) rootView.findViewById(R.id.answer_text);
 
         SharedPreferences sharedPref = getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         final String username = sharedPref.getString(getString(R.string.username),"zdg");
+
 
         final View.OnClickListener Click = new View.OnClickListener(){
             @Override
@@ -54,6 +58,9 @@ public class Tab3Fragment extends Fragment {
                         new addQuestionTask().execute(questionEditableField.getText().toString()
                                 ,username,"1");
                         startActivity(askQuestion);
+                        break;
+                    case R.id.add_answer:
+                        Toast.makeText(getActivity(), "You upvote the question", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
