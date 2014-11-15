@@ -3,13 +3,13 @@ package com.android.mobileapp;
 
 import java.util.Collection;
 
-import retrofit.http.Body;
 import retrofit.http.GET;
-import retrofit.http.POST;
 import retrofit.http.Query;
 
 public interface QuestionSvcApi {
     public static final String USER_NAME = "username";
+
+    public static final String QUESTION_CONTENT = "question_content";
 
     public static final String FORUM_ID = "fid";
 
@@ -34,6 +34,9 @@ public interface QuestionSvcApi {
     public static final String QUESTION_SORT_PATH =
             QUESTION_SVC_PATH + "/sort";
 
+    public static final String QUESTION_ADD_PATH =
+            QUESTION_SVC_PATH + "/add";
+
     @GET(QUESTION_SVC_PATH)
     public Collection<Question> getQuestionList();
 
@@ -43,8 +46,8 @@ public interface QuestionSvcApi {
     @GET(QUESTION_FORUM_GET_PATH)
     public Collection<Question> findByForumId(@Query(FORUM_ID) long fid);
 
-    @POST(QUESTION_SVC_PATH)
-    public boolean addQuestion(@Body Question q);
+    @GET(QUESTION_ADD_PATH)
+    public boolean addQuestion(@Query(QUESTION_CONTENT) String content, @Query(USER_NAME)String username,@Query(FORUM_ID)long fid);
 
     @GET(QUESTION_FORUM_SEARCH_PATH)
     public Collection<Question> searchByQuestionInForum(
