@@ -25,10 +25,12 @@ public class ForumActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e(TAG, "+++ In onCreate() +++");
+        FragmentTabsFragmentSupport tabhostFragment = new FragmentTabsFragmentSupport();
+        tabhostFragment.setArguments(getIntent().getExtras());
         setContentView(R.layout.activity_forum);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new FragmentTabsFragmentSupport())
+                    .add(R.id.container, tabhostFragment)
                     .commit();
         }
     }
@@ -57,22 +59,6 @@ public class ForumActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-//    public static class PlaceholderFragment extends Fragment {
-//
-//        public PlaceholderFragment() {
-//        }
-//
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                Bundle savedInstanceState) {
-//            View rootView = inflater.inflate(R.layout.fragment_forum, container, false);
-//            return rootView;
-//        }
-//    }
-
     public class FragmentTabsFragmentSupport extends Fragment {
         private FragmentTabHost mTabHost;
 
@@ -87,11 +73,11 @@ public class ForumActivity extends ActionBarActivity {
             mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.fragmentTabHost);
 
             mTabHost.addTab(mTabHost.newTabSpec("allQuestions").setIndicator("all"),
-                    Tab1Fragment.class, null);
+                    Tab1Fragment.class, getArguments());
             mTabHost.addTab(mTabHost.newTabSpec("topFive").setIndicator("popular"),
-                    Tab2Fragment.class, null);
+                    Tab2Fragment.class, getArguments());
             mTabHost.addTab(mTabHost.newTabSpec("askAndSearch").setIndicator("askAndSearch"),
-                    Tab3Fragment.class, null);
+                    Tab3Fragment.class, getArguments());
 
             return mTabHost;
         }

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,8 @@ public class Tab3Fragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView=  inflater.inflate(R.layout.fragment_tab3, container, false);
         View askQuestion =(Button) rootView.findViewById(R.id.add_question);
-
+        final int forumId = getArguments().getInt(getString(R.string.map_to_forum_intent_extra));
+        Log.e("tab3", "this is forum " + forumId);
         questionEditableField =(EditText) rootView.findViewById(R.id.question_text);
         searchEditableField =(SearchView) rootView.findViewById(R.id.searchView);
         answerEditableField = (EditText) rootView.findViewById(R.id.answer_text);
@@ -56,7 +58,8 @@ public class Tab3Fragment extends Fragment {
                     case R.id.add_question:
                         Intent askQuestion = new Intent(getActivity(), ForumActivity.class);
                         new addQuestionTask().execute(questionEditableField.getText().toString()
-                                ,username,"1");
+                                ,username,""+forumId);
+                        askQuestion.putExtra(getString(R.string.map_to_forum_intent_extra),forumId);
                         startActivity(askQuestion);
                         break;
                     case R.id.add_answer:

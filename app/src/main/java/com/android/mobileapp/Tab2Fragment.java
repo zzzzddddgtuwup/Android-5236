@@ -24,7 +24,9 @@ public class Tab2Fragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        new getQuestionTask().execute(1);
+        int forumId = getArguments().getInt(getString(R.string.map_to_forum_intent_extra));
+        Log.e("tab2","this is forum " + forumId);
+        new getQuestionTask().execute(forumId);
     }
 
     public Tab2Fragment() {
@@ -53,7 +55,6 @@ public class Tab2Fragment extends Fragment {
         protected void onPostExecute(Collection<Question> result) {
             final questionAdapter mQuestionAdapter;
             ListView listView = (ListView) view.findViewById(R.id.listview_popularQuestions_Forum);
-            Log.e("zdg",""+result.size());
             mQuestionAdapter = new questionAdapter(
                     getActivity(),
                     R.layout.list_item_question,
