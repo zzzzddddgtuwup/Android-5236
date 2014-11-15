@@ -73,10 +73,10 @@ public class MapActivity extends ActionBarActivity {
         mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         mMap.setMyLocationEnabled(true);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        Location currLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);;
+/*        Location currLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
         double currLat = currLocation.getLatitude();
-        double currLng = currLocation.getLongitude();
+        double currLng = currLocation.getLongitude();*/
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(39.998890, -83.015000), 15.0f) );
 
 
