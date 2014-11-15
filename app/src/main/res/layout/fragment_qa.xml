@@ -19,4 +19,12 @@
         android:layout_height="match_parent"
         android:id="@+id/listview_qa_answers" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/upvote"
+        android:layout_marginLeft="300dp"
+        android:id="@+id/upvote_button"/>
+
+
 </RelativeLayout>

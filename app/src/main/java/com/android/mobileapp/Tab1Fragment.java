@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,9 @@ public class Tab1Fragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        new getQuestionTask().execute(1);
+        int forumId = getArguments().getInt(getString(R.string.map_to_forum_intent_extra),1);
+        Log.d("tap1","forum is " + forumId);
+        new getQuestionTask().execute(forumId);
     }
 
     public Tab1Fragment() {

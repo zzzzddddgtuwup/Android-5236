@@ -52,5 +52,8 @@
     <string name="title_activity_tab_host">TabHostActivity</string>
     <string name="user_score">com.android.mobileapp.user_score</string>
     <string name="title_activity_search_result">SearchResultActivity</string>
+    <string name="add_new_question">Ask new question</string>
+    <string name="add_new_answer">Answer question</string>
+    <string name="map_to_forum_intent_extra">com.android.mobileapp.forumId</string>
 
 </resources>

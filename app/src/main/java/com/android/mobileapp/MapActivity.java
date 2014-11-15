@@ -1,6 +1,7 @@
 package com.android.mobileapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -182,6 +183,9 @@ public class MapActivity extends ActionBarActivity {
                 int forumNumber = getForumNumber(latLng);
                 Log.d("Map", "Map clicked on " + forumNumber);
                 //jump to forum
+                Intent forumIntent = new Intent(MapActivity.this, ForumActivity.class);
+                forumIntent.putExtra(getString(R.string.map_to_forum_intent_extra),forumNumber);
+                startActivity(forumIntent);
             }
         });
 
