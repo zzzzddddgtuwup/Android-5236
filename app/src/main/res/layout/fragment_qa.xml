@@ -31,14 +31,14 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="@string/add_new_answer"
-            android:layout_below="@+id/upvote_button"
-            android:id="@+id/add_answer"
-            android:layout_marginTop="10dp"/>
+            android:layout_above="@+id/answer_text"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/add_answer"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/add_answer"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:id="@+id/answer_text"
             android:inputType="text"
             android:singleLine="true"/>
