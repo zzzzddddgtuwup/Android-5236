@@ -1,7 +1,10 @@
 package com.android.mobileapp;
 
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
@@ -30,6 +33,7 @@ public class NotiFreqActivity extends ActionBarActivity {
     private int interval = 10000;
     private Handler handler;
     private NotificationCompat.Builder mBuilder;
+    private Notification mNotification;
     private int mID = 0;
     private String username;
     @Override
@@ -50,6 +54,8 @@ public class NotiFreqActivity extends ActionBarActivity {
                         .setSmallIcon(R.drawable.arrow)
                         .setContentTitle("")
                         .setContentText("");
+
+
 
         mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -191,24 +197,63 @@ public class NotiFreqActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(Collection<Integer> notificationNumber){
             if (notificationNumber.contains(1)) {
+                Intent resultIntent = new Intent(NotiFreqActivity.this, MyQuestionActivity.class);
+                PendingIntent resultPendingIntent =
+                        PendingIntent.getActivity(
+                                NotiFreqActivity.this,
+                                mID,
+                                resultIntent,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        );
                 mBuilder
                         .setContentTitle("Question")
-                        .setContentText("Your question is Liked!");
-                mNotificationManager.notify(mID, mBuilder.build());
+                        .setContentText("Your question is Liked!")
+                        .setContentIntent(resultPendingIntent)
+                        .setAutoCancel(true);
+                mNotification = mBuilder.build();
+                mNotification.defaults |= Notification.DEFAULT_VIBRATE;
+                mNotification.defaults |= Notification.DEFAULT_SOUND;
+                mNotificationManager.notify(mID, mNotification);
                 mID++;
             }
             if (notificationNumber.contains(2)) {
+                Intent resultIntent = new Intent(NotiFreqActivity.this, MyQuestionActivity.class);
+                PendingIntent resultPendingIntent =
+                        PendingIntent.getActivity(
+                                NotiFreqActivity.this,
+                                mID,
+                                resultIntent,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        );
                 mBuilder
                         .setContentTitle("Question")
-                        .setContentText("Your question is Answered!");
-                mNotificationManager.notify(mID, mBuilder.build());
+                        .setContentText("Your question is Answered!")
+                        .setContentIntent(resultPendingIntent)
+                        .setAutoCancel(true);
+                mNotification = mBuilder.build();
+                mNotification.defaults |= Notification.DEFAULT_VIBRATE;
+                mNotification.defaults |= Notification.DEFAULT_SOUND;
+                mNotificationManager.notify(mID, mNotification);
                 mID++;
             }
             if (notificationNumber.contains(3)) {
+                Intent resultIntent = new Intent(NotiFreqActivity.this, MyAnswerActivity.class);
+                PendingIntent resultPendingIntent =
+                        PendingIntent.getActivity(
+                                NotiFreqActivity.this,
+                                mID,
+                                resultIntent,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        );
                 mBuilder
                         .setContentTitle("Answer")
-                        .setContentText("Your answer is Liked!");
-                mNotificationManager.notify(mID, mBuilder.build());
+                        .setContentText("Your answer is Liked!")
+                        .setContentIntent(resultPendingIntent)
+                        .setAutoCancel(true);
+                mNotification = mBuilder.build();
+                mNotification.defaults |= Notification.DEFAULT_VIBRATE;
+                mNotification.defaults |= Notification.DEFAULT_SOUND;
+                mNotificationManager.notify(mID, mNotification);
                 mID++;
             }
             if (interval != 0) handler.postDelayed(runnable, interval);
