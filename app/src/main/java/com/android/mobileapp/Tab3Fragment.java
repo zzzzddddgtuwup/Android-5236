@@ -42,7 +42,6 @@ public class Tab3Fragment extends Fragment {
         final int forumId = getArguments().getInt(getString(R.string.map_to_forum_intent_extra));
         Log.e("tab3", "this is forum " + forumId);
         questionEditableField =(EditText) rootView.findViewById(R.id.question_text);
-        searchEditableField =(SearchView) rootView.findViewById(R.id.searchView);
         View askQuestion =(Button) rootView.findViewById(R.id.add_question);
         SharedPreferences sharedPref = getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -60,8 +59,12 @@ public class Tab3Fragment extends Fragment {
                         askQuestion.putExtra(getString(R.string.map_to_forum_intent_extra),forumId);
                         startActivity(askQuestion);
                         break;
-                    case R.id.add_answer:
-                        Toast.makeText(getActivity(), "You upvote the question", Toast.LENGTH_SHORT).show();
+                    case R.id.searchView:
+                        Log.d("search","search is entered");
+                        Intent searchIntent = new Intent(getActivity(),SearchResultActivity.class);
+                        searchIntent.putExtra(getString(R.string.question_search_content),searchEditableField.getQuery());
+                        searchIntent.putExtra(getString(R.string.map_to_forum_intent_extra),forumId);
+                        startActivity(searchIntent);
                         break;
                 }
             }
@@ -80,9 +83,4 @@ public class Tab3Fragment extends Fragment {
             return null;
         }
     }
-
-    private void searchQuestion(){
-        String result= this.searchEditableField.getQuery().toString();
-    }
-
 }

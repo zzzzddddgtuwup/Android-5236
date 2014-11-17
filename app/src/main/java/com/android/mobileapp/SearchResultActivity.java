@@ -1,5 +1,9 @@
 package com.android.mobileapp;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -10,6 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 
 public class SearchResultActivity extends ActionBarActivity {
@@ -25,6 +34,14 @@ public class SearchResultActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Intent intent_received = getIntent();
+        String searchQuery = intent_received.getStringExtra(getString(R.string.question_search_content));
+        int forum_id = intent_received.getIntExtra(getString(R.string.map_to_forum_intent_extra),-1);
+        new getSearchResultTask().execute(searchQuery,forum_id+"");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,6 +78,44 @@ public class SearchResultActivity extends ActionBarActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_search_result, container, false);
             return rootView;
+        }
+    }
+
+    private class getSearchResultTask extends AsyncTask<String,Void,Collection<Question>>
+    {
+        private int fid;
+
+        @Override
+        protected Collection<Question> doInBackground(String... params) {
+            Collection<Question> result = QuestionSvc.getOrInit(getString(R.string.serverUrl))
+                    .searchByQuestionInForum(params[0],Long.parseLong(params[1]));
+            fid = Integer.parseInt(params[1]);
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(Collection<Question> result){
+            final questionAdapter mQuestionAdapter;
+            ListView listView = (ListView)findViewById(R.id.search_listView);
+            mQuestionAdapter = new questionAdapter(
+                    SearchResultActivity.this,
+                    R.layout.list_item_question,
+                    R.id.list_item_question_textview,
+                    new ArrayList<Question>(result)
+            );
+            listView.setAdapter(mQuestionAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    Question question = mQuestionAdapter.getItem(position);
+                    Intent intent = new Intent(SearchResultActivity.this,QAActivity.class);
+                    intent.putExtra(getString(R.string.Q_CONTENT),question.getContent());
+                    intent.putExtra(getString(R.string.Q_ID),question.getQid());
+                    intent.putExtra(getString(R.string.Q_RATE),question.getRate());
+                    intent.putExtra(getString(R.string.F_ID),fid);
+                    startActivity(intent);
+                }
+            });
         }
     }
 }

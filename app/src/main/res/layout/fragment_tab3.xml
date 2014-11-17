@@ -35,6 +35,8 @@
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:id="@+id/searchView"
+            android:iconifiedByDefault="false"
+            android:imeOptions="actionSearch"
             android:layout_gravity="center_horizontal|top" />
     </LinearLayout>
 </FrameLayout>
