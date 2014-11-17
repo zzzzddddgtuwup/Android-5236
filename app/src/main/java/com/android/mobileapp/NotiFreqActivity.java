@@ -2,6 +2,8 @@ package com.android.mobileapp;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -16,7 +18,10 @@ import android.widget.RadioButton;
 import android.os.Handler;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class NotiFreqActivity extends ActionBarActivity {
@@ -26,11 +31,15 @@ public class NotiFreqActivity extends ActionBarActivity {
     private Handler handler;
     private NotificationCompat.Builder mBuilder;
     private int mID = 0;
+    private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e(TAG, "+++ In onCreate() +++");
         setContentView(R.layout.activity_noti_freq);
+        SharedPreferences sharedPref = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        username = sharedPref.getString(getString(R.string.username),"zdg");
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
@@ -51,7 +60,7 @@ public class NotiFreqActivity extends ActionBarActivity {
 
     @Override
 
-    public  void onStart() {
+    public void onStart() {
         super.onStart();
         handler = new Handler();
         if (interval != 0) handler.postDelayed(runnable, interval);
@@ -62,33 +71,33 @@ public class NotiFreqActivity extends ActionBarActivity {
         @Override
         public void run() {
       /* do what you need to do */
-            //List<Integer> notificationNumber = getNotificationNumber();
-            List<Integer> notificationNumber = new ArrayList<Integer>();
-            notificationNumber.add(1);
+            new getNotification().execute(username);
+//            Set<Integer> notificationNumber = new HashSet<Integer>();
+//            notificationNumber.add(1);
             //notificationNumber.add(2);
             //notificationNumber.add(3);
-            if (notificationNumber.contains(1)) {
-                mBuilder
-                        .setContentTitle("Question")
-                        .setContentText("Your question is Liked!");
-                mNotificationManager.notify(mID, mBuilder.build());
-                mID++;
-            }
-            if (notificationNumber.contains(2)) {
-                mBuilder
-                        .setContentTitle("Question")
-                        .setContentText("Your question is Answered!");
-                mNotificationManager.notify(mID, mBuilder.build());
-                mID++;
-            }
-            if (notificationNumber.contains(3)) {
-                mBuilder
-                        .setContentTitle("Answer")
-                        .setContentText("Your answer is Liked!");
-                mNotificationManager.notify(mID, mBuilder.build());
-                mID++;
-            }
-            if (interval != 0) handler.postDelayed(runnable, interval);
+//            if (notificationNumber.contains(1)) {
+//                mBuilder
+//                        .setContentTitle("Question")
+//                        .setContentText("Your question is Liked!");
+//                mNotificationManager.notify(mID, mBuilder.build());
+//                mID++;
+//            }
+//            if (notificationNumber.contains(2)) {
+//                mBuilder
+//                        .setContentTitle("Question")
+//                        .setContentText("Your question is Answered!");
+//                mNotificationManager.notify(mID, mBuilder.build());
+//                mID++;
+//            }
+//            if (notificationNumber.contains(3)) {
+//                mBuilder
+//                        .setContentTitle("Answer")
+//                        .setContentText("Your answer is Liked!");
+//                mNotificationManager.notify(mID, mBuilder.build());
+//                mID++;
+//            }
+//            if (interval != 0) handler.postDelayed(runnable, interval);
       /* and here comes the "trick" */
         }
     };
@@ -168,6 +177,41 @@ public class NotiFreqActivity extends ActionBarActivity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_noti_freq, container, false);
             return rootView;
+        }
+    }
+
+    private class getNotification extends AsyncTask<String,Void,Collection<Integer>>{
+
+        @Override
+        protected Collection<Integer> doInBackground(String... usernames) {
+            return UserSvc.getOrInit(getString(R.string.serverUrl))
+                    .getNotificationSet(usernames[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Collection<Integer> notificationNumber){
+            if (notificationNumber.contains(1)) {
+                mBuilder
+                        .setContentTitle("Question")
+                        .setContentText("Your question is Liked!");
+                mNotificationManager.notify(mID, mBuilder.build());
+                mID++;
+            }
+            if (notificationNumber.contains(2)) {
+                mBuilder
+                        .setContentTitle("Question")
+                        .setContentText("Your question is Answered!");
+                mNotificationManager.notify(mID, mBuilder.build());
+                mID++;
+            }
+            if (notificationNumber.contains(3)) {
+                mBuilder
+                        .setContentTitle("Answer")
+                        .setContentText("Your answer is Liked!");
+                mNotificationManager.notify(mID, mBuilder.build());
+                mID++;
+            }
+            if (interval != 0) handler.postDelayed(runnable, interval);
         }
     }
 }
