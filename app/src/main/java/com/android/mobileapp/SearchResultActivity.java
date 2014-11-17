@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,7 +41,7 @@ public class SearchResultActivity extends ActionBarActivity {
         Intent intent_received = getIntent();
         String searchQuery = intent_received.getStringExtra(getString(R.string.question_search_content));
         int forum_id = intent_received.getIntExtra(getString(R.string.map_to_forum_intent_extra),-1);
-        new getSearchResultTask().execute(searchQuery,forum_id+"");
+        new getSearchResultTask().execute(searchQuery, forum_id + "");
     }
 
     @Override
@@ -87,6 +88,7 @@ public class SearchResultActivity extends ActionBarActivity {
 
         @Override
         protected Collection<Question> doInBackground(String... params) {
+            Log.d("search","content in search is " + params[0]);
             Collection<Question> result = QuestionSvc.getOrInit(getString(R.string.serverUrl))
                     .searchByQuestionInForum(params[0],Long.parseLong(params[1]));
             fid = Integer.parseInt(params[1]);

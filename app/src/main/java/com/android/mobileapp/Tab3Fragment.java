@@ -26,9 +26,7 @@ import android.widget.Toast;
  */
 public class Tab3Fragment extends Fragment {
 
-    private EditText questionEditableField;
-    private SearchView searchEditableField;
-    public Tab3Fragment() {
+    public Tab3Fragment(){
         // Required empty public constructor
     }
 
@@ -41,8 +39,10 @@ public class Tab3Fragment extends Fragment {
 
         final int forumId = getArguments().getInt(getString(R.string.map_to_forum_intent_extra));
         Log.e("tab3", "this is forum " + forumId);
-        questionEditableField =(EditText) rootView.findViewById(R.id.question_text);
+        final EditText questionEditableField =(EditText) rootView.findViewById(R.id.question_text);
         View askQuestion =(Button) rootView.findViewById(R.id.add_question);
+        View searchQuestion = (Button) rootView.findViewById(R.id.search_button);
+        final EditText searchEditableField = (EditText) rootView.findViewById(R.id.search_text);
         SharedPreferences sharedPref = getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         final String username = sharedPref.getString(getString(R.string.username),"zdg");
@@ -59,10 +59,10 @@ public class Tab3Fragment extends Fragment {
                         askQuestion.putExtra(getString(R.string.map_to_forum_intent_extra),forumId);
                         startActivity(askQuestion);
                         break;
-                    case R.id.searchView:
+                    case R.id.search_button:
                         Log.d("search","search is entered");
                         Intent searchIntent = new Intent(getActivity(),SearchResultActivity.class);
-                        searchIntent.putExtra(getString(R.string.question_search_content),searchEditableField.getQuery());
+                        searchIntent.putExtra(getString(R.string.question_search_content),searchEditableField.getText().toString());
                         searchIntent.putExtra(getString(R.string.map_to_forum_intent_extra),forumId);
                         startActivity(searchIntent);
                         break;
@@ -70,6 +70,7 @@ public class Tab3Fragment extends Fragment {
             }
         };
         askQuestion.setOnClickListener(Click);
+        searchQuestion.setOnClickListener(Click);
         return rootView;
     }
 
