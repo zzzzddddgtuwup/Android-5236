@@ -53,25 +53,41 @@
             android:singleLine="true"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Question"
         android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/add_answer"
-        android:layout_alignEnd="@+id/add_answer" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="15dip"
+        android:textStyle="bold"/>
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_below="@id/textView"
+        android:layout_height="2dp"
+        android:background="@color/main_color_cyan" />
+
+    <TextView
         android:text="Answers"
         android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/upvote_button"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_marginTop="30dp"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="15dip"
+        android:textStyle="bold"/>
+
+    <View
+        android:id="@+id/view4"
+        android:layout_below="@id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/main_color_cyan" />
 
     <TextView
         android:layout_width="wrap_content"

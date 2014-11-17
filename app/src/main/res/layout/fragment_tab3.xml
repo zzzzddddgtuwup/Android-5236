@@ -12,6 +12,17 @@
         android:orientation="vertical"
         android:id="@+id/linearLayout">
 
+        <TextView
+            android:text="Ask Question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="15dip"
+            android:textStyle="bold"/>
+
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -29,10 +40,14 @@
             android:layout_gravity="center_horizontal" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:text="Search Question" />
+            android:text="Search Question"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="15dip"
+            android:textStyle="bold"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -40,13 +55,15 @@
             android:id="@+id/search_text"
             android:layout_gravity="center"
             android:layout_below="@+id/linearLayout"
+            android:layout_marginTop="30dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:contentDescription="Enter Question" />
 
         <Button
-            android:layout_width="243dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="Search"
             android:id="@+id/search_button"
             android:layout_gravity="center"
             android:layout_centerHorizontal="true" />
