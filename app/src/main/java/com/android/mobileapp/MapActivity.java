@@ -27,6 +27,7 @@ import com.google.android.gms.maps.model.PolygonOptions;
 
 public class MapActivity extends ActionBarActivity {
     protected GoogleMap mMap;
+    protected LocationManager mLocationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class MapActivity extends ActionBarActivity {
     @Override
     protected  void onStart(){
         super.onStart();
-        LocationManager mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         mLocationManager.requestLocationUpdates(mLocationManager.GPS_PROVIDER, 1000L, 500.0f, mLocationListener);
 
         mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
@@ -184,6 +185,8 @@ public class MapActivity extends ActionBarActivity {
                 Log.d("Map", "Map clicked on " + forumNumber);
                 //jump to forum
                 Intent forumIntent = new Intent(MapActivity.this, ForumActivity.class);
+                mLocationManager.removeUpdates(mLocationListener);
+                mLocationManager = null;
                 forumIntent.putExtra(getString(R.string.map_to_forum_intent_extra),forumNumber);
                 startActivity(forumIntent);
             }
