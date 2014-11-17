@@ -43,11 +43,13 @@ public class Tab2Fragment extends Fragment {
     }
 
     private class getQuestionTask extends AsyncTask<Integer, Void,Collection<Question>> {
+        private int fid;
 
         @Override
         protected Collection<Question> doInBackground(Integer... forumId) {
             Collection<Question> questions = QuestionSvc.getOrInit(getString(R.string.serverUrl))
                     .getSortedQuestionList(forumId[0]);
+            fid = forumId[0];
             return questions;
         }
 
@@ -70,6 +72,7 @@ public class Tab2Fragment extends Fragment {
                     intent.putExtra(getString(R.string.Q_CONTENT), question.getContent());
                     intent.putExtra(getString(R.string.Q_ID), question.getQid());
                     intent.putExtra(getString(R.string.Q_RATE), question.getRate());
+                    intent.putExtra(getString(R.string.F_ID),fid);
                     startActivity(intent);
                 }
             });

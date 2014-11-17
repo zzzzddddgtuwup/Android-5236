@@ -121,15 +121,17 @@ public class QAActivity extends ActionBarActivity {
                         case R.id.upvote_button:
                             //add the rate + 1 here
                             Toast.makeText(getActivity(),"You upvote the question",Toast.LENGTH_SHORT).show();
+                            new questionRateTask().execute(question_id);
                             break;
                         case R.id.add_answer:
+                            Toast.makeText(getActivity(),"You upvote the answer",Toast.LENGTH_SHORT).show();
                             new addAnswerTask().execute(answerEditableField.getText().toString(),
                                     username,""+question_id);
-                            Intent intent = new Intent(getActivity(),ForumActivity.class);
-                            intent.putExtra(getString(R.string.map_to_forum_intent_extra),forum_id);
-                            startActivity(intent);
                             break;
                     }
+                    Intent intent = new Intent(getActivity(),ForumActivity.class);
+                    intent.putExtra(getString(R.string.map_to_forum_intent_extra),forum_id);
+                    startActivity(intent);
                 }
             };
             upVote.setOnClickListener(Click);
@@ -208,6 +210,15 @@ public class QAActivity extends ActionBarActivity {
         @Override
         protected Void doInBackground(Long... answer_id) {
             AnswerSvc.getOrInit(getString(R.string.serverUrl)).rateAnswerById(answer_id[0]);
+            return null;
+        }
+    }
+
+    private class questionRateTask extends AsyncTask<Long, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Long... question_id) {
+            QuestionSvc.getOrInit(getString(R.string.serverUrl)).rateQuestionById(question_id[0]);
             return null;
         }
     }

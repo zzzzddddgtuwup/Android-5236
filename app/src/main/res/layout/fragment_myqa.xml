@@ -9,13 +9,43 @@
     tools:context="com.android.mobileapp.MyqaActivity$PlaceholderFragment">
 
     <TextView
-        android:text="@string/hello_world"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/my_qa_question"/>
+        android:text="Question"
+        android:id="@+id/textView_myqa"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Answers"
+        android:id="@+id/textView2_myqa"
+        android:layout_below="@+id/my_qa_question"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/my_qa_question"
+        android:layout_alignEnd="@+id/my_qa_question"
+         />
+
+    <TextView
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:id="@+id/my_qa_question"
+        android:layout_below="@+id/textView_myqa"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/my_listview_qa_answers" />
+        android:id="@+id/my_listview_qa_answers"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/textView2_myqa"
+        />
 </RelativeLayout>
