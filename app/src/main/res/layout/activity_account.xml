@@ -31,7 +31,7 @@
         android:clickable="true">
 
         <TextView
-            android:id="@+id/title_email"
+            android:id="@+id/title_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="UserName:"
@@ -42,7 +42,7 @@
             android:paddingBottom="5dp"/>
 
         <TextView
-            android:id="@+id/content_email"
+            android:id="@+id/content_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -132,10 +132,10 @@
         android:clickable="true">
 
         <TextView
-            android:id="@+id/history_date"
+            android:id="@+id/user_total_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1/1/2014"
+            android:text="total questions"
             android:textColor="@color/accountform_title"
             android:typeface="sans"
             android:textSize="15dip"
@@ -143,7 +143,70 @@
             android:paddingBottom="5dp"/>
 
         <TextView
-            android:id="@+id/history_point"
+            android:id="@+id/user_total_question_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+
+            android:gravity="right"
+            android:text="150"
+            android:layout_marginRight="5dip"
+            android:textSize="15dip"
+            android:textColor="@color/accountform_field"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/list_selector"
+        android:orientation="horizontal"
+        android:padding="5dip"
+        android:id="@+id/question_more_direct"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/question_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View all questions"
+            android:textColor="@color/accountform_title"
+            android:typeface="sans"
+            android:textSize="15dip"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <ImageView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/list_selector"
+        android:orientation="horizontal"
+        android:padding="5dip"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/user_total_answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="total answers"
+            android:textColor="@color/accountform_title"
+            android:typeface="sans"
+            android:textSize="15dip"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/user_total_answer_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -157,16 +220,19 @@
             android:paddingBottom="5dp" />
     </RelativeLayout>
 
+
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/list_selector"
         android:orientation="horizontal"
         android:padding="5dip"
+        android:id="@+id/answer_more_direct"
         android:clickable="true">
 
         <TextView
-            android:id="@+id/history_more"
+            android:id="@+id/answer_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View all questions"

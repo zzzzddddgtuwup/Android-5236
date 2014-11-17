@@ -96,7 +96,9 @@ public class login extends ActionBarActivity implements View.OnClickListener{
                         getString(R.string.preference_file_key), Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString(getString(R.string.username), username);
-                //editor.putInt(getString(R.string.user_score));
+                editor.putInt(getString(R.string.user_score),result.getScore());
+                editor.putInt(getString(R.string.user_question_count),result.getQuestion_count());
+                editor.putInt(getString(R.string.user_answer_count),result.getAnswer_count());
                 editor.commit();
 
                 startActivity(new Intent(login.this, MainActivity.class));
