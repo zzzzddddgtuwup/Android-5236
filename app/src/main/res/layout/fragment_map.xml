@@ -13,17 +13,29 @@
         android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:scrollbars="vertical"
         tools:layout="@layout/fragment_map" />
 
-    <TextView
-        android:id="@+id/map_search"
+    <RelativeLayout
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/map_search"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_weight="1"
-        android:text="@string/hello_world" />
+        android:hint="Location to search:"
+        android:layout_weight="1" />
 
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:layout_toRightOf="@+id/map_search"
+        android:layout_toEndOf="@+id/map_search"
+        android:layout_centerHorizontal="true"
+        android:onClick="searchLocation"/>
+    </RelativeLayout>
 
 </FrameLayout>
