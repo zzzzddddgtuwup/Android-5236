@@ -182,16 +182,17 @@ public class MapActivity extends ActionBarActivity {
             @Override
             public void onMapClick(LatLng latLng) {
                 int forumNumber = getForumNumber(latLng);
-                Log.d("Map", "Map clicked on " + forumNumber);
-                //jump to forum
-                Intent forumIntent = new Intent(MapActivity.this, ForumActivity.class);
-                mLocationManager.removeUpdates(mLocationListener);
-                mLocationManager = null;
-                forumIntent.putExtra(getString(R.string.map_to_forum_intent_extra),forumNumber);
-                startActivity(forumIntent);
+                if(forumNumber > 0) {
+                    Log.d("Map", "Map clicked on " + forumNumber);
+                    //jump to forum
+                    Intent forumIntent = new Intent(MapActivity.this, ForumActivity.class);
+                    mLocationManager.removeUpdates(mLocationListener);
+                    mLocationManager = null;
+                    forumIntent.putExtra(getString(R.string.map_to_forum_intent_extra), forumNumber);
+                    startActivity(forumIntent);
+                }
             }
         });
-
     }
 
 
