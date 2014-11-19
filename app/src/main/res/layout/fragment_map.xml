@@ -34,7 +34,8 @@
         android:text="Search"
         android:layout_toRightOf="@+id/map_search"
         android:layout_toEndOf="@+id/map_search"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="searchLocation"/>
     </RelativeLayout>
 
 </FrameLayout>

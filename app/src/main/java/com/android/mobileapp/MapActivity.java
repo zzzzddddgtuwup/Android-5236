@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -284,5 +285,10 @@ public class MapActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_map, container, false);
             return rootView;
         }
+    }
+
+    public void searchLocation(View view) {
+        EditText text = (EditText)findViewById(R.id.map_search);
+        String searchString = text.getText().toString();
     }
 }
