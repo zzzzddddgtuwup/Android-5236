@@ -73,6 +73,7 @@ public class Tab2Fragment extends Fragment {
                     intent.putExtra(getString(R.string.Q_ID), question.getQid());
                     intent.putExtra(getString(R.string.Q_RATE), question.getRate());
                     intent.putExtra(getString(R.string.F_ID),fid);
+                    intent.putExtra(getString(R.string.Q_USER),question.getUser().getUsername());
                     startActivity(intent);
                 }
             });

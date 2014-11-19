@@ -41,17 +41,15 @@ public class QAActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        String question_content = intent.getStringExtra(getString(R.string.Q_CONTENT));
         question_id = intent.getLongExtra(getString(R.string.Q_ID),-1);
         forum_id = intent.getIntExtra(getString(R.string.F_ID),-1);
-        Log.d(TAG, "question id is  " + question_id);
-        Log.d(TAG, "intent has Q_RATE? " + intent.hasExtra(getString(R.string.Q_RATE)));
-        int question_rate = intent.getIntExtra(getString(R.string.Q_RATE),-1);
+
+        PlaceholderFragment frag = new PlaceholderFragment();
+        frag.setArguments(getIntent().getExtras());
         setContentView(R.layout.activity_qa);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment(question_content,question_rate,
-                            question_id,forum_id))
+                    .add(R.id.container, frag)
                     .commit();
         }
     }
@@ -85,30 +83,27 @@ public class QAActivity extends ActionBarActivity {
      * A placeholder fragment containing a simple view.
      */
     public class PlaceholderFragment extends Fragment {
-        private String question_content;
-        private int question_rate;
-        private long question_id;
-        private int forum_id;
-
         public PlaceholderFragment() {
-        }
-
-        public PlaceholderFragment(String question_content, int question_rate,
-                                   long question_id,int forum_id){
-            this.question_content = question_content;
-            this.question_rate = question_rate;
-            this.question_id = question_id;
-            this.forum_id = forum_id;
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
 
+            int question_rate = getArguments().getInt(getString(R.string.Q_RATE),-1);
+            String question_content = getArguments().getString(getString(R.string.Q_CONTENT));
+            String question_username = getArguments().getString(getString(R.string.Q_USER));
+
             View rootView = inflater.inflate(R.layout.fragment_qa, container, false);
             ImageButton upVote = (ImageButton) rootView.findViewById(R.id.upvote_button);
             final EditText answerEditableField = (EditText) rootView.findViewById(R.id.answer_text);
             Button addAnswerBtn = (Button) rootView.findViewById(R.id.add_answer);
+
+            TextView tvQuestion = (TextView)rootView.findViewById(R.id.qa_question);
+            tvQuestion.setText("rate: "+question_rate + " " + question_content);
+
+            TextView tvQuestionUsername = (TextView)rootView.findViewById(R.id.question_username);
+            tvQuestionUsername.setText(question_username);
 
             SharedPreferences sharedPref = getActivity().getSharedPreferences(
                     getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -119,12 +114,11 @@ public class QAActivity extends ActionBarActivity {
                 public void onClick (View view){
                     switch(view.getId()){
                         case R.id.upvote_button:
-                            //add the rate + 1 here
                             Toast.makeText(getActivity(),"You upvote the question",Toast.LENGTH_SHORT).show();
                             new questionRateTask().execute(question_id);
                             break;
                         case R.id.add_answer:
-                            Toast.makeText(getActivity(),"You upvote the answer",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"You answer the question",Toast.LENGTH_SHORT).show();
                             new addAnswerTask().execute(answerEditableField.getText().toString(),
                                     username,""+question_id);
                             break;
@@ -136,8 +130,7 @@ public class QAActivity extends ActionBarActivity {
             };
             upVote.setOnClickListener(Click);
             addAnswerBtn.setOnClickListener(Click);
-            TextView tvQuestion = (TextView)rootView.findViewById(R.id.qa_question);
-            tvQuestion.setText("rate: "+question_rate + " " + question_content);
+
             return rootView;
         }
 
@@ -188,6 +181,7 @@ public class QAActivity extends ActionBarActivity {
             }
             TextView tvContent = (TextView)convertView.findViewById(R.id.list_item_answer_textview_rate);
             ImageButton imageBt = (ImageButton)convertView.findViewById(R.id.rateButton);
+            TextView tvAnswerUsername = (TextView)convertView.findViewById(R.id.answer_username);
             //add rate for answer
             imageBt.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -201,6 +195,7 @@ public class QAActivity extends ActionBarActivity {
                 }
             });
             tvContent.setText("rate: " + ans.getRate() + " " + ans.getContent());
+            tvAnswerUsername.setText(ans.getUser().getUsername());
             return convertView;
         }
     }
