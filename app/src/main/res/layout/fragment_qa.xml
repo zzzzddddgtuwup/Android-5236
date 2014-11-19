@@ -102,5 +102,4 @@
         android:layout_below="@+id/textView"
         android:layout_toLeftOf="@+id/upvote_button"
         android:layout_toStartOf="@+id/upvote_button" />
-
 </RelativeLayout>
