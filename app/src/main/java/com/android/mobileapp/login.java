@@ -24,6 +24,7 @@ public class login extends ActionBarActivity implements View.OnClickListener{
     private EditText userNameEditableField;
     private EditText passwordEditableField;
     private final static String OPT_NAME = "name";
+    private boolean logIn= false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,23 @@ public class login extends ActionBarActivity implements View.OnClickListener{
     private void checkLogin() {
         String username = this.userNameEditableField.getText().toString();
         String password = this.passwordEditableField.getText().toString();
-        new getUserTask().execute(username,password);
+        if(!(username.equals("")||password.equals("")))
+        {
+            new getUserTask().execute(username, password);
+        }else
+        {
+            new AlertDialog.Builder(login.this)
+                    .setTitle("Error")
+                    .setMessage("Please enter your username or password")
+                    .setNeutralButton("Try Again",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                }
+                            }).show();
+        }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -100,8 +116,8 @@ public class login extends ActionBarActivity implements View.OnClickListener{
                 editor.putInt(getString(R.string.user_question_count),result.getQuestion_count());
                 editor.putInt(getString(R.string.user_answer_count),result.getAnswer_count());
                 editor.commit();
-
                 startActivity(new Intent(login.this, MainActivity.class));
+                logIn=true;
                 finish();
             } else {
                 // Try again?

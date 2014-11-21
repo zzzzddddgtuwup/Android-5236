@@ -95,6 +95,7 @@ public class MainActivity extends FragmentActivity {
         if(id==R.id.action_logout){
             Intent logout = new Intent(this, login.class);
             startActivity(logout);
+
         }
         return super.onOptionsItemSelected(item);
     }
