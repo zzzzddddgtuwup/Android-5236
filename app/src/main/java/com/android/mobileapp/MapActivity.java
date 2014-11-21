@@ -200,7 +200,7 @@ public class MapActivity extends ActionBarActivity {
                     //jump to forum
                     Intent forumIntent = new Intent(MapActivity.this, ForumActivity.class);
                     mLocationManager.removeUpdates(mLocationListener);
-                    mLocationManager = null;
+//                    mLocationManager = null;
                     forumIntent.putExtra(getString(R.string.map_to_forum_intent_extra), forumNumber);
                     startActivity(forumIntent);
                 }
