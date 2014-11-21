@@ -76,7 +76,7 @@ public class ForumActivity extends ActionBarActivity {
                     Tab1Fragment.class, getArguments());
             mTabHost.addTab(mTabHost.newTabSpec("topFive").setIndicator("popular"),
                     Tab2Fragment.class, getArguments());
-            mTabHost.addTab(mTabHost.newTabSpec("askAndSearch").setIndicator("askAndSearch"),
+            mTabHost.addTab(mTabHost.newTabSpec("askAndSearch").setIndicator("ask Search"),
                     Tab3Fragment.class, getArguments());
 
             return mTabHost;
@@ -88,6 +88,4 @@ public class ForumActivity extends ActionBarActivity {
             mTabHost = null;
         }
     }
-
-
 }
