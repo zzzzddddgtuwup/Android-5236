@@ -48,7 +48,6 @@
             android:layout_alignParentRight="true"
 
             android:gravity="right"
-            android:text="happyuser@osu.edu"
             android:layout_marginRight="5dip"
             android:textSize="15dip"
             android:textColor="@color/accountform_field"
@@ -83,7 +82,6 @@
             android:layout_alignParentRight="true"
 
             android:gravity="right"
-            android:text="100"
             android:layout_marginRight="5dip"
             android:textSize="15dip"
             android:textColor="@color/accountform_field"
@@ -134,7 +132,6 @@
             android:layout_alignParentRight="true"
 
             android:gravity="right"
-            android:text="150"
             android:layout_marginRight="5dip"
             android:textSize="15dip"
             android:textColor="@color/accountform_field"
@@ -197,7 +194,6 @@
             android:layout_alignParentRight="true"
 
             android:gravity="right"
-            android:text="150"
             android:layout_marginRight="5dip"
             android:textSize="15dip"
             android:textColor="@color/accountform_field"
