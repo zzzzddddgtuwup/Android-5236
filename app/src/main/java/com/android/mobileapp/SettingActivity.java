@@ -18,9 +18,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.List;
+
 
 public class SettingActivity extends ActionBarActivity {
     //private final String TAG = ((Object)this).getClass().getSimpleName();
+    private LocationManager mLocationManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,12 +106,14 @@ public class SettingActivity extends ActionBarActivity {
     };
 
     public void useCurrentLocation(View view) {
-        LocationManager mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         mLocationManager.requestLocationUpdates(mLocationManager.GPS_PROVIDER, 1000L, 500.0f, mLocationListener);
-        Location currLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        //Location currLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        Location currLocation = getCurrLocation();
         double currLat = currLocation.getLatitude();
         double currLng = currLocation.getLongitude();
         int forumNumber = getForumNumber(new LatLng(currLat, currLng));
+        //int forumNumber = 1;
         if(forumNumber > 0) {
             //jump to forum
             Intent forumIntent = new Intent(SettingActivity.this, ForumActivity.class);
@@ -118,8 +123,7 @@ public class SettingActivity extends ActionBarActivity {
         else {
             Toast.makeText(this, "No forum available here. Please select your location.", Toast.LENGTH_SHORT).show();
         }
-        mLocationManager.removeUpdates(mLocationListener);
-        mLocationManager = null;
+
     }
 
     public static int getForumNumber(LatLng point) {
@@ -172,5 +176,24 @@ public class SettingActivity extends ActionBarActivity {
             }
         }
         return false;
+    }
+
+    private Location getCurrLocation() {
+        mLocationManager = (LocationManager)getSystemService(LOCATION_SERVICE);
+        List<String> providers = mLocationManager.getProviders(true);
+        Location bestLocation = null;
+        for (String provider : providers) {
+            Location l = mLocationManager.getLastKnownLocation(provider);
+            if (l == null) {
+                continue;
+            }
+            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                // Found best last known location: %s", l);
+                bestLocation = l;
+            }
+        }
+        mLocationManager.removeUpdates(mLocationListener);
+        mLocationManager = null;
+        return bestLocation;
     }
 }
