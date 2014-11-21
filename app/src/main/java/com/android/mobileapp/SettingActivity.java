@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -109,14 +110,16 @@ public class SettingActivity extends ActionBarActivity {
         double currLng = currLocation.getLongitude();
         int forumNumber = getForumNumber(new LatLng(currLat, currLng));
         if(forumNumber > 0) {
-            Log.d("Map", "Map clicked on " + forumNumber);
             //jump to forum
             Intent forumIntent = new Intent(SettingActivity.this, ForumActivity.class);
-            mLocationManager.removeUpdates(mLocationListener);
-            mLocationManager = null;
             forumIntent.putExtra(getString(R.string.map_to_forum_intent_extra), forumNumber);
             startActivity(forumIntent);
         }
+        else {
+            Toast.makeText(this, "No forum available here. Please select your location.", Toast.LENGTH_SHORT).show();
+        }
+        mLocationManager.removeUpdates(mLocationListener);
+        mLocationManager = null;
     }
 
     public static int getForumNumber(LatLng point) {
