@@ -1,14 +1,21 @@
 package com.android.mobileapp;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Intent;
+
+import com.google.android.gms.maps.model.LatLng;
 
 
 public class SettingActivity extends ActionBarActivity {
@@ -69,5 +76,98 @@ public class SettingActivity extends ActionBarActivity {
     public void selectLocation(View view) {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
+    }
+
+
+    private final LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+
+        }
+
+        @Override
+        public void onStatusChanged(String s, int i, Bundle bundle) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String s) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String s) {
+
+        }
+    };
+
+    public void useCurrentLocation(View view) {
+        LocationManager mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        mLocationManager.requestLocationUpdates(mLocationManager.GPS_PROVIDER, 1000L, 500.0f, mLocationListener);
+        Location currLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        double currLat = currLocation.getLatitude();
+        double currLng = currLocation.getLongitude();
+        int forumNumber = getForumNumber(new LatLng(currLat, currLng));
+        if(forumNumber > 0) {
+            Log.d("Map", "Map clicked on " + forumNumber);
+            //jump to forum
+            Intent forumIntent = new Intent(SettingActivity.this, ForumActivity.class);
+            mLocationManager.removeUpdates(mLocationListener);
+            mLocationManager = null;
+            forumIntent.putExtra(getString(R.string.map_to_forum_intent_extra), forumNumber);
+            startActivity(forumIntent);
+        }
+    }
+
+    public static int getForumNumber(LatLng point) {
+        double lat = point.latitude;
+        double lng = point.longitude;
+
+        if (isInArea(lat, lng, 39.996835, 39.998717, -83.009481, -83.008108)) {
+            return 1;
+        }//ohio union
+
+        if (isInArea(lat, lng, 39.995553, 39.996703, -83.014681, -83.012191)) {
+            return 2;
+        }//oia
+
+        if (isInArea(lat, lng, 39.998890, 39.999728, -83.015389, -83.014123)) {
+            return 3;
+        }//Thompson lib
+
+        if (isInArea(lat, lng, 39.999034, 39.999934, -83.016912, -83.016006)) {
+            return 4;
+        }//wilce center
+
+        if (isInArea(lat, lng, 39.999001, 40.000110, -83.019313, -83.017610)) {
+            return 5;
+        }//rpec
+
+        if (isInArea(lat, lng, 40.001368, 40.001918, -83.013723, -83.012940)) {
+            return 6;
+        }//18th lib
+
+        if (isInArea(lat, lng, 40.001203, 40.002058, -83.016459, -83.015483)) {
+            return 7;
+        }//Dreese lab
+
+        if (isInArea(lat, lng, 40.002814, 40.003883, -83.015700, -83.014563)) {
+            return 8;
+        }//Hitchcock & Bolz
+
+        if (isInArea(lat, lng, 40.000340, 40.003381, -83.021311, -83.018071)) {
+            return 9;
+        }//Ohio stadium
+
+        return 0;
+    }
+
+    public static boolean isInArea(double lat, double lng, double latMin, double latMax, double lngMin, double lngMax) {
+        if (lat < latMax && lat > latMin) {
+            if (lng < lngMax && lng > lngMin) {
+                return true;
+            }
+        }
+        return false;
     }
 }

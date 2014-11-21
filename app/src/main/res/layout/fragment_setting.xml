@@ -39,5 +39,13 @@
             android:id="@+id/chooseLocationbutton"
             android:onClick="selectLocation"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Use Current Location"
+            android:id="@+id/useCurrentLocationbutton"
+            android:layout_gravity="center_horizontal"
+            android:onClick="useCurrentLocation"/>
+
     </LinearLayout>
 </RelativeLayout>
