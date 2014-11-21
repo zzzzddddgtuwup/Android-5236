@@ -27,12 +27,12 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
         mPasswordField = (EditText) v.findViewById(R.id.password_login_text);
         mPasswordField.setTransformationMethod(new AsteriskPasswordTransformationMethod());
 
-        Button btnLogin=(Button)v.findViewById(R.id.login_button);
-        btnLogin.setOnClickListener(this);
-        Button btnNewUser=(Button)v.findViewById(R.id.signup_button);
-        btnNewUser.setOnClickListener(this);
-        Button btnPassReset=(Button)v.findViewById(R.id.password_reset);
-        btnPassReset.setOnClickListener(this);
+        //Button btnLogin=(Button)v.findViewById(R.id.login_button);
+        //btnLogin.setOnClickListener(this);
+        //Button btnNewUser=(Button)v.findViewById(R.id.signup_button);
+        //btnNewUser.setOnClickListener(this);
+        //Button btnPassReset=(Button)v.findViewById(R.id.password_reset);
+        //btnPassReset.setOnClickListener(this);
 
         return builder
                 .setView(v)

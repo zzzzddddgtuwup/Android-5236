@@ -1,6 +1,7 @@
 package com.android.mobileapp;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
@@ -90,6 +91,10 @@ public class MainActivity extends FragmentActivity {
         if (id == R.id.action_login) {
             new LoginFragment().show(getSupportFragmentManager(),"login");
             return true;
+        }
+        if(id==R.id.action_logout){
+            Intent logout = new Intent(this, login.class);
+            startActivity(logout);
         }
         return super.onOptionsItemSelected(item);
     }
