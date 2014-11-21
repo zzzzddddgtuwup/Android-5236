@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,6 +25,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
+
+import java.util.Map;
 
 
 public class MapActivity extends ActionBarActivity {
@@ -39,7 +42,6 @@ public class MapActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
-
     }
 
     private final LocationListener mLocationListener = new LocationListener() {
@@ -290,5 +292,9 @@ public class MapActivity extends ActionBarActivity {
     public void searchLocation(View view) {
         EditText text = (EditText)findViewById(R.id.map_search);
         String searchString = text.getText().toString();
+
+        Intent searchResultIntent = new Intent(MapActivity.this,ForumSearchActivity.class);
+        searchResultIntent.putExtra(getString(R.string.forum_search_content),searchString);
+        startActivity(searchResultIntent);
     }
 }

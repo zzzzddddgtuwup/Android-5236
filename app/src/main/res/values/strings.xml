@@ -38,29 +38,26 @@
     <string name="exit">Exit</string>
     <string name="new_user">New User</string>
     <string name="title_activity_register">registerActivity</string>
-
     <string name="title_activity_new_forum">newForumActivity</string>
     <string name="preference_file_key">com.android.mobileapp.PREFERENCE_FILE_KEY</string>
     <string name="action_logout">Logout</string>
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
     <string name="title_activity_tab_host">TabHostActivity</string>
-
     <string name="title_activity_search_result">SearchResultActivity</string>
     <string name="add_new_question">Ask new question</string>
     <string name="add_new_answer">Answer question</string>
     <string name="map_to_forum_intent_extra">com.android.mobileapp.forumId</string>
     <string name="title_activity_myqa">MyqaActivity</string>
 
-    <!--question in intent-->
+    <!-- question in intent -->
     <string name="Q_ID">"com.android.mobileapp.q_id"</string>
     <string name="Q_CONTENT">com.android.mobileapp.q_content</string>
     <string name="Q_RATE">com.android.mobileapp.q_rate</string>
     <string name="F_ID">com.android.mobileapp.f_id</string>
     <string name="Q_USER">com.android.mobile.q_user</string>
-
     <string name="question_search_content">com.android.mobile.question_search_content</string>
-    <!--User login-->
+    <!-- User login -->
     <string name="user_score">com.android.mobileapp.user_score</string>
     <string name="create_new_account">Create New Account</string>
     <string name="username">Username</string>
@@ -70,4 +67,8 @@
     <string name="cancel">Cancel</string>
     <string name="user_question_count">com.android.mobileapp.user_quesiton_count</string>
     <string name="user_answer_count">com.android.mobileapp.user_answer_count</string>
+    <string name="title_activity_forum_search">ForumSearchActivity</string>
+
+    <!-- Forum search-->
+    <string name="forum_search_content">com.android.mobileapp.forum_search_content</string>
 </resources>
