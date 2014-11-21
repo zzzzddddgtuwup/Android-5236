@@ -181,6 +181,16 @@ public class MapActivity extends ActionBarActivity {
         Marker mOhioStadium = mMap.addMarker(new MarkerOptions().position(new LatLng(40.003381, -83.021311))
                 .title("Ohio Stadium").draggable(false));
 
+        PolygonOptions caldwellLab = new PolygonOptions().add(
+                new LatLng(40.002780, -83.015441),
+                new LatLng(40.002780, -83.014540),
+                new LatLng(40.001692, -83.014540),
+                new LatLng(40.001692, -83.015441)
+        );
+        Polygon caldwellPolygon = mMap.addPolygon(caldwellLab);
+        Marker mCaldwell = mMap.addMarker(new MarkerOptions().position(new LatLng(40.002780, -83.015441))
+                .title("Caldwell Laboratory").draggable(false));
+
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -247,6 +257,10 @@ public class MapActivity extends ActionBarActivity {
             return 9;
         }//Ohio stadium
 
+        if (isInArea(lat, lng, 40.001692, 40.002780, -83.015441, -83.001692)) {
+            return 10;
+        }//Caldwell Laboratory
+
         return 0;
     }
 
@@ -296,5 +310,13 @@ public class MapActivity extends ActionBarActivity {
         Intent searchResultIntent = new Intent(MapActivity.this,ForumSearchActivity.class);
         searchResultIntent.putExtra(getString(R.string.forum_search_content),searchString);
         startActivity(searchResultIntent);
+    }
+
+    @Override
+
+    public void onDestroy() {
+        super.onDestroy();
+        mLocationManager.removeUpdates(mLocationListener);
+        mLocationManager = null;
     }
 }
