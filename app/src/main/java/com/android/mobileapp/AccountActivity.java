@@ -3,6 +3,7 @@ package com.android.mobileapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,29 +15,16 @@ import android.widget.TextView;
 
 
 public class AccountActivity extends ActionBarActivity implements View.OnClickListener{
-
+    String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
         SharedPreferences sharedPref = this.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        String username = sharedPref.getString(getString(R.string.username), "zdg");
-        int user_score = sharedPref.getInt(getString(R.string.user_score), -1);
-        int user_question_count = sharedPref.getInt(getString(R.string.user_question_count),-1);
-        int user_answer_count = sharedPref.getInt(getString(R.string.user_answer_count),-1);
-
+        username = sharedPref.getString(getString(R.string.username), "zdg");
         TextView username_view = (TextView)findViewById(R.id.content_username);
         username_view.setText(username);
-
-        TextView userscore_view = (TextView)findViewById(R.id.content_point);
-        userscore_view.setText(String.valueOf(user_score));
-
-        TextView user_question_count_view = (TextView)findViewById(R.id.user_total_question_num);
-        user_question_count_view.setText(String.valueOf(user_question_count));
-
-        TextView user_answer_count_view = (TextView)findViewById(R.id.user_total_answer_num);
-        user_answer_count_view.setText(String.valueOf(user_answer_count));
 
         RelativeLayout more_question_direct = (RelativeLayout)findViewById(R.id.question_more_direct);
         more_question_direct.setOnClickListener(this);
@@ -44,9 +32,8 @@ public class AccountActivity extends ActionBarActivity implements View.OnClickLi
         RelativeLayout more_answer_direct = (RelativeLayout)findViewById(R.id.answer_more_direct);
         more_answer_direct.setOnClickListener(this);
 
-
+        new getUserInfo().execute(username);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,6 +68,27 @@ public class AccountActivity extends ActionBarActivity implements View.OnClickLi
                 Intent myAnswer_intent = new Intent(AccountActivity.this, MyAnswerActivity.class);
                 startActivity(myAnswer_intent);
                 break;
+        }
+    }
+
+    private class getUserInfo extends AsyncTask<String, Void, User>{
+
+        @Override
+        protected User doInBackground(String... usernames) {
+            return UserSvc.getOrInit(getString(R.string.serverUrl))
+                    .getInfoByName(usernames[0]);
+        }
+
+        @Override
+        protected void onPostExecute(User u){
+            TextView userscore_view = (TextView)findViewById(R.id.content_point);
+            userscore_view.setText(String.valueOf(u.getScore()));
+
+            TextView user_question_count_view = (TextView)findViewById(R.id.user_total_question_num);
+            user_question_count_view.setText(String.valueOf(u.getQuestion_count()));
+
+            TextView user_answer_count_view = (TextView)findViewById(R.id.user_total_answer_num);
+            user_answer_count_view.setText(String.valueOf(u.getAnswer_count()));
         }
     }
 }

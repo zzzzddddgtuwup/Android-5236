@@ -74,9 +74,6 @@ public class registerActivity extends ActionBarActivity implements View.OnClickL
         if ((password.equals(confirm)) && (!username.equals(""))
                 && (!password.equals("")) && (!confirm.equals(""))) {
             new addUserTask().execute(new User(username,password));
-            Toast.makeText(registerActivity.this, "new record inserted",
-                    Toast.LENGTH_SHORT).show();
-            finish();
         } else if ((username.equals("")) || (password.equals(""))
                 || (confirm.equals(""))) {
             Toast.makeText(registerActivity.this, "Missing entry", Toast.LENGTH_SHORT)
@@ -96,12 +93,24 @@ public class registerActivity extends ActionBarActivity implements View.OnClickL
         }
     }
 
-    private class addUserTask extends AsyncTask<User, Void, Void> {
+    private class addUserTask extends AsyncTask<User, Void, Integer> {
 
         @Override
-        protected Void doInBackground(User... users) {
-            UserSvc.getOrInit(getString(R.string.serverUrl)).addUser(users[0]);
-            return null;
+        protected Integer doInBackground(User... users) {
+            return UserSvc.getOrInit(getString(R.string.serverUrl)).addUser(users[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Integer result){
+            if((int)result == 1){
+                Toast.makeText(registerActivity.this, "new record inserted",
+                        Toast.LENGTH_SHORT).show();
+                finish();
+            }else if((int)result == -1){
+                Toast.makeText(registerActivity.this, "user name is already used",
+                        Toast.LENGTH_SHORT).show();
+
+            }
         }
     }
 }

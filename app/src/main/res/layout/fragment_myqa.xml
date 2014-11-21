@@ -13,9 +13,20 @@
         android:layout_height="wrap_content"
         android:text="Question"
         android:id="@+id/textView_myqa"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="15dip"
+        android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_below="@id/textView_myqa"
+        android:layout_height="2dp"
+        android:background="@color/main_color_cyan" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,9 +36,21 @@
         android:layout_below="@+id/my_qa_question"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="15dip"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
         android:layout_alignRight="@+id/my_qa_question"
         android:layout_alignEnd="@+id/my_qa_question"
          />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_below="@id/textView2_myqa"
+        android:layout_height="2dp"
+        android:background="@color/main_color_cyan" />
 
     <TextView
         android:text="@string/hello_world"
