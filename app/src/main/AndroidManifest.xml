@@ -108,7 +108,11 @@
         </activity>
         <activity
             android:name=".MyqaActivity"
-            android:label="@string/title_activity_myqa" >
+            android:label="@string/title_activity_myqa"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.mobileapp.MainActivity" />
         </activity>
         <activity
             android:name=".SearchResultActivity"
@@ -116,7 +120,11 @@
         </activity>
         <activity
             android:name=".ForumSearchActivity"
-            android:label="@string/title_activity_forum_search" >
+            android:label="@string/title_activity_forum_search"
+            android:parentActivityName=".SettingActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.mobileapp.SettingActivity" />
         </activity>
     </application>
 
