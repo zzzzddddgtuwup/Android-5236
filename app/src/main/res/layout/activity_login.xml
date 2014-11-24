@@ -69,5 +69,4 @@
             android:layout_marginTop="10dip"
             android:text="@string/new_user" />
     </LinearLayout>
-
 </RelativeLayout>

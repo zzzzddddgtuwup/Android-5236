@@ -169,6 +169,10 @@ public class SettingActivity extends ActionBarActivity {
             return 9;
         }//Ohio stadium
 
+        if (isInArea(lat, lng, 40.001692, 40.002780, -83.015441, -83.001692)) {
+            return 10;
+        }//Caldwell Laboratory
+
         return 0;
     }
 
