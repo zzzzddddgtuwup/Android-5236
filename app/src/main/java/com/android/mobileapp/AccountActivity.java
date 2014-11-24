@@ -3,6 +3,8 @@ package com.android.mobileapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class AccountActivity extends ActionBarActivity implements View.OnClickListener{
@@ -32,7 +35,15 @@ public class AccountActivity extends ActionBarActivity implements View.OnClickLi
         RelativeLayout more_answer_direct = (RelativeLayout)findViewById(R.id.answer_more_direct);
         more_answer_direct.setOnClickListener(this);
 
-        new getUserInfo().execute(username);
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()){
+            new getUserInfo().execute(username);
+        }else{
+            Toast.makeText(this, "The network is not available. Please open WIFI or Mobile network",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.android.mobileapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,7 +42,16 @@ public class MyAnswerActivity extends ActionBarActivity {
         SharedPreferences sharedPref = this.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String username = sharedPref.getString(getString(R.string.username),"zdg");
-        new getAnswerTask().execute(username);
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        TextView title = (TextView)findViewById(R.id.my_answer_title);
+        if (networkInfo != null && networkInfo.isConnected()) {
+            title.setText("my answers");
+            new getAnswerTask().execute(username);
+        }else{
+            title.setText("network not available");
+        }
     }
 
     @Override

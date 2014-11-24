@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -42,22 +45,30 @@ public class login extends ActionBarActivity implements View.OnClickListener{
     }
 
     private void checkLogin() {
-        String username = this.userNameEditableField.getText().toString();
-        String password = this.passwordEditableField.getText().toString();
-        if(!(username.equals("")||password.equals("")))
-        {
-            new getUserTask().execute(username, password);
-        }else
-        {
-            new AlertDialog.Builder(login.this)
-                    .setTitle("Error")
-                    .setMessage("Please enter your username or password")
-                    .setNeutralButton("Try Again",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int which) {
-                                }
-                            }).show();
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()){
+            String username = this.userNameEditableField.getText().toString();
+            String password = this.passwordEditableField.getText().toString();
+            if(!(username.equals("")||password.equals("")))
+            {
+                new getUserTask().execute(username, password);
+            }else
+            {
+                new AlertDialog.Builder(login.this)
+                        .setTitle("Error")
+                        .setMessage("Please enter your username or password")
+                        .setNeutralButton("Try Again",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                    }
+                                }).show();
+            }
+        }else{
+            Toast.makeText(this, "The network is not available. Please open WIFI or Mobile network",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

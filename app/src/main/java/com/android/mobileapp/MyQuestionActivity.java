@@ -4,6 +4,8 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -44,7 +46,16 @@ public class MyQuestionActivity extends ActionBarActivity {
         SharedPreferences sharedPref = this.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String username = sharedPref.getString(getString(R.string.username),"zdg");
-        new getQuestionTask().execute(username);
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        TextView title = (TextView)findViewById(R.id.my_question_title);
+        if (networkInfo != null && networkInfo.isConnected()) {
+            title.setText("my questions");
+            new getQuestionTask().execute(username);
+        }else{
+            title.setText("network not available");
+        }
     }
 
     @Override

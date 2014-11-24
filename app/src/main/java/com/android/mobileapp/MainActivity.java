@@ -88,10 +88,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_login) {
-            new LoginFragment().show(getSupportFragmentManager(),"login");
-            return true;
-        }
         if(id==R.id.action_logout){
             Intent logout = new Intent(this, login.class);
             startActivity(logout);
