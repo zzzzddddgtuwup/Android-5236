@@ -108,8 +108,11 @@ public class SettingActivity extends ActionBarActivity {
     public void useCurrentLocation(View view) {
         mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         mLocationManager.requestLocationUpdates(mLocationManager.GPS_PROVIDER, 1000L, 500.0f, mLocationListener);
-        //Location currLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         Location currLocation = getCurrLocation();
+        if (currLocation == null) {
+            Toast.makeText(this, "Please open your GPS for current location.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         double currLat = currLocation.getLatitude();
         double currLng = currLocation.getLongitude();
         int forumNumber = getForumNumber(new LatLng(currLat, currLng));
