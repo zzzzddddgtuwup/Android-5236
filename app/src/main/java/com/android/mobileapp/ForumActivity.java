@@ -25,10 +25,10 @@ public class ForumActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e(TAG, "+++ In onCreate() +++");
-        FragmentTabsFragmentSupport tabhostFragment = new FragmentTabsFragmentSupport();
-        tabhostFragment.setArguments(getIntent().getExtras());
         setContentView(R.layout.activity_forum);
         if (savedInstanceState == null) {
+            FragmentTabsFragmentSupport tabhostFragment = new FragmentTabsFragmentSupport();
+            tabhostFragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, tabhostFragment)
                     .commit();

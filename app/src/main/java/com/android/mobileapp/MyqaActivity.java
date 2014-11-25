@@ -31,6 +31,7 @@ public class MyqaActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("rotation test","onCreate");
         Intent intent = getIntent();
         String question_content = intent.getStringExtra(getString(R.string.Q_CONTENT));
         question_id = intent.getLongExtra(getString(R.string.Q_ID),-1);
@@ -47,6 +48,7 @@ public class MyqaActivity extends ActionBarActivity {
     @Override
     protected void onResume(){
         super.onResume();
+        Log.d("rotation test","onResume");
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -91,6 +93,12 @@ public class MyqaActivity extends ActionBarActivity {
         public PlaceholderFragment(String question_content, int question_rate){
             this.question_content = question_content;
             this.question_rate = question_rate;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setRetainInstance(true);
         }
 
         @Override
