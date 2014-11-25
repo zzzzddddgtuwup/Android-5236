@@ -1,6 +1,9 @@
 package com.android.mobileapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +29,15 @@ public class Tab1Fragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         int forumId = getArguments().getInt(getString(R.string.map_to_forum_intent_extra),1);
         Log.d("tap1","forum is " + forumId);
-        new getQuestionTask().execute(forumId);
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new getQuestionTask().execute(forumId);
+        }else{
+            TextView tvTitle = (TextView)view.findViewById(R.id.tab1_title);
+            tvTitle.setText("network not available");
+        }
     }
 
     public Tab1Fragment() {

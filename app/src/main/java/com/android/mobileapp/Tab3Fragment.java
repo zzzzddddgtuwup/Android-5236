@@ -3,6 +3,8 @@ package com.android.mobileapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -51,21 +53,29 @@ public class Tab3Fragment extends Fragment {
         final View.OnClickListener Click = new View.OnClickListener(){
             @Override
             public void onClick (View view){
-                switch(view.getId()){
-                    case R.id.add_question:
-                        Intent askQuestion = new Intent(getActivity(), ForumActivity.class);
-                        new addQuestionTask().execute(questionEditableField.getText().toString()
-                                ,username,""+forumId);
-                        askQuestion.putExtra(getString(R.string.map_to_forum_intent_extra),forumId);
-                        startActivity(askQuestion);
-                        break;
-                    case R.id.search_button:
-                        Log.d("search","search is entered");
-                        Intent searchIntent = new Intent(getActivity(),SearchResultActivity.class);
-                        searchIntent.putExtra(getString(R.string.question_search_content),searchEditableField.getText().toString());
-                        searchIntent.putExtra(getString(R.string.map_to_forum_intent_extra),forumId);
-                        startActivity(searchIntent);
-                        break;
+                ConnectivityManager connMgr = (ConnectivityManager)
+                        getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                if (networkInfo != null && networkInfo.isConnected()){
+                    switch(view.getId()){
+                        case R.id.add_question:
+                            Intent askQuestion = new Intent(getActivity(), ForumActivity.class);
+                            new addQuestionTask().execute(questionEditableField.getText().toString()
+                                    , username, "" + forumId);
+                            askQuestion.putExtra(getString(R.string.map_to_forum_intent_extra), forumId);
+                            startActivity(askQuestion);
+                            break;
+                        case R.id.search_button:
+                            Log.d("search","search is entered");
+                            Intent searchIntent = new Intent(getActivity(),SearchResultActivity.class);
+                            searchIntent.putExtra(getString(R.string.question_search_content),searchEditableField.getText().toString());
+                            searchIntent.putExtra(getString(R.string.map_to_forum_intent_extra),forumId);
+                            startActivity(searchIntent);
+                            break;
+                    }
+                }else{
+                    Toast.makeText(getActivity(), "The network is not available. Please open WIFI or Mobile network",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         };

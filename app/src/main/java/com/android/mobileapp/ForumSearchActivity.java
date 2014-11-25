@@ -1,6 +1,9 @@
 package com.android.mobileapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -38,7 +41,15 @@ public class ForumSearchActivity extends ActionBarActivity {
     protected void onResume(){
         super.onResume();
         String search_content = getIntent().getStringExtra(getString(R.string.forum_search_content));
-        new getForumSearchResult().execute(search_content);
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new getForumSearchResult().execute(search_content);
+        }else{
+            TextView title = (TextView)findViewById(R.id.forum_search_title);
+            title.setText("network not available");
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
