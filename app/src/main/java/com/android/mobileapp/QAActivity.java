@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -57,7 +59,16 @@ public class QAActivity extends ActionBarActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        new getAnswersTask().execute(question_id);
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        TextView title = (TextView)findViewById(R.id.my_question_title);
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new getAnswersTask().execute(question_id);
+        }else{
+            Toast.makeText(this, "The network is not available. Please open WIFI or Mobile network",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -112,20 +123,29 @@ public class QAActivity extends ActionBarActivity {
             final View.OnClickListener Click = new View.OnClickListener(){
                 @Override
                 public void onClick (View view){
-                    switch(view.getId()){
-                        case R.id.upvote_button:
-                            Toast.makeText(getActivity(),"You upvote the question",Toast.LENGTH_SHORT).show();
-                            new questionRateTask().execute(question_id);
-                            break;
-                        case R.id.add_answer:
-                            Toast.makeText(getActivity(),"You answer the question",Toast.LENGTH_SHORT).show();
-                            new addAnswerTask().execute(answerEditableField.getText().toString(),
-                                    username,""+question_id);
-                            break;
+                    ConnectivityManager connMgr = (ConnectivityManager)
+                            getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                    TextView title = (TextView)findViewById(R.id.my_question_title);
+                    if (networkInfo != null && networkInfo.isConnected()) {
+                        switch (view.getId()) {
+                            case R.id.upvote_button:
+                                Toast.makeText(getActivity(), "You upvote the question", Toast.LENGTH_SHORT).show();
+                                new questionRateTask().execute(question_id);
+                                break;
+                            case R.id.add_answer:
+                                Toast.makeText(getActivity(), "You answer the question", Toast.LENGTH_SHORT).show();
+                                new addAnswerTask().execute(answerEditableField.getText().toString(),
+                                        username, "" + question_id);
+                                break;
+                        }
+                        Intent intent = new Intent(getActivity(), ForumActivity.class);
+                        intent.putExtra(getString(R.string.map_to_forum_intent_extra), forum_id);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getActivity(), "The network is not available. Please open WIFI or Mobile network",
+                                Toast.LENGTH_SHORT).show();
                     }
-                    Intent intent = new Intent(getActivity(),ForumActivity.class);
-                    intent.putExtra(getString(R.string.map_to_forum_intent_extra),forum_id);
-                    startActivity(intent);
                 }
             };
             upVote.setOnClickListener(Click);
@@ -133,7 +153,6 @@ public class QAActivity extends ActionBarActivity {
 
             return rootView;
         }
-
     }
 
     private class getAnswersTask extends AsyncTask<Long, Void, Collection<Answer>>{
@@ -186,11 +205,20 @@ public class QAActivity extends ActionBarActivity {
             imageBt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(view.getId() == R.id.rateButton){
-                        new answerRateTask().execute(ans.getAid());
-                        Intent intent = new Intent(QAActivity.this,ForumActivity.class);
-                        intent.putExtra(getString(R.string.map_to_forum_intent_extra),forum_id);
-                        startActivity(intent);
+                    ConnectivityManager connMgr = (ConnectivityManager)
+                            getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                    TextView title = (TextView)findViewById(R.id.my_question_title);
+                    if (networkInfo != null && networkInfo.isConnected()) {
+                        if (view.getId() == R.id.rateButton) {
+                            new answerRateTask().execute(ans.getAid());
+                            Intent intent = new Intent(QAActivity.this, ForumActivity.class);
+                            intent.putExtra(getString(R.string.map_to_forum_intent_extra), forum_id);
+                            startActivity(intent);
+                        }
+                    }else{
+                        Toast.makeText(QAActivity.this, "The network is not available. Please open WIFI or Mobile network",
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
             });

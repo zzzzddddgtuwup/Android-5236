@@ -1,6 +1,9 @@
 package com.android.mobileapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -15,6 +18,7 @@ import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,7 +47,16 @@ public class MyqaActivity extends ActionBarActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        new getAnswersTask().execute(question_id);
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        TextView title = (TextView)findViewById(R.id.my_question_title);
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new getAnswersTask().execute(question_id);
+        }else{
+            Toast.makeText(this, "The network is not available. Please open WIFI or Mobile network",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
