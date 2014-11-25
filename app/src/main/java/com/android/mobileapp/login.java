@@ -32,7 +32,7 @@ public class login extends ActionBarActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.fragment_login);
 
         userNameEditableField = (EditText) findViewById(R.id.username_text);
         passwordEditableField = (EditText) findViewById(R.id.password_text);
