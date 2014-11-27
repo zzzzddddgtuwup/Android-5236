@@ -23,10 +23,16 @@ public class ForumActivity extends ActionBarActivity {
     private final String TAG = ((Object) this).getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         Log.e(TAG, "+++ In onCreate() +++");
+        if(savedInstanceState==null){
+            Log.d(TAG,"first time!");
+        }else{
+            Log.d(TAG,"welcome back");
+        }
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum);
         if (savedInstanceState == null) {
+
             FragmentTabsFragmentSupport tabhostFragment = new FragmentTabsFragmentSupport();
             tabhostFragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction()
@@ -37,7 +43,26 @@ public class ForumActivity extends ActionBarActivity {
 
     @Override
     protected void onResume(){
+        Log.e(TAG, "+++ In onResume() +++");
         super.onResume();
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        Log.e(TAG, "+++ In onStop() +++");
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        Log.e(TAG, "+++ In onPause() +++");
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        Log.e(TAG, "+++ In onDestroy() +++");
     }
 
     @Override
@@ -59,35 +84,5 @@ public class ForumActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public class FragmentTabsFragmentSupport extends Fragment {
-        private FragmentTabHost mTabHost;
-
-        public FragmentTabsFragmentSupport() {
-
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            mTabHost = new FragmentTabHost(getActivity());
-            mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.fragmentTabHost);
-
-            mTabHost.addTab(mTabHost.newTabSpec("allQuestions").setIndicator("all"),
-                    Tab1Fragment.class, getArguments());
-            mTabHost.addTab(mTabHost.newTabSpec("topFive").setIndicator("popular"),
-                    Tab2Fragment.class, getArguments());
-            mTabHost.addTab(mTabHost.newTabSpec("askAndSearch").setIndicator("ask Search"),
-                    Tab3Fragment.class, getArguments());
-
-            return mTabHost;
-        }
-
-        @Override
-        public void onDestroyView() {
-            super.onDestroyView();
-            mTabHost = null;
-        }
     }
 }
