@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:text="Ask Question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="15dip"
+        android:textStyle="bold"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/add_question"
+        android:layout_alignStart="@+id/add_question"
+        android:layout_marginLeft="23dp" />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_marginTop="62dp"
+        android:layout_width="200dp"
+        android:inputType="none"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="35dp" />
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_new_question"
+        android:id="@+id/add_question"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText"
+        android:layout_marginBottom="67dp" />
+
+    <TextView
+        android:text="Search Question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="15dip"
+        android:textStyle="bold"
+        android:id="@+id/"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_alignRight="@+id/search_button"
+        android:layout_alignEnd="@+id/search_button" />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:id="@+id/search_text"
+        android:layout_width="200dp"
+        android:inputType="none"
+        android:layout_alignTop="@+id/editText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="62dp" />
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/search_button"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="109dp"
+        android:layout_alignTop="@+id/add_question"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
