@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -24,15 +25,9 @@ public class ForumActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.e(TAG, "+++ In onCreate() +++");
-        if(savedInstanceState==null){
-            Log.d(TAG,"first time!");
-        }else{
-            Log.d(TAG,"welcome back");
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum);
         if (savedInstanceState == null) {
-
             FragmentTabsFragmentSupport tabhostFragment = new FragmentTabsFragmentSupport();
             tabhostFragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction()
@@ -42,37 +37,11 @@ public class ForumActivity extends ActionBarActivity {
     }
 
     @Override
-    protected void onResume(){
-        Log.e(TAG, "+++ In onResume() +++");
-        super.onResume();
-    }
-
-    @Override
-    protected void onStop(){
-        super.onStop();
-        Log.e(TAG, "+++ In onStop() +++");
-    }
-
-    @Override
-    protected void onPause(){
-        super.onPause();
-        Log.e(TAG, "+++ In onPause() +++");
-    }
-
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-        Log.e(TAG, "+++ In onDestroy() +++");
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.forum, menu);
         return true;
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

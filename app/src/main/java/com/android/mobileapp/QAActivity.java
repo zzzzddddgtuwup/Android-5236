@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.os.Build;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -53,6 +54,7 @@ public class QAActivity extends ActionBarActivity implements View.OnClickListene
         username = sharedPref.getString(getString(R.string.username),"zdg");
 
         setContentView(R.layout.activity_qa);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         if (savedInstanceState == null) {
             PlaceholderFragment frag = new PlaceholderFragment();
             frag.setArguments(getIntent().getExtras());
