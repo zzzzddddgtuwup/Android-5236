@@ -1,5 +1,7 @@
 package com.android.mobileapp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 import android.widget.EditText;
@@ -108,6 +110,10 @@ public class ExampleTest extends ActivityInstrumentationTestCase2
         solo.assertCurrentActivity("wrong activity", MainActivity.class);
     }
 
+    /**
+     * Test out every type of notifications time period
+     * @throws Exception
+     */
     public void testNotifeq() throws Exception
     {
         EditText user = (EditText) solo.getView(R.id.username_text);
@@ -135,7 +141,41 @@ public class ExampleTest extends ActivityInstrumentationTestCase2
         solo.assertCurrentActivity("wrong activity", SettingActivity.class);
         solo.goBack();
         solo.assertCurrentActivity("wrong activity", MainActivity.class);
+   }
+
+    /**
+     * Test out the user logout feature
+     * @throws Exception
+     */
+    public void testLogout() throws Exception
+    {
+        EditText user = (EditText) solo.getView(R.id.username_text);
+        EditText pass = (EditText) solo.getView(R.id.password_text);
+        solo.assertCurrentActivity("wrong activity",login.class);
+        solo.enterText(user,"aaa");
+        solo.enterText(pass,"123");
+        solo.clickOnButton("Log In");
+        solo.assertCurrentActivity("wrong activity", MainActivity.class);
+        solo.clickOnActionBarItem(R.id.action_logout);
+        solo.assertCurrentActivity("wrong activity",login.class);
     }
 
-    
+    /**
+     * Test out the map function
+     * @throws Exception
+     */
+    public void testMap()throws Exception
+    {
+        EditText user = (EditText) solo.getView(R.id.username_text);
+        EditText pass = (EditText) solo.getView(R.id.password_text);
+        solo.assertCurrentActivity("wrong activity",login.class);
+        solo.enterText(user,"aaa");
+        solo.enterText(pass,"123");
+        solo.clickOnButton("Log In");
+        solo.assertCurrentActivity("wrong activity", MainActivity.class);
+        solo.clickOnButton("Select Forum");
+        solo.assertCurrentActivity("wrong activity", SettingActivity.class);
+        solo.clickOnButton("Select Location");
+        solo.assertCurrentActivity("Wrong activity", MapActivity.class);
+    }
 }
