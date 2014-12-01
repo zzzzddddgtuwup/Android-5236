@@ -190,6 +190,7 @@ public class SettingActivity extends ActionBarActivity {
         List<String> providers = mLocationManager.getProviders(true);
         Location bestLocation = null;
         for (String provider : providers) {
+            if (provider == null) continue;
             Location l = mLocationManager.getLastKnownLocation(provider);
             if (l == null) {
                 continue;
