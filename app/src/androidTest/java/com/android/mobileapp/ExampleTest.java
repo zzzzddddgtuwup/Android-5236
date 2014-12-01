@@ -77,6 +77,32 @@ public class ExampleTest extends ActivityInstrumentationTestCase2
         solo.assertCurrentActivity("wrong activity", MainActivity.class);
     }
 
+    public void testButton() throws Exception
+    {
+        EditText user = (EditText) solo.getView(R.id.username_text);
+        EditText pass = (EditText) solo.getView(R.id.password_text);
+        solo.assertCurrentActivity("wrong activity",login.class);
+        solo.enterText(user,"aaa");
+        solo.enterText(pass,"123");
+        solo.clickOnButton("Log In");
+        solo.assertCurrentActivity("wrong activity", MainActivity.class);
+        solo.clickOnButton("Select Forum");
+        solo.assertCurrentActivity("wrong activity", SettingActivity.class);
+        solo.goBack();
+        solo.assertCurrentActivity("wrong activity", MainActivity.class);
+        solo.clickOnButton("My Questions");
+        solo.assertCurrentActivity("wrong activity", MyQuestionActivity.class);
+        solo.goBack();
+        solo.assertCurrentActivity("wrong activity", MainActivity.class);
+        solo.clickOnButton("My Answers");
+        solo.assertCurrentActivity("wrong activity", MyAnswerActivity.class);
+        solo.goBack();
+        solo.assertCurrentActivity("wrong activity", MainActivity.class);
+        solo.clickOnButton("Profile");
+        solo.assertCurrentActivity("wrong activity", AccountActivity.class);
+        solo.goBack();
+        solo.assertCurrentActivity("wrong activity", MainActivity.class);
+    }
 
 
 }
