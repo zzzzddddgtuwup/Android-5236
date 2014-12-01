@@ -200,7 +200,9 @@ public class SettingActivity extends ActionBarActivity {
                 bestLocation = l;
             }
         }
-        Log.e("Location", "Lat: " + bestLocation.getLatitude() + "Lng: " + bestLocation.getLongitude());
+        if (bestLocation != null) {
+            Log.e("Location", "Lat: " + bestLocation.getLatitude() + "Lng: " + bestLocation.getLongitude());
+        }
         mLocationManager.removeUpdates(mLocationListener);
         mLocationManager = null;
         return bestLocation;
