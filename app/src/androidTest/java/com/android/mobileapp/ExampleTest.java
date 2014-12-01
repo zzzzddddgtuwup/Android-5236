@@ -77,7 +77,11 @@ public class ExampleTest extends ActivityInstrumentationTestCase2
         solo.assertCurrentActivity("wrong activity", MainActivity.class);
     }
 
-    public void testButton() throws Exception
+    /**
+     * Test out every button on the main activity
+     * @throws Exception
+     */
+    public void testButtons() throws Exception
     {
         EditText user = (EditText) solo.getView(R.id.username_text);
         EditText pass = (EditText) solo.getView(R.id.password_text);
@@ -104,5 +108,34 @@ public class ExampleTest extends ActivityInstrumentationTestCase2
         solo.assertCurrentActivity("wrong activity", MainActivity.class);
     }
 
+    public void testNotifeq() throws Exception
+    {
+        EditText user = (EditText) solo.getView(R.id.username_text);
+        EditText pass = (EditText) solo.getView(R.id.password_text);
+        solo.assertCurrentActivity("wrong activity",login.class);
+        solo.enterText(user,"aaa");
+        solo.enterText(pass,"123");
+        solo.clickOnButton("Log In");
+        solo.assertCurrentActivity("wrong activity", MainActivity.class);
+        solo.clickOnButton("Select Forum");
+        solo.assertCurrentActivity("wrong activity", SettingActivity.class);
+        solo.clickOnButton("Notification Frequency");
+        solo.assertCurrentActivity("wrong activity", NotiFreqActivity.class);
+        solo.isRadioButtonChecked("15 minutes");
+        solo.clickOnRadioButton(1);
+        solo.isRadioButtonChecked("One hour");
+        solo.clickOnRadioButton(2);
+        solo.isRadioButtonChecked("Three hours");
+        solo.clickOnRadioButton(3);
+        solo.isRadioButtonChecked("Never");
+        solo.clickOnRadioButton(4);
+        solo.isRadioButtonChecked("10 seconds(ONLY FOR TESTING!)");
+        solo.clickOnRadioButton(0);
+        solo.goBack();
+        solo.assertCurrentActivity("wrong activity", SettingActivity.class);
+        solo.goBack();
+        solo.assertCurrentActivity("wrong activity", MainActivity.class);
+    }
 
+    
 }
