@@ -83,7 +83,7 @@ public class SettingActivity extends ActionBarActivity {
     }
 
 
-    private final LocationListener mLocationListener = new LocationListener() {
+    private final LocationListener mLocationListener = new LocationListener() {//Add location listener
         @Override
         public void onLocationChanged(Location location) {
 
@@ -109,7 +109,7 @@ public class SettingActivity extends ActionBarActivity {
         mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         mLocationManager.requestLocationUpdates(mLocationManager.GPS_PROVIDER, 1000L, 500.0f, mLocationListener);
         Location currLocation = getCurrLocation();
-        if (currLocation == null) {
+        if (currLocation == null) {//Give a post when current location failed to get
             Toast.makeText(this, "Please open your GPS for current location.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -129,7 +129,7 @@ public class SettingActivity extends ActionBarActivity {
 
     }
 
-    public static int getForumNumber(LatLng point) {
+    public static int getForumNumber(LatLng point) {//Decide the forum number for location
         double lat = point.latitude;
         double lng = point.longitude;
 
@@ -185,7 +185,7 @@ public class SettingActivity extends ActionBarActivity {
         return false;
     }
 
-    private Location getCurrLocation() {
+    private Location getCurrLocation() {//Get current location from the most accurate provider
         mLocationManager = (LocationManager)getSystemService(LOCATION_SERVICE);
         List<String> providers = mLocationManager.getProviders(true);
         Location bestLocation = null;

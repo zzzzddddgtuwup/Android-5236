@@ -70,6 +70,7 @@ public class NotiFreqActivity extends ActionBarActivity {
         super.onStart();
         handler = new Handler();
         if (interval != 0) handler.postDelayed(runnable, interval);
+        //Start a handler to update notification with certain interval
 
     }
 
@@ -195,7 +196,7 @@ public class NotiFreqActivity extends ActionBarActivity {
         }
 
         @Override
-        protected void onPostExecute(Collection<Integer> notificationNumber){
+        protected void onPostExecute(Collection<Integer> notificationNumber){//Post notification accordingly
             if (notificationNumber.contains(1)) {
                 Intent resultIntent = new Intent(NotiFreqActivity.this, MyQuestionActivity.class);
                 PendingIntent resultPendingIntent =

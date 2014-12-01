@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class MapActivity extends ActionBarActivity {
     protected GoogleMap mMap;
-    protected LocationManager mLocationManager;
+    protected LocationManager mLocationManager;//Add location manager
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class MapActivity extends ActionBarActivity {
         }
     }
 
-    private final LocationListener mLocationListener = new LocationListener() {
+    private final LocationListener mLocationListener = new LocationListener() {//Add location listener
         @Override
         public void onLocationChanged(Location location) {
 
@@ -76,12 +76,13 @@ public class MapActivity extends ActionBarActivity {
 
         mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         mMap.setMyLocationEnabled(true);
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);//Map setting
+
 /*        Location currLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
         double currLat = currLocation.getLatitude();
         double currLng = currLocation.getLongitude();*/
-        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(39.998890, -83.015000), 15.0f) );
+        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(39.998890, -83.015000), 15.0f) );//Default camera
 
 
         /*
@@ -89,6 +90,8 @@ public class MapActivity extends ActionBarActivity {
         Marker mForum = mMap.addMarker(new MarkerOptions().position(new LatLng(40, -83.02))
                 .title("Dreese Lab").draggable(true));
         */
+
+        //Draw 10 polygons for each location
         PolygonOptions ohioUnion = new PolygonOptions().add(
                 new LatLng(39.998717, -83.009481),
                 new LatLng(39.998717, -83.008108),
@@ -191,6 +194,7 @@ public class MapActivity extends ActionBarActivity {
         Marker mCaldwell = mMap.addMarker(new MarkerOptions().position(new LatLng(40.002780, -83.015441))
                 .title("Caldwell Laboratory").draggable(false));
 
+        //Set map click listener to get the location being clicked
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -217,7 +221,7 @@ public class MapActivity extends ActionBarActivity {
     }
 
 
-    public static int getForumNumber(LatLng point) {
+    public static int getForumNumber(LatLng point) {//Decide the forum being chosen
         double lat = point.latitude;
         double lng = point.longitude;
 
@@ -303,7 +307,7 @@ public class MapActivity extends ActionBarActivity {
         }
     }
 
-    public void searchLocation(View view) {
+    public void searchLocation(View view) {//Search for a forum location
         EditText text = (EditText)findViewById(R.id.map_search);
         String searchString = text.getText().toString();
 
@@ -316,6 +320,7 @@ public class MapActivity extends ActionBarActivity {
 
     public void onDestroy() {
         super.onDestroy();
+        //Stop GPS to save battery life
         mLocationManager.removeUpdates(mLocationListener);
         mLocationManager = null;
     }
