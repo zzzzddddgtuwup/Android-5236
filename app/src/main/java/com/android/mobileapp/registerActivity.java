@@ -1,7 +1,10 @@
 package com.android.mobileapp;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -58,7 +61,7 @@ public class registerActivity extends ActionBarActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.done_button:
                 createAccount();
-                finish();
+
                 break;
             case R.id.cancel_button:
                 finish();
@@ -67,29 +70,38 @@ public class registerActivity extends ActionBarActivity implements View.OnClickL
     }
 
     private void createAccount() {
-        String username = etUsername.getText().toString();
-        String password = etPassword.getText().toString();
-        String confirm = etConfirm.getText().toString();
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            String username = etUsername.getText().toString();
+            String password = etPassword.getText().toString();
+            String confirm = etConfirm.getText().toString();
 
-        if ((password.equals(confirm)) && (!username.equals(""))
-                && (!password.equals("")) && (!confirm.equals(""))) {
-            new addUserTask().execute(new User(username,password));
-        } else if ((username.equals("")) || (password.equals(""))
-                || (confirm.equals(""))) {
-            Toast.makeText(registerActivity.this, "Missing entry", Toast.LENGTH_SHORT)
-                    .show();
-        } else if (!password.equals(confirm)) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Error")
-                    .setMessage("passwords do not match")
-                    .setNeutralButton("Try Again",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int which) {
-                                }
-                            })
+            if ((password.equals(confirm)) && (!username.equals(""))
+                    && (!password.equals("")) && (!confirm.equals(""))) {
+                new addUserTask().execute(new User(username, password));
+            } else if ((username.equals("")) || (password.equals(""))
+                    || (confirm.equals(""))) {
+                Toast.makeText(registerActivity.this, "Missing entry", Toast.LENGTH_SHORT)
+                        .show();
+            } else if (!password.equals(confirm)) {
+                new AlertDialog.Builder(this)
+                        .setTitle("Error")
+                        .setMessage("passwords do not match")
+                        .setNeutralButton("Try Again",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                    }
+                                })
 
-                    .show();
+                        .show();
+                finish();
+            }
+        }else{
+            Toast.makeText(this, "The network is not available. Please open WIFI or Mobile network",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
