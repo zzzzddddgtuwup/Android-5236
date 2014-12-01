@@ -23,6 +23,7 @@ import java.util.Collection;
  * A simple {@link Fragment} subclass.
  *
  */
+//show all questions in one forum
 public class Tab1Fragment extends Fragment {
     private View view;
     @Override
@@ -30,6 +31,7 @@ public class Tab1Fragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         int forumId = getArguments().getInt(getString(R.string.map_to_forum_intent_extra),1);
         Log.d("tap1","forum is " + forumId);
+        //check network connection
         ConnectivityManager connMgr = (ConnectivityManager)
                 getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -52,6 +54,7 @@ public class Tab1Fragment extends Fragment {
         return view;
     }
 
+    //thread to get all questions in one forum
     private class getQuestionTask extends AsyncTask<Integer, Void,Collection<Question>>
     {
         private int fid;

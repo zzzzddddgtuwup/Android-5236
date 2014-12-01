@@ -5,6 +5,7 @@ import retrofit.RestAdapter;
 /**
  * Created by zzzzddddgtuwup on 11/13/14.
  */
+//forum service to connect to server
 public class ForumSvc {
     private static ForumSvcApi forumSvc_;
 

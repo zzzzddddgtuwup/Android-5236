@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-
+//main activity fragment with four buttons
 public class mainFragment extends Fragment  {
 
     public mainFragment() {

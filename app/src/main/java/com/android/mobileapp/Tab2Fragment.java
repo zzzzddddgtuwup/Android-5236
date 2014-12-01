@@ -23,6 +23,7 @@ import java.util.Collection;
  * A simple {@link Fragment} subclass.
  *
  */
+// get questions as sorted
 public class Tab2Fragment extends Fragment {
     private View view;
     @Override
@@ -54,6 +55,7 @@ public class Tab2Fragment extends Fragment {
         return view;
     }
 
+    //get sorted questions from server
     private class getQuestionTask extends AsyncTask<Integer, Void,Collection<Question>> {
         private int fid;
 

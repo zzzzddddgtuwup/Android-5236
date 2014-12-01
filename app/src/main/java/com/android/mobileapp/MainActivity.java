@@ -16,17 +16,6 @@ import android.widget.ListView;
 
 public class MainActivity extends FragmentActivity {
     private final String TAG = ((Object) this).getClass().getSimpleName();
-    public static FragmentManager fragmentManager;
-
-    //Variables for the Navigation Drawer //non-functional requirement
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    //private ActionBarDrawerToggle mDrawerToggle;
-
-    private LinearLayout mUserItem;
-    private CharSequence mDrawerTitle;
-    private CharSequence mTitle;
-    private String[] mOptionsArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +28,6 @@ public class MainActivity extends FragmentActivity {
                     .add(R.id.container, new mainFragment())
                     .commit();
         }
-        fragmentManager = getFragmentManager();
     }
 
     @Override

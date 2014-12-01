@@ -6,7 +6,7 @@ import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Query;
-
+//API and path provided by server
 public interface UserSvcApi {
     public static final String USER_NAME = "username";
 

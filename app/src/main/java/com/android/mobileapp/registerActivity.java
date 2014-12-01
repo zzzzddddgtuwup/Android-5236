@@ -70,6 +70,7 @@ public class registerActivity extends ActionBarActivity implements View.OnClickL
     }
 
     private void createAccount() {
+        //check network connection
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -105,6 +106,7 @@ public class registerActivity extends ActionBarActivity implements View.OnClickL
         }
     }
 
+    //add user to server
     private class addUserTask extends AsyncTask<User, Void, Integer> {
 
         @Override

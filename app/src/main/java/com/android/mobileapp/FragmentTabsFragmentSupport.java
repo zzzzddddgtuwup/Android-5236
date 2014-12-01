@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 /**
  * Created by zzzzddddgtuwup on 11/27/14.
  */
+//the tab host fragment
 public class FragmentTabsFragmentSupport extends Fragment {
     private FragmentTabHost mTabHost;
 

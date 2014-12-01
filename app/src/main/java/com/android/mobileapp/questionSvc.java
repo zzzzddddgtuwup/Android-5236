@@ -5,6 +5,7 @@ import retrofit.RestAdapter;
 /**
  * Created by zzzzddddgtuwup on 11/13/14.
  */
+//question service to connect to server
 public class QuestionSvc {
     private static QuestionSvcApi questionSvc_;
 

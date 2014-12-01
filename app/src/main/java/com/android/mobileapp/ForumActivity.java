@@ -24,7 +24,6 @@ public class ForumActivity extends ActionBarActivity {
     private final String TAG = ((Object) this).getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.e(TAG, "+++ In onCreate() +++");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum);
         if (savedInstanceState == null) {

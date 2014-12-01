@@ -23,6 +23,8 @@ public class AccountActivity extends ActionBarActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
+        //get username from shared preference
         SharedPreferences sharedPref = this.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         username = sharedPref.getString(getString(R.string.username), "zdg");
@@ -35,6 +37,7 @@ public class AccountActivity extends ActionBarActivity implements View.OnClickLi
         RelativeLayout more_answer_direct = (RelativeLayout)findViewById(R.id.answer_more_direct);
         more_answer_direct.setOnClickListener(this);
 
+        //check network connection
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -90,6 +93,7 @@ public class AccountActivity extends ActionBarActivity implements View.OnClickLi
                     .getInfoByName(usernames[0]);
         }
 
+        //after get the user information, set the view
         @Override
         protected void onPostExecute(User u){
             TextView userscore_view = (TextView)findViewById(R.id.content_point);

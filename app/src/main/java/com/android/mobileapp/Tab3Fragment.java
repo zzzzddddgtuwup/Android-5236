@@ -45,6 +45,8 @@ public class Tab3Fragment extends Fragment {
         View askQuestion =(Button) rootView.findViewById(R.id.add_question);
         View searchQuestion = (Button) rootView.findViewById(R.id.search_button);
         final EditText searchEditableField = (EditText) rootView.findViewById(R.id.search_text);
+
+        //get user name from shared preference
         SharedPreferences sharedPref = getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         final String username = sharedPref.getString(getString(R.string.username),"zdg");
@@ -84,6 +86,7 @@ public class Tab3Fragment extends Fragment {
         return rootView;
     }
 
+    //add questions of one forum to server
     private class addQuestionTask extends AsyncTask<String, Void,Void>
     {
 

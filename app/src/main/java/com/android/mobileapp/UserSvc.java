@@ -5,6 +5,7 @@ import retrofit.RestAdapter;
 /**
  * Created by zzzzddddgtuwup on 11/13/14.
  */
+//answer service to connect to server
 public class UserSvc {
     private static UserSvcApi userSvc_;
 

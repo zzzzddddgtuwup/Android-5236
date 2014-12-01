@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Created by zzzzddddgtuwup on 11/14/14.
  */
+//adapter to show the answers
 public class answerAdapter extends ArrayAdapter<Answer> {
 
     public answerAdapter(Context context, int resource, int textViewResourceId, List<Answer> objects) {
@@ -19,6 +20,7 @@ public class answerAdapter extends ArrayAdapter<Answer> {
     }
 
     @Override
+    //override the getView to show rate and content of answers
     public View getView(int position, View convertView, ViewGroup parent){
         Answer ans = getItem(position);
         if(convertView==null){

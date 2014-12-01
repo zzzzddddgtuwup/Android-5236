@@ -12,12 +12,14 @@ import java.util.List;
 /**
  * Created by zzzzddddgtuwup on 11/14/14.
  */
+//adapter to show the answers
 public class questionAdapter extends ArrayAdapter<Question> {
 
     public questionAdapter(Context context, int resource, int textViewResourceId, List<Question> objects) {
         super(context, resource, textViewResourceId, objects);
     }
 
+    //override the getView to show rate and content of questions
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         Question ques = getItem(position);

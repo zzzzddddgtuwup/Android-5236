@@ -5,6 +5,7 @@ import java.util.Collection;
 import retrofit.http.GET;
 import retrofit.http.Query;
 
+//API and path provided by server
 public interface AnswerSvcApi {
     public static final String USER_NAME = "username";
 

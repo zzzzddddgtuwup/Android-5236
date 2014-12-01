@@ -45,6 +45,7 @@ public class login extends ActionBarActivity implements View.OnClickListener{
     }
 
     private void checkLogin() {
+        //check network connection
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -56,6 +57,7 @@ public class login extends ActionBarActivity implements View.OnClickListener{
                 new getUserTask().execute(username, password);
             }else
             {
+                //if username or password is empty
                 new AlertDialog.Builder(login.this)
                         .setTitle("Error")
                         .setMessage("Please enter your username or password")
@@ -107,6 +109,7 @@ public class login extends ActionBarActivity implements View.OnClickListener{
         }
     }
 
+    //thread to check user login
     private class getUserTask extends AsyncTask<String, Void, User> {
         private String username;
 

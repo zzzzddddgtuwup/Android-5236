@@ -39,9 +39,11 @@ public class MyAnswerActivity extends ActionBarActivity {
     @Override
     protected void onResume(){
         super.onResume();
+        //get user name from shared preference
         SharedPreferences sharedPref = this.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String username = sharedPref.getString(getString(R.string.username),"zdg");
+        //check network connection
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -91,6 +93,7 @@ public class MyAnswerActivity extends ActionBarActivity {
         }
     }
 
+    //thread to get answer of one user
     private class getAnswerTask extends AsyncTask<String, Void, Collection<Answer>>{
 
         @Override

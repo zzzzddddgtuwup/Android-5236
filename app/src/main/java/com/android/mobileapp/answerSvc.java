@@ -6,6 +6,7 @@ import retrofit.RestAdapter.LogLevel;
 /**
  * Created by zzzzddddgtuwup on 11/13/14.
  */
+//answer service to connect to server
 public class AnswerSvc {
     private static AnswerSvcApi answerSvc_;
 

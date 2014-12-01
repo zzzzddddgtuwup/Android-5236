@@ -31,7 +31,7 @@ public class MyqaActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("rotation test","onCreate");
+        //get question content and question rate from intent
         Intent intent = getIntent();
         String question_content = intent.getStringExtra(getString(R.string.Q_CONTENT));
         question_id = intent.getLongExtra(getString(R.string.Q_ID),-1);
@@ -48,11 +48,10 @@ public class MyqaActivity extends ActionBarActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        Log.d("rotation test","onResume");
+        //check network connection
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        TextView title = (TextView)findViewById(R.id.my_question_title);
         if (networkInfo != null && networkInfo.isConnected()) {
             new getAnswersTask().execute(question_id);
         }else{
@@ -112,7 +111,7 @@ public class MyqaActivity extends ActionBarActivity {
             return rootView;
         }
     }
-
+    //thread to get answer corresponding to one question
     private class getAnswersTask extends AsyncTask<Long, Void, Collection<Answer>> {
         @Override
         protected Collection<Answer> doInBackground(Long... qid) {

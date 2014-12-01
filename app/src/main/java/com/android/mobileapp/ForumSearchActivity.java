@@ -23,7 +23,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
+//show result of forum search
 public class ForumSearchActivity extends ActionBarActivity {
 
     @Override
@@ -41,6 +41,7 @@ public class ForumSearchActivity extends ActionBarActivity {
     protected void onResume(){
         super.onResume();
         String search_content = getIntent().getStringExtra(getString(R.string.forum_search_content));
+        //check network connection
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -85,7 +86,7 @@ public class ForumSearchActivity extends ActionBarActivity {
             return rootView;
         }
     }
-
+    //thread to get forum search result from server
     private class getForumSearchResult extends AsyncTask<String,Void,Collection<Forum>>
     {
 
@@ -110,6 +111,7 @@ public class ForumSearchActivity extends ActionBarActivity {
                         new ArrayList<Forum>(forums)
                 );
                 listView.setAdapter(forumArrayAdapter);
+                // set clickable on each forum item
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                     @Override

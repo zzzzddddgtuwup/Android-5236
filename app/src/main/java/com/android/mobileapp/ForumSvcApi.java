@@ -6,7 +6,7 @@ import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Query;
-
+//API and path provided by server
 public interface ForumSvcApi {
     public static final String FORUM_PART_NAME = "partname";
     // The path where we expect the VideoSvc to live

@@ -21,7 +21,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
+//show question search result
 public class SearchResultActivity extends ActionBarActivity {
 
     @Override
@@ -82,6 +82,7 @@ public class SearchResultActivity extends ActionBarActivity {
         }
     }
 
+    //get question search result from server
     private class getSearchResultTask extends AsyncTask<String,Void,Collection<Question>>
     {
         private int fid;

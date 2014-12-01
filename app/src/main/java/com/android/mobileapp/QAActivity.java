@@ -72,6 +72,8 @@ public class QAActivity extends ActionBarActivity implements View.OnClickListene
         Button addAnswerBtn = (Button)findViewById(R.id.add_answer);
         upVote.setOnClickListener(this);
         addAnswerBtn.setOnClickListener(this);
+
+        //check network connection
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -105,6 +107,7 @@ public class QAActivity extends ActionBarActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
         EditText answerEditableField = (EditText)findViewById(R.id.answer_text);
+        //check network connection
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -151,12 +154,11 @@ public class QAActivity extends ActionBarActivity implements View.OnClickListene
             TextView tvQuestionUsername = (TextView)rootView.findViewById(R.id.question_username);
             tvQuestionUsername.setText(question_username);
 
-
-
             return rootView;
         }
     }
 
+    //get answers according to question id from server
     private class getAnswersTask extends AsyncTask<Long, Void, Collection<Answer>>{
         @Override
         protected Collection<Answer> doInBackground(Long... qid) {
@@ -177,6 +179,7 @@ public class QAActivity extends ActionBarActivity implements View.OnClickListene
         }
     }
 
+    //add answer to the server
     private class addAnswerTask extends AsyncTask<String, Void,Void>
     {
         @Override
@@ -229,6 +232,7 @@ public class QAActivity extends ActionBarActivity implements View.OnClickListene
         }
     }
 
+    //add rate to answer on server
     private class answerRateTask extends AsyncTask<Long,Void,Void>{
 
         @Override
@@ -238,6 +242,7 @@ public class QAActivity extends ActionBarActivity implements View.OnClickListene
         }
     }
 
+    //add rate to question on server
     private class questionRateTask extends AsyncTask<Long, Void, Void>{
 
         @Override
