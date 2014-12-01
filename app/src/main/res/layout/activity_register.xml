@@ -29,7 +29,7 @@
             android:textSize="15.5sp" />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/username123"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -43,7 +43,7 @@
             android:textSize="15.5sp" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/password123"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"

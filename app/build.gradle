@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion 20
     buildToolsVersion "20.0.0"
@@ -18,7 +17,6 @@ android {
         }
     }
 }
-
 repositories {
     mavenCentral()
     maven { url "http://repo.spring.io/libs-snapshot" }
@@ -32,7 +30,6 @@ repositories {
         compile 'com.google.android.gms:play-services:6.1.71'
     }
 }
-
 buildscript {
     repositories {
         mavenCentral()
@@ -43,4 +40,6 @@ buildscript {
     }
 }
 
-
+dependencies {
+    compile project(':robotium-solo-5.2.1')
+}

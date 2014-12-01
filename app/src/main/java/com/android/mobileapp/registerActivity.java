@@ -24,8 +24,8 @@ public class registerActivity extends ActionBarActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etUsername = (EditText) findViewById(R.id.username);
-        etPassword = (EditText) findViewById(R.id.password);
+        etUsername = (EditText) findViewById(R.id.username123);
+        etPassword = (EditText) findViewById(R.id.password123);
         etConfirm = (EditText) findViewById(R.id.password_confirm);
         View btnAdd = (Button) findViewById(R.id.done_button);
         btnAdd.setOnClickListener(this);

@@ -50,7 +50,7 @@
         android:typeface="sans"
         android:textSize="15dip"
         android:textStyle="bold"
-        android:id="@+id/"
+        android:id="@+id/search_question"
         android:layout_alignTop="@+id/textView3"
         android:layout_alignRight="@+id/search_button"
         android:layout_alignEnd="@+id/search_button" />
