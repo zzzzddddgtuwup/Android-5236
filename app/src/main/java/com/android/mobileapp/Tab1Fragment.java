@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -61,7 +60,7 @@ public class Tab1Fragment extends Fragment {
 
         @Override
         protected Collection<Question> doInBackground(Integer... forumId) {
-            Collection<Question> questions = QuestionSvc.getOrInit(getString(R.string.serverUrl))
+            Collection<Question> questions = questionSvc.getOrInit(getString(R.string.serverUrl))
                     .findByForumId(forumId[0]);
             fid = forumId[0];
             return questions;

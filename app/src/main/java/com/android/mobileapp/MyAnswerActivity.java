@@ -99,7 +99,7 @@ public class MyAnswerActivity extends ActionBarActivity {
         @Override
         protected Collection<Answer> doInBackground(String... name) {
             //may throw exception here
-            Collection<Answer> answers= AnswerSvc.getOrInit(getString(R.string.serverUrl))
+            Collection<Answer> answers= answerSvc.getOrInit(getString(R.string.serverUrl))
                     .findByUserName(name[0]);
             return answers;
         }

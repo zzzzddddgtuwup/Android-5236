@@ -6,16 +6,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -115,7 +112,7 @@ public class MyqaActivity extends ActionBarActivity {
     private class getAnswersTask extends AsyncTask<Long, Void, Collection<Answer>> {
         @Override
         protected Collection<Answer> doInBackground(Long... qid) {
-            return AnswerSvc.getOrInit(getString(R.string.serverUrl))
+            return answerSvc.getOrInit(getString(R.string.serverUrl))
                     .findByQuestionId(qid[0]);
         }
 

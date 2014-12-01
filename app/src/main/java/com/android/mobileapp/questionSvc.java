@@ -6,7 +6,7 @@ import retrofit.RestAdapter;
  * Created by zzzzddddgtuwup on 11/13/14.
  */
 //question service to connect to server
-public class QuestionSvc {
+public class questionSvc {
     private static QuestionSvcApi questionSvc_;
 
     public static synchronized QuestionSvcApi getOrInit(String serverUrl){

@@ -12,14 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 /**
@@ -92,7 +87,7 @@ public class Tab3Fragment extends Fragment {
 
         @Override
         protected Void doInBackground(String... params) {
-            QuestionSvc.getOrInit(getString(R.string.serverUrl))
+            questionSvc.getOrInit(getString(R.string.serverUrl))
                     .addQuestion(params[0],params[1],Long.parseLong(params[2]));
             return null;
         }

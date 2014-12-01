@@ -1,26 +1,21 @@
 package com.android.mobileapp;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.os.Build;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -162,7 +157,7 @@ public class QAActivity extends ActionBarActivity implements View.OnClickListene
     private class getAnswersTask extends AsyncTask<Long, Void, Collection<Answer>>{
         @Override
         protected Collection<Answer> doInBackground(Long... qid) {
-            return AnswerSvc.getOrInit(getString(R.string.serverUrl))
+            return answerSvc.getOrInit(getString(R.string.serverUrl))
                     .findByQuestionId(qid[0]);
         }
 
@@ -184,7 +179,7 @@ public class QAActivity extends ActionBarActivity implements View.OnClickListene
     {
         @Override
         protected Void doInBackground(String... params) {
-            AnswerSvc.getOrInit(getString(R.string.serverUrl))
+            answerSvc.getOrInit(getString(R.string.serverUrl))
                     .addAnswer(params[0], params[1], Long.parseLong(params[2]));
             return null;
         }
@@ -237,7 +232,7 @@ public class QAActivity extends ActionBarActivity implements View.OnClickListene
 
         @Override
         protected Void doInBackground(Long... answer_id) {
-            AnswerSvc.getOrInit(getString(R.string.serverUrl)).rateAnswerById(answer_id[0]);
+            answerSvc.getOrInit(getString(R.string.serverUrl)).rateAnswerById(answer_id[0]);
             return null;
         }
     }
@@ -247,7 +242,7 @@ public class QAActivity extends ActionBarActivity implements View.OnClickListene
 
         @Override
         protected Void doInBackground(Long... question_id) {
-            QuestionSvc.getOrInit(getString(R.string.serverUrl)).rateQuestionById(question_id[0]);
+            questionSvc.getOrInit(getString(R.string.serverUrl)).rateQuestionById(question_id[0]);
             return null;
         }
     }

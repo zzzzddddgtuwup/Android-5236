@@ -61,7 +61,7 @@ public class Tab2Fragment extends Fragment {
 
         @Override
         protected Collection<Question> doInBackground(Integer... forumId) {
-            Collection<Question> questions = QuestionSvc.getOrInit(getString(R.string.serverUrl))
+            Collection<Question> questions = questionSvc.getOrInit(getString(R.string.serverUrl))
                     .getSortedQuestionList(forumId[0]);
             fid = forumId[0];
             return questions;

@@ -1,11 +1,8 @@
 package com.android.mobileapp;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -90,7 +86,7 @@ public class SearchResultActivity extends ActionBarActivity {
         @Override
         protected Collection<Question> doInBackground(String... params) {
             Log.d("search","content in search is " + params[0]);
-            Collection<Question> result = QuestionSvc.getOrInit(getString(R.string.serverUrl))
+            Collection<Question> result = questionSvc.getOrInit(getString(R.string.serverUrl))
                     .searchByQuestionInForum(params[0],Long.parseLong(params[1]));
             fid = Integer.parseInt(params[1]);
             return result;

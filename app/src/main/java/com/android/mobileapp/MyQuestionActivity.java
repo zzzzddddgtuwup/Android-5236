@@ -1,6 +1,5 @@
 package com.android.mobileapp;
 
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +9,6 @@ import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,7 +21,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class MyQuestionActivity extends ActionBarActivity {
     private final String TAG = ((Object) this).getClass().getSimpleName();
@@ -103,7 +100,7 @@ public class MyQuestionActivity extends ActionBarActivity {
 
         @Override
         protected Collection<Question> doInBackground(String... username) {
-            Collection<Question> questions = QuestionSvc.getOrInit(getString(R.string.serverUrl))
+            Collection<Question> questions = questionSvc.getOrInit(getString(R.string.serverUrl))
                     .findByUserName(username[0]);
             return questions;
         }
